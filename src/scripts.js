@@ -14,3 +14,4 @@ import './images/hotel-image.jpg';
 
 //event handlers and functions
 
+
