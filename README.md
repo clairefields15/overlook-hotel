@@ -40,8 +40,11 @@ gifs on gifs on gifs here
 ## Contributors
 
 Claire Fields
+
 Ashton Huxtable (Code reviewer)
+
 Nik Seif (Project Manager)
+
 Chandler Moisen (Mentor)
 
 
