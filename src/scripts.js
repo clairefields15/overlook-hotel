@@ -1,7 +1,7 @@
 // imports
-import './css/base.scss';
-import './images/turing-logo.png'
-
+import './css/index.scss';
+import './images/hotel-logo.png';
+import './images/hotel-image.jpg';
 
 // query selectors
 
