@@ -1,38 +1,42 @@
 import { assignVariables, pageLoad } from './scripts';
 
-// how to make dynamic, pass in URL??
-// especially with the fetch single customer
-
-const fetchCustomersData = () => {
+const fetchCustomers = () => {
   return fetch('http://localhost:3001/api/v1/customers')
     .then(response => response.json())
     .catch(error => console.error(`Users API Error: ${error.message}`));
 };
 
 // iteration 3 log in??
-const fetchSingleCustomer = (id) => {
+const fetchCustomer = (id) => {
   return fetch(`http://localhost:3001/api/v1/customers/${id}`)
     .then(response => response.json())
     .catch(error => console.error(`Ingredients API Error: ${error.message}`));
 };
 
-const fetchAllRooms = () => {
+const fetchRooms = () => {
   return fetch('http://localhost:3001/api/v1/rooms')
     .then(response => response.json())
     .catch(error => console.error(`Recipes API Error: ${error.message}`));
 };
 
-const fetchAllBookings = () => {
+const fetchBookings = () => {
   return fetch('http://localhost:3001/api/v1/bookings')
     .then(response => response.json())
     .catch(error => console.error(`Recipes API Error: ${error.message}`));
 }
 
-const getData = () => {
-  Promise.all([fetchCustomersData(), fetchAllRooms(), fetchAllBookings()])
+const fetchHotelData = () => {
+  Promise.all([fetchCustomers(), fetchRooms(), fetchBookings()])
     .then(data => assignVariables(data))
     .then(() => pageLoad());
 };
+
+const fetchCustomerData = (id) => {
+  Promise(fetchCustomer)
+    .then(data => assignVariables(data))
+    .then(() => pageLoad());
+};
+
 
 
 
@@ -56,8 +60,8 @@ function handleError(response) {
 
 
 export default {
-  fetchCustomersData,
-  fetchAllRooms,
-  fetchAllBookings,
-  getData
+  fetchCustomers,
+  fetchRooms,
+  fetchBookings,
+  fetchHotelData
 };

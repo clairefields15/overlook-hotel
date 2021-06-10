@@ -40,7 +40,7 @@ let customer, booking, room, hotel;
 let customersData, roomsData, bookingsData
 
 // event listeners
-window.addEventListener('load', getDataFromAPI)
+window.addEventListener('load', fetchHotelData);
 hamburgerBtn.addEventListener('click', domUpdates.openMobileNav);
 mobileBookBtn.addEventListener('click', domUpdates.showBookingView);
 bookNowBtn.addEventListener('click', domUpdates.showBookingView);
@@ -52,8 +52,8 @@ bookRoomBtn.addEventListener('click', domUpdates.showConfirmationView)
 
 
 //event handlers and functions
-export function getDataFromAPI() {
-  apiCalls.getData()
+export function fetchHotelData() {
+  apiCalls.fetchHotelData();
 }
 
 export function assignVariables(data) {
