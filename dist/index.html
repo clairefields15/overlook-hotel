@@ -16,15 +16,15 @@
     <img src="./images/hotel-logo.png" alt="hotel logo">
   </div>
   <nav>
-    <button id="hamburger" class="burger-button" aria-expanded="false" aria-label="Menu">
+    <button id="hamburger" class="burger-button" aria-expanded="false" aria-label="Menu" role="button">
       <img src="./images/hamburger.png" class="ham-img nav-button" alt="menu button" aria-hidden="true">
       <img src="./images/hamburger-close.png" class="close-btn nav-button hidden" alt="menu button" aria-hidden="true">
     </button>
     <div id="menuDropdown" class="mobile-dropdown hidden">
       <button class="nav-button hidden">Log In</button>
       <button class="nav-button">Book</button>
-      <button class="nav-button">Trips</button>
-      <button class="nav-button">Profile</button>
+      <button class="nav-button">View Trips</button>
+      <button class="nav-button">Your Profile</button>
     </div>
     <div class="desktop-nav hidden">
       <button class="nav-button hidden">Log In</button>
@@ -36,10 +36,37 @@
 
 </header>
 <body>
-
-
-  <div class="landing-container">
-  </div>
+  <section id="landingPage" class="hidden">
+    <div class="hotel-exterior">
+      <button id="bookNowBtn" class="main-button">Book Now</button>
+    </div>
+  </section>
+  <section id="bookingPage" class="booking-page hidden">
+    <form class="selectDates">
+      <label for="arrive">Arrive</label>
+      <input type="date" id="arrive" name="arrive" required>
+      <label for="depart">Depart</label>
+      <input type="date" id="depart" name="depart" required>
+      <label for="people">Number of Guests</label>
+      <input type="number" min="1" max="4" id="people" name="people" placeholder="1" required>
+    </form>
+    <button id="checkAvailBtn" class="main-button">Check Availability</button>
+  </section>
+  <section id="searchResultsPage" class="search-results">
+    <article class="room-card">
+      <div class="image-area">
+        <div class="image-container">
+          <!-- <img src="./assets/info-50.png" class="info-icon" alt="info icon"> -->
+          <img src="./images/1-bed-room.jpg" class="room-photo" alt="Light and airy room with double bed">
+        </div>
+      </div>
+      <div class="text-area">
+        <h3 class="room-type">Single Room</h3>
+        <p>1 Queen</p>
+        <p>$429.44 per night</p>
+      </div>
+    </article>
+  </section>
 
   <script src="bundle.js"></script>
 </body>

@@ -1,0 +1,99 @@
+// LANDING PAGE
+.hotel-exterior {
+  margin: 0 0 2.25rem;
+  background-position: 0;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+  line-height: 1;
+  margin: 0 0 1rem;
+  position: relative;
+  text-align: center;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+  background: url(../images/hotel-image.jpg) no-repeat center center;
+  background-size: cover;
+  @include flex-center;
+
+}
+
+.main-button {
+  align-self: center;
+  padding: 1em 2em;
+  background:white;
+  color:black;
+  border: none;
+  opacity: 0.8;
+  font-size: 1.5em;
+  border-radius: 0.5em;
+  margin: 1em;
+}
+
+// BOOKING PAGE
+.booking-page {
+  @include flex-center;
+}
+
+.selectDates {
+  @include flex-center;
+
+  & input {
+    margin: 1em 2em;
+    width: auto;
+    height: 2em;
+    padding: 1.5em;
+    border: none;
+    background: white;
+    border-radius: 0.5em;
+  }
+
+  & label {
+    font-size: 1.5em;
+    margin-top: 2em;
+  }
+}
+
+// SEARCH RESULTS PAGE
+.search-results {
+  display: grid;
+  padding: 1.3em;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(8, 1.5fr);
+  gap: 2em;
+}
+
+/* tablet size */
+@media screen and (min-width: $tablet-size) {
+.search-results {
+  display: grid;
+  padding: 1.3em;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  gap: 2em;
+}
+}
+
+/* large tablet size */
+@media screen and (min-width: $large-tablet-size) {
+.search-results {
+  display: grid;
+  padding: 1.3em;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 2em;
+}
+}
+
+/* desktop size */
+@media screen and (min-width: $desktop-size) {
+.search-results {
+  display: grid;
+  padding: 1.3em;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: 1fr 1fr;
+  gap: 2em;
+}
+}

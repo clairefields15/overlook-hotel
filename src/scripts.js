@@ -8,6 +8,7 @@ import domUpdates from './domUpdates'
 
 // query selectors
 let hamburgerBtn = document.getElementById('hamburger');
+let dayjs = require('dayjs')
 
 
 // variables
@@ -17,5 +18,6 @@ let hamburgerBtn = document.getElementById('hamburger');
 hamburgerBtn.addEventListener('click', domUpdates.openMobileNav)
 
 //event handlers and functions
+
 
 
