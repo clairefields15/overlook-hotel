@@ -60,7 +60,6 @@ export function assignVariables(data) {
   customersData = data[0].customers;
   roomsData = data[1].rooms;
   bookingsData = data[2].bookings;
-  console.log(bookingsData[0])
 }
 
 export function pageLoad() {
