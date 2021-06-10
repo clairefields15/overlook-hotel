@@ -4,6 +4,7 @@ import './images/hotel-logo.png';
 import './images/hotel-image.jpg';
 import './images/hamburger.png';
 import './images/hamburger-close.png';
+import './images/1-bed-room.jpg';
 import domUpdates from './domUpdates'
 
 // query selectors
