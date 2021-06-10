@@ -46,10 +46,47 @@ const domUpdates = {
     }
   },
 
+  showLandingPage() {
+    domUpdates.show([landingPage]);
+    domUpdates.hide([
+      selectPage,
+      searchResultsPage,
+      bookingPage,
+      confirmationPage
+    ]);
+  },
+
   showBookingView() {
-    console.log('hi')
-    domUpdates.show([selectPage])
-    domUpdates.hide([landingPage])
+    domUpdates.show([selectPage]);
+    domUpdates.hide([
+      landingPage,
+      searchResultsPage,
+      bookingPage,
+      confirmationPage
+    ]);
+  },
+
+  checkAvailability() {
+    domUpdates.show([searchResultsPage]);
+    domUpdates.hide([selectPage, landingPage, bookingPage, confirmationPage]);
+  },
+
+  showRoomDetails() {
+    domUpdates.show([bookingPage]);
+    domUpdates.hide([
+      searchResultsPage,
+      selectPage,
+      landingPage,
+      confirmationPage
+    ]);
+  },
+
+  showConfirmationView() {
+    domUpdates.show([confirmationPage]);
+    domUpdates.hide([bookingPage, searchResultsPage, selectPage, landingPage]);
+    setTimeout(function() {
+      domUpdates.showLandingPage()
+    }, 2000);
   }
 };
 
