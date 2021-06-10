@@ -22,9 +22,9 @@ let checkAvailBtn = document.getElementById('checkAvailBtn');
 let navBookBtn = document.getElementById('navBook');
 let bookRoomBtn = document.getElementById('bookRoomButton')
 let searchResultsPage = document.getElementById('searchResultsPage');
+let mobileViewProfileBtn = document.getElementById('mobileViewProfile');
 // let mobileLogInBtn = document.getElementById('mobileLogIn');
 // let mobileViewTripsBtn = document.getElementById('mobileViewTrips');
-// let mobileViewProfileBtn = document.getElementById('mobileViewProfile');
 // let navLogInBtn = document.getElementById('navLogIn');
 // let navTripsBtn = document.getElementById('navTrips');
 // let navProfileBtn = document.getElementById('navProfile');
@@ -59,16 +59,32 @@ export function fetchHotelData() {
 export function assignVariables(data) {
   customersData = data[0].customers;
   roomsData = data[1].rooms;
-  bookingsData = data[0].bookings;
+  bookingsData = data[2].bookings;
 }
 
 export function pageLoad() {
-  // instantiate a random user on load (for now, soon there will be log in page)
   customer = new Customer(customersData[0])
-  console.log(customer)
+  let allRooms = makeRoomInstances()
+  let allBookings = makeBookingInstances()
 }
 
+function makeRoomInstances() {
+  let allRooms = []
+  roomsData.forEach(roomObj => {
+    room = new Room (roomObj)
+    allRooms.push(room)
+  })
+  return allRooms
+}
 
+function makeBookingInstances() {
+  let allBookings = [];
+  bookingsData.forEach(bookingObj => {
+    booking = new Booking(bookingObj);
+    allBookings.push(booking);
+  });
+  return allBookings;
+}
 
 function selectRoom(event) {
   let target = event.target.closest('.room-card').id
