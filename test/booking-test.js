@@ -29,7 +29,7 @@ describe.only('Booking', () => {
 
   it('should have a user ID associated with it', () => {
     expect(booking1).to.have.a.property('userID');
-    expect(booking1.userID).to.equal(9);
+    expect(booking1.userID).to.equal(1);
   });
 
   it('should have a date', () => {
@@ -44,7 +44,7 @@ describe.only('Booking', () => {
 
   it('should have a user ID associated with it', () => {
     expect(booking1).to.have.a.property('userID');
-    expect(booking1.userID).to.equal(9);
+    expect(booking1.userID).to.equal(1);
   });
 
   it('should have room service charges', () => {
@@ -55,7 +55,7 @@ describe.only('Booking', () => {
   it('should be able to instantiate a different customer', () => {
     expect(booking2).to.be.an.instanceOf(Booking);
     expect(booking2.id).to.equal('5fwrgu4i7k55hl6t5');
-    expect(booking2.userID).to.equal(43);
+    expect(booking2.userID).to.equal(2);
     expect(booking2.date).to.equal('2020/01/24');
     expect(booking2.roomNumber).to.equal(24);
     expect(booking2.roomServiceCharges).to.deep.equal([]);
