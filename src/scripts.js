@@ -38,8 +38,6 @@ bookNowBtn.addEventListener('click', domUpdates.showBookingView);
 navBookBtn.addEventListener('click', domUpdates.showBookingView);
 // instead of just changing the view, later check avail will run a whole bunch of other stuff
 checkAvailBtn.addEventListener('click', domUpdates.checkAvailability);
-// this will actually do a lot of logic, should be called selectRoom
-// event listener on the window will be looking for which room you clicked on
 searchResultsPage.addEventListener('click', () => selectRoom(event))
 bookRoomBtn.addEventListener('click', domUpdates.showConfirmationView)
 
@@ -48,6 +46,7 @@ bookRoomBtn.addEventListener('click', domUpdates.showConfirmationView)
 
 function selectRoom(event) {
   let target = event.target.closest('.room-card').id
+  // will have to pass target to some class file to render the appropriate card on the next page
   if (target === '1') {
     domUpdates.showRoomDetails()
   }
@@ -55,4 +54,8 @@ function selectRoom(event) {
 }
 
 
+
+
+/// you should not be able to book if you're not logged in!!! 
+// so maybe when you click book now it prompts you to log in
 
