@@ -1,0 +1,13 @@
+$primary-background: #272727;
+$tablet-size: 620px;
+$large-tablet-size: 900px;
+$desktop-size: 1200px;
+
+
+@mixin flex-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;  
+}
+
+

@@ -3,17 +3,218 @@
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap" rel="stylesheet">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Overlook Hotel</title>
 </head>
 <header>
-  <h1>Overlook Hotel</h1>
+  <div class="logo-container">
+    <h1>Overlook Hotel</h1>
+    <img src="./images/hotel-logo.png" alt="hotel logo">
+  </div>
+  <nav>
+    <button id="hamburger" class="burger-button" aria-expanded="false" aria-label="Menu" role="button">
+      <img src="./images/hamburger.png" class="ham-img nav-button" alt="menu button" aria-hidden="true">
+      <img src="./images/hamburger-close.png" class="close-btn nav-button hidden" alt="menu button" aria-hidden="true">
+    </button>
+    <div id="menuDropdown" class="mobile-dropdown hidden">
+      <button class="nav-button hidden">Log In</button>
+      <button class="nav-button">Book</button>
+      <button class="nav-button">View Trips</button>
+      <button class="nav-button">Your Profile</button>
+    </div>
+    <div class="desktop-nav hidden">
+      <button class="nav-button hidden">Log In</button>
+      <button class="nav-button hidden">Book</button>
+      <button class="nav-button hidden">Trips</button>
+      <button class="nav-button hidden">Profile</button>
+    </div>
+  </nav>
+
 </header>
 <body>
-  <img src="./images/turing-logo.png" alt="turing logo" height="100px" width="100px">
+  <section id="landingPage" class="landing-page hidden">
+    <div class="hotel-exterior">
+      <button id="bookNowBtn" class="main-button">Book Now</button>
+    </div>
+  </section>
+  <section id="selectPage" class="select-page hidden">
+    <form class="selectDates">
+      <label for="arrive">Arrive</label>
+      <input type="date" id="arrive" name="arrive" required>
+      <label for="depart">Depart</label>
+      <input type="date" id="depart" name="depart" required>
+      <label for="people">Number of Guests</label>
+      <input type="number" min="1" max="4" id="people" name="people" placeholder="1" required>
+    </form>
+    <button id="checkAvailBtn" class="main-button">Check Availability</button>
+  </section>
+  <!-- start of search results page -->
+  <section id="searchResultsPage" class="search-results hidden">
+    <!-- this will all be innerHTML -->
+    <article class="room-card">
+      <div class="image-area">
+        <div class="image-container">
+          <img src="./images/1-bed-room.jpg" class="room-photo" alt="Light and airy room with double bed">
+          <button id="selectRoomButton" class="select-room-btn">
+            Select this room
+          </button>
+        </div>
+      </div>
+      <div class="text-area">
+        <h3 id="roomType" class="room-type">Single Room</h3>
+        <p id="typeOfBed">1 Queen Bed</p>
+        <p id="costPerNight">$429.44 per night</p>
+      </div>
+    </article>
+      <article class="room-card">
+        <div class="image-area">
+          <div class="image-container">
+            <img src="./images/1-bed-room.jpg" class="room-photo" alt="Light and airy room with double bed">
+            <button id="selectRoomButton" class="select-room-btn">
+              Select this room
+            </button>
+          </div>
+        </div>
+        <div class="text-area">
+          <h3 id="roomType" class="room-type">Single Room</h3>
+          <p id="typeOfBed">1 Queen Bed</p>
+          <p id="costPerNight">$429.44 per night</p>
+        </div>
+      </article>
+        <article class="room-card">
+          <div class="image-area">
+            <div class="image-container">
+              <img src="./images/1-bed-room.jpg" class="room-photo" alt="Light and airy room with double bed">
+              <button id="selectRoomButton" class="select-room-btn">
+                Select this room
+              </button>
+            </div>
+          </div>
+          <div class="text-area">
+            <h3 id="roomType" class="room-type">Single Room</h3>
+            <p id="typeOfBed">1 Queen Bed</p>
+            <p id="costPerNight">$429.44 per night</p>
+          </div>
+        </article>
+          <article class="room-card">
+            <div class="image-area">
+              <div class="image-container">
+                <img src="./images/1-bed-room.jpg" class="room-photo" alt="Light and airy room with double bed">
+                <button id="selectRoomButton" class="select-room-btn">
+                  Select this room
+                </button>
+              </div>
+            </div>
+            <div class="text-area">
+              <h3 id="roomType" class="room-type">Single Room</h3>
+              <p id="typeOfBed">1 Queen Bed</p>
+              <p id="costPerNight">$429.44 per night</p>
+            </div>
+          </article>
+            <article class="room-card">
+              <div class="image-area">
+                <div class="image-container">
+                  <img src="./images/1-bed-room.jpg" class="room-photo" alt="Light and airy room with double bed">
+                  <button id="selectRoomButton" class="select-room-btn">
+                    Select this room
+                  </button>
+                </div>
+              </div>
+              <div class="text-area">
+                <h3 id="roomType" class="room-type">Single Room</h3>
+                <p id="typeOfBed">1 Queen Bed</p>
+                <p id="costPerNight">$429.44 per night</p>
+              </div>
+            </article>
+              <article class="room-card">
+                <div class="image-area">
+                  <div class="image-container">
+                    <img src="./images/1-bed-room.jpg" class="room-photo" alt="Light and airy room with double bed">
+                    <button id="selectRoomButton" class="select-room-btn">
+                      Select this room
+                    </button>
+                  </div>
+                </div>
+                <div class="text-area">
+                  <h3 id="roomType" class="room-type">Single Room</h3>
+                  <p id="typeOfBed">1 Queen Bed</p>
+                  <p id="costPerNight">$429.44 per night</p>
+                </div>
+              </article>
+                <article class="room-card">
+                  <div class="image-area">
+                    <div class="image-container">
+                      <img src="./images/1-bed-room.jpg" class="room-photo" alt="Light and airy room with double bed">
+                      <button id="selectRoomButton" class="select-room-btn">
+                        Select this room
+                      </button>
+                    </div>
+                  </div>
+                  <div class="text-area">
+                    <h3 id="roomType" class="room-type">Single Room</h3>
+                    <p id="typeOfBed">1 Queen Bed</p>
+                    <p id="costPerNight">$429.44 per night</p>
+                  </div>
+                </article>
+                  <article class="room-card">
+                    <div class="image-area">
+                      <div class="image-container">
+                        <img src="./images/1-bed-room.jpg" class="room-photo" alt="Light and airy room with double bed">
+                        <button id="selectRoomButton" class="select-room-btn">
+                          Select this room
+                        </button>
+                      </div>
+                    </div>
+                    <div class="text-area">
+                      <h3 id="roomType" class="room-type">Single Room</h3>
+                      <p id="typeOfBed">1 Queen Bed</p>
+                      <p id="costPerNight">$429.44 per night</p>
+                    </div>
+                  </article>
+                    <article class="room-card">
+                      <div class="image-area">
+                        <div class="image-container">
+                          <img src="./images/1-bed-room.jpg" class="room-photo" alt="Light and airy room with double bed">
+                          <button id="selectRoomButton" class="select-room-btn">
+                            Select this room
+                          </button>
+                        </div>
+                      </div>
+                      <div class="text-area">
+                        <h3 id="roomType" class="room-type">Single Room</h3>
+                        <p id="typeOfBed">1 Queen Bed</p>
+                        <p id="costPerNight">$429.44 per night</p>
+                      </div>
+                    </article>
+  </section>
+  <!-- end of room images -->
+  <section id="bookingPage" class="booking-page hidden">
+    <article class="book-this-room">
+      <div class="room-image-container">
+        <img src="./images/1-bed-room.jpg" class="room-photo" alt="Light and airy room with double bed">
+      </div>
+      <div class="text-area">
+        <h3 id="roomType" class="room-type">Single Room</h3>
+        <p id="typeOfBed">1 Queen Bed</p>
+        <p id="datesOfStay">Dates: Jun 1 2021 - Jun 4 2021</p>
+        <p id="costPerNight">$429.44 per night x 4 nights</p>
+        <p id="totalCost">Total: $1230.23</p><br>
+        <p>Money is fake anyway, so let's pretend you pay here.</p>
+      </div>
+      <button id="bookRoomButton" class="book-room-btn">
+        Book Your Stay!
+      </button>
+    </article>
+  </section>
+  <section id="confirmationPage" class="confirmation-page">
+    <p id="confirmation-msg">Your room is booked! Enjoy your stay!</p>
+  </section>
 
-  <!-- Do not include the index.js or main.bundle.js file here - it is done automatically by the webpack server -->
+
   <script src="bundle.js"></script>
-
 </body>
 </html>
