@@ -30,10 +30,11 @@
   font-size: 1.5em;
   border-radius: 0.5em;
   margin: 1em;
+  margin-top: 8em;
 }
 
 // BOOKING PAGE
-.booking-page {
+.select-page {
   @include flex-center;
 }
 
@@ -64,6 +65,44 @@
   grid-template-rows: repeat(8, 1.5fr);
   gap: 2em;
 }
+
+// BOOKING PAGE
+.book-this-room {
+  @include flex-center;
+}
+
+.book-room-btn {
+  padding: 1em;
+  border-radius: 0.5em;
+
+  &:hover {
+    background-color: lightgray;
+  }
+}
+
+.room-photo {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  overflow: hidden;
+}
+
+.text-area {
+  padding: 1em;
+}
+
+// CONFIRMATION PAGE
+.confirmation-page {
+  @include flex-center;
+  text-align: center;
+
+  & p {
+    font-size: 3em;
+    padding: 1em;
+    padding-top: 30vh;
+  }
+}
+
 
 /* tablet size */
 @media screen and (min-width: $tablet-size) {

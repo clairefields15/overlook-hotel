@@ -36,12 +36,12 @@
 
 </header>
 <body>
-  <section id="landingPage" class="hidden">
+  <section id="landingPage" class="landing-page hidden">
     <div class="hotel-exterior">
       <button id="bookNowBtn" class="main-button">Book Now</button>
     </div>
   </section>
-  <section id="bookingPage" class="booking-page hidden">
+  <section id="selectPage" class="select-page hidden">
     <form class="selectDates">
       <label for="arrive">Arrive</label>
       <input type="date" id="arrive" name="arrive" required>
@@ -53,7 +53,7 @@
     <button id="checkAvailBtn" class="main-button">Check Availability</button>
   </section>
   <!-- start of search results page -->
-  <section id="searchResultsPage" class="search-results">
+  <section id="searchResultsPage" class="search-results hidden">
     <!-- this will all be innerHTML -->
     <article class="room-card">
       <div class="image-area">
@@ -192,6 +192,28 @@
                     </article>
   </section>
   <!-- end of room images -->
+  <section id="bookingPage" class="booking-page hidden">
+    <article class="book-this-room">
+      <div class="room-image-container">
+        <img src="./images/1-bed-room.jpg" class="room-photo" alt="Light and airy room with double bed">
+      </div>
+      <div class="text-area">
+        <h3 id="roomType" class="room-type">Single Room</h3>
+        <p id="typeOfBed">1 Queen Bed</p>
+        <p id="datesOfStay">Dates: Jun 1 2021 - Jun 4 2021</p>
+        <p id="costPerNight">$429.44 per night x 4 nights</p>
+        <p id="totalCost">Total: $1230.23</p><br>
+        <p>Money is fake anyway, so let's pretend you pay here.</p>
+      </div>
+      <button id="bookRoomButton" class="book-room-btn">
+        Book Your Stay!
+      </button>
+    </article>
+  </section>
+  <section id="confirmationPage" class="confirmation-page">
+    <p id="confirmation-msg">Your room is booked! Enjoy your stay!</p>
+  </section>
+
 
   <script src="bundle.js"></script>
 </body>
