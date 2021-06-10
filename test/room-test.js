@@ -54,5 +54,10 @@ describe.only('Customer', () => {
     expect(room1.costPerNight).to.equal(358.4);
   });
 
+  it('should be available or unavailable', () => {
+    expect(room1).to.have.a.property('isAvailable');
+    expect(room1.isAvailable).to.equal(true);
+  });
+
 
 });
