@@ -4,8 +4,22 @@ let dayjs = require('dayjs');
 //   const date = dayjs(booking.dataset.date).format('MMM D YYYY');
 //   bookingElement.innerText = date;
 // });
+let mobileLogInBtn = document.getElementById('mobileLogIn');
+let mobileBookBtn = document.getElementById('mobileBook');
+let mobileViewTripsBtn = document.getElementById('mobileViewTrips');
+let mobileViewProfileBtn = document.getElementById('mobileViewProfile');
+let navLogInBtn = document.getElementById('navLogIn');
+let navBookBtn = document.getElementById('navBook');
+let navTripsBtn = document.getElementById('navTrips');
+let navProfileBtn = document.getElementById('navProfile');
+let desktopNavSection = document.getElementById('desktopNav');
+let landingPage = document.getElementById('landingPage');
+let selectPage = document.getElementById('selectPage');
+let searchResultsPage = document.getElementById('searchResultsPage');
+let bookingPage = document.getElementById('bookingPage');
+let confirmationPage = document.getElementById('confirmationPage');
 
-let domUpdates = {
+const domUpdates = {
   hide(elements) {
     elements.forEach(element => element.classList.add('hidden'));
   },
@@ -30,6 +44,49 @@ let domUpdates = {
       domUpdates.hide([menuDropdown, closeButton]);
       domUpdates.show([hamburgerImg]);
     }
+  },
+
+  showLandingPage() {
+    domUpdates.show([landingPage]);
+    domUpdates.hide([
+      selectPage,
+      searchResultsPage,
+      bookingPage,
+      confirmationPage
+    ]);
+  },
+
+  showBookingView() {
+    domUpdates.show([selectPage]);
+    domUpdates.hide([
+      landingPage,
+      searchResultsPage,
+      bookingPage,
+      confirmationPage
+    ]);
+  },
+
+  checkAvailability() {
+    domUpdates.show([searchResultsPage]);
+    domUpdates.hide([selectPage, landingPage, bookingPage, confirmationPage]);
+  },
+
+  showRoomDetails() {
+    domUpdates.show([bookingPage]);
+    domUpdates.hide([
+      searchResultsPage,
+      selectPage,
+      landingPage,
+      confirmationPage
+    ]);
+  },
+
+  showConfirmationView() {
+    domUpdates.show([confirmationPage]);
+    domUpdates.hide([bookingPage, searchResultsPage, selectPage, landingPage]);
+    setTimeout(function() {
+      domUpdates.showLandingPage()
+    }, 2000);
   }
 };
 

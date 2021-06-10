@@ -9,16 +9,53 @@ import domUpdates from './domUpdates'
 
 // query selectors
 let hamburgerBtn = document.getElementById('hamburger');
+let mobileBookBtn = document.getElementById('mobileBook');
+let bookNowBtn = document.getElementById('bookNowBtn');
+let checkAvailBtn = document.getElementById('checkAvailBtn');
+let navBookBtn = document.getElementById('navBook');
+let bookRoomBtn = document.getElementById('bookRoomButton')
+let mobileLogInBtn = document.getElementById('mobileLogIn');
+let mobileViewTripsBtn = document.getElementById('mobileViewTrips');
+let mobileViewProfileBtn = document.getElementById('mobileViewProfile');
+let navLogInBtn = document.getElementById('navLogIn');
+let navTripsBtn = document.getElementById('navTrips');
+let navProfileBtn = document.getElementById('navProfile');
+let desktopNavSection = document.getElementById('desktopNav');
+let landingPage = document.getElementById('landingPage');
+let selectPage = document.getElementById('selectPage');
+let searchResultsPage = document.getElementById('searchResultsPage');
+let bookingPage = document.getElementById('bookingPage');
+let confirmationPage = document.getElementById('confirmationPage');
+  
+// variables
 let dayjs = require('dayjs')
 
 
-// variables
-
-
 // event listeners
-hamburgerBtn.addEventListener('click', domUpdates.openMobileNav)
+hamburgerBtn.addEventListener('click', domUpdates.openMobileNav);
+mobileBookBtn.addEventListener('click', domUpdates.showBookingView);
+bookNowBtn.addEventListener('click', domUpdates.showBookingView);
+navBookBtn.addEventListener('click', domUpdates.showBookingView);
+// instead of just changing the view, later check avail will run a whole bunch of other stuff
+checkAvailBtn.addEventListener('click', domUpdates.checkAvailability);
+searchResultsPage.addEventListener('click', () => selectRoom(event))
+bookRoomBtn.addEventListener('click', domUpdates.showConfirmationView)
+
 
 //event handlers and functions
 
+function selectRoom(event) {
+  let target = event.target.closest('.room-card').id
+  // will have to pass target to some class file to render the appropriate card on the next page
+  if (target === '1') {
+    domUpdates.showRoomDetails()
+  }
 
+}
+
+
+
+
+/// you should not be able to book if you're not logged in!!! 
+// so maybe when you click book now it prompts you to log in
 
