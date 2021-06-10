@@ -76,4 +76,4 @@ const bookings = [
   }
 ]
 
-export default { customers, rooms, bookings }
+export { customers, rooms, bookings }
