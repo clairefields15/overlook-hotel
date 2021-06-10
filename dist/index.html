@@ -13,24 +13,34 @@
 <header>
   <div class="logo-container">
     <h1>Overlook Hotel</h1>
-    <img src="../src/images/hotel-logo.png" alt="hotel logo">
+    <img src="./images/hotel-logo.png" alt="hotel logo">
   </div>
   <nav>
-    <div class="nav-container">
-      <button>Log In</button>
-      <button>Book</button>
-      <button>Trips</button>
-      <button>Profile</button>
-
-      
+    <button id="hamburger" class="burger-button" aria-expanded="false" aria-label="Menu">
+      <img src="./images/hamburger.png" class="ham-img nav-button" alt="menu button" aria-hidden="true">
+      <img src="./images/hamburger-close.png" class="close-btn nav-button hidden" alt="menu button" aria-hidden="true">
+    </button>
+    <div id="menuDropdown" class="mobile-dropdown hidden">
+      <button class="nav-button hidden">Log In</button>
+      <button class="nav-button">Book</button>
+      <button class="nav-button">Trips</button>
+      <button class="nav-button">Profile</button>
+    </div>
+    <div class="desktop-nav hidden">
+      <button class="nav-button hidden">Log In</button>
+      <button class="nav-button hidden">Book</button>
+      <button class="nav-button hidden">Trips</button>
+      <button class="nav-button hidden">Profile</button>
     </div>
   </nav>
+
 </header>
 <body>
-  <img src="../src/images/hotel-image.jpg">
 
-  <!-- Do not include the index.js or main.bundle.js file here - it is done automatically by the webpack server -->
+
+  <div class="landing-container">
+  </div>
+
   <script src="bundle.js"></script>
-
 </body>
 </html>

@@ -1,10 +1,8 @@
 @import './_normalize.scss';
 @import './_variables.scss';
+
+//everything else
 @import './_body.scss';
-@import './bookingPage.scss';
-@import './confirmationPage.scss';
-@import './dashboard.scss';
 @import './header.scss';
-@import './loginPage.scss';
+@import './mediaQueries.scss';
 @import './roomCard.scss';
-@import './selectARoomPage.scss';
