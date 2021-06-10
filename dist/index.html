@@ -21,22 +21,21 @@
       <img src="./images/hamburger-close.png" class="close-btn nav-button hidden" alt="menu button" aria-hidden="true">
     </button>
     <div id="menuDropdown" class="mobile-dropdown hidden">
-      <button class="nav-button hidden">Log In</button>
-      <button class="nav-button">Book</button>
-      <button class="nav-button">View Trips</button>
-      <button class="nav-button">Your Profile</button>
+      <button id="mobileLogIn" class="nav-button hidden">Log In</button>
+      <button id="mobileBook" class="nav-button">Book</button>
+      <button id="mobileViewTrips" class="nav-button">View Trips</button>
+      <button id="mobileViewProfile" class="nav-button">Your Profile</button>
     </div>
-    <div class="desktop-nav hidden">
-      <button class="nav-button hidden">Log In</button>
-      <button class="nav-button hidden">Book</button>
-      <button class="nav-button hidden">Trips</button>
-      <button class="nav-button hidden">Profile</button>
+    <div id="desktopNav" class="desktop-nav hidden">
+      <button id="navLogIn" class="nav-button hidden">Log In</button>
+      <button id="navBook" class="nav-button hidden">Book</button>
+      <button id="navTrips" class="nav-button hidden">Trips</button>
+      <button id="navProfile" class="nav-button hidden">Profile</button>
     </div>
   </nav>
-
 </header>
 <body>
-  <section id="landingPage" class="landing-page hidden">
+  <section id="landingPage" class="landing-page">
     <div class="hotel-exterior">
       <button id="bookNowBtn" class="main-button">Book Now</button>
     </div>
@@ -210,11 +209,9 @@
       </button>
     </article>
   </section>
-  <section id="confirmationPage" class="confirmation-page">
+  <section id="confirmationPage" class="confirmation-page hidden">
     <p id="confirmation-msg">Your room is booked! Enjoy your stay!</p>
   </section>
-
-
   <script src="bundle.js"></script>
 </body>
 </html>
