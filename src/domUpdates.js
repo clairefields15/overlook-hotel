@@ -85,6 +85,38 @@ const domUpdates = {
     ]);
   },
 
+  renderUserDashboard(user, bookings) {
+    let welcomeMsg = document.getElementById('welcomeMsg');
+    let upcomingStays = document.getElementById('upcomingStays');
+    let pastStays = document.getElementById('pastStays');
+    let totalSpent = document.getElementById('totalSpent');
+
+    welcomeMsg.innerText = `Welcome ${user.name}`;
+
+    // run method in user class to get all stays
+    upcomingStays.innerHTML = `
+        <ul>trip 1</ul>
+        <ul>trip 2</ul>
+        <ul>trip 3</ul>
+        `;
+
+    bookings.forEach(booking => {
+      pastStays.innerHTML += `
+        <div class="past-booking-card">
+          <h4>Date: ${booking.date}</h4>
+          <ul>Room: ${booking.roomNumber}</ul>
+        </div>
+          `;
+
+    })
+
+    // run method in user class to get total spent
+    totalSpent.innerHTML = `
+        <ul>Thanks for staying with us!</ul>
+        <ul>$50000000</ul>
+          `;
+  },
+
   checkAvailability() {
     domUpdates.show([searchResultsPage]);
     domUpdates.hide([

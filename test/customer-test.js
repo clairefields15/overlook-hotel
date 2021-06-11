@@ -1,14 +1,38 @@
 import chai from 'chai';
 import Customer from '../src/customer' 
+import Hotel from '../src/hotel'
+import Booking from '../src/booking'
+import Room from '../src/room'
 import { customers, rooms, bookings } from './test-data'
 const expect = chai.expect;
 
-describe('Customer', () => {
-  let customer1, customer2;
+describe.only('Customer', () => {
+  let hotel,
+    booking1,
+    booking2,
+    booking3,
+    booking4,
+    allBookings,
+    room1,
+    room2,
+    room3,
+    allRooms,
+    customer1,
+    customer2;
 
   beforeEach(() => {
     customer1 = new Customer(customers[0])
     customer2 = new Customer(customers[1])
+    hotel = new Hotel(allBookings, allRooms);
+    booking1 = new Booking(bookings[0]);
+    booking2 = new Booking(bookings[1]);
+    booking3 = new Booking(bookings[2]);
+    booking4 = new Booking(bookings[3]);
+    allBookings = [booking1, booking2, booking3, booking4];
+    room1 = new Room(rooms[0]);
+    room2 = new Room(rooms[1]);
+    room3 = new Room(rooms[2]);
+    allRooms = [room1, room2, room3];
   })
 
   it('should be a function', () => {
@@ -35,24 +59,23 @@ describe('Customer', () => {
     expect(customer2.name).to.equal('Rocio Schuster');
   })
 
-  it.skip('should have a way to hold onto bookings', () => {
-    //have a property of an array of bookings
+  it('should start out with no bookings', () => {
+    expect(customer1).to.have.a.property('bookings');
+    expect(customer1.bookings).to.deep.equal([]);
   })
 
-  it.skip('should be able to book a room', () => {
-    customer1.bookRoom(rooms[0])
-    // so you click on the room, you click all the way though, pay
-    // the room is then booked
-    // wtf does that mean
-    // you have selected a particular room with a particular id/properties
-    // this method needs access to the room you have chosen as well as the date chosen
-    // 
-    // need to create a new Booking object
-
-    // POST :
-
-    // { "userID": 48, "date": "2019/09/23", "roomNumber": 4 }
-    expect(customer1)
+  it('should be able to store all past, present, and future bookings', () => {
+    let booking = {
+  id: '5fwrgu4i7k55hl6sz',
+  userID: 1,
+  date: '2020/04/22',
+  roomNumber: 15,
+  roomServiceCharges: []
+}
+    customer1.getBookings()
+    customer1.bookings = hotel.filterBookingsByUser(customer1)
+    expect(customer1.bookings.length).to.equal(2)
+    expect(customer1.bookings[0]).to.equal(booking);
 
   })
 
