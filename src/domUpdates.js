@@ -1,4 +1,6 @@
 let dayjs = require('dayjs');
+const currentDate = dayjs('2020/2/15');
+
 // console.log(dayjs().format('MMM D YYYY'));
 // bookings.forEach(booking => {
 //   const date = dayjs(booking.dataset.date).format('MMM D YYYY');
@@ -18,6 +20,13 @@ let selectPage = document.getElementById('selectPage');
 let searchResultsPage = document.getElementById('searchResultsPage');
 let bookingPage = document.getElementById('bookingPage');
 let confirmationPage = document.getElementById('confirmationPage');
+let profilePage = document.getElementById('profilePage')
+let hamburgerBtn = document.getElementById('hamburger');
+let hamburgerImg = document.querySelector('.ham-img');
+let closeButton = document.querySelector('.close-btn');
+let attr = hamburgerBtn.getAttribute('aria-expanded');
+let menuDropdown = document.getElementById('menuDropdown');
+let modalOverlay = document.getElementById('modalOverlay');
 
 const domUpdates = {
   hide(elements) {
@@ -29,21 +38,20 @@ const domUpdates = {
   },
 
   openMobileNav() {
-    let hamburgerBtn = document.getElementById('hamburger');
-    let hamburgerImg = document.querySelector('.ham-img');
-    let closeButton = document.querySelector('.close-btn');
-    let attr = hamburgerBtn.getAttribute('aria-expanded');
-    let menuDropdown = document.getElementById('menuDropdown');
-
     if (attr === 'false') {
       hamburgerBtn.setAttribute('aria-expanded', true);
-      domUpdates.show([menuDropdown, closeButton]);
+      domUpdates.show([menuDropdown, closeButton, modalOverlay]);
       domUpdates.hide([hamburgerImg]);
     } else {
       hamburgerBtn.setAttribute('aria-expanded', false);
-      domUpdates.hide([menuDropdown, closeButton]);
+      domUpdates.hide([menuDropdown, closeButton, modalOverlay]);
       domUpdates.show([hamburgerImg]);
     }
+  },
+
+  hideOverlay() {
+    hamburgerBtn.setAttribute('aria-expanded', false);
+    domUpdates.hide([modalOverlay, menuDropdown])
   },
 
   showLandingPage() {
@@ -52,7 +60,19 @@ const domUpdates = {
       selectPage,
       searchResultsPage,
       bookingPage,
-      confirmationPage
+      confirmationPage,
+      profilePage
+    ]);
+  },
+
+  showUserProfile() {
+    domUpdates.show([profilePage]);
+    domUpdates.hide([
+      landingPage,
+      searchResultsPage,
+      bookingPage,
+      confirmationPage,
+      selectPage
     ]);
   },
 
@@ -62,13 +82,56 @@ const domUpdates = {
       landingPage,
       searchResultsPage,
       bookingPage,
-      confirmationPage
+      confirmationPage,
+      profilePage
     ]);
+  },
+
+  renderUserDashboard(user, bookings) {
+    let welcomeMsg = document.getElementById('welcomeMsg');
+    let upcomingStays = document.getElementById('upcomingStays');
+    let pastStays = document.getElementById('pastStays');
+    let totalSpent = document.getElementById('totalSpent');
+
+    welcomeMsg.innerText = `Welcome ${user.name}`;
+    
+    bookings.forEach(booking => {
+      let bookingDate = dayjs(booking.date)
+      console.log(bookingDate.isSame(currentDate))
+
+      if (bookingDate.isBefore(currentDate)) {
+        pastStays.innerHTML += `
+        <div class="past-booking-card">
+          <h4>Date: ${booking.date}</h4>
+          <ul>Room: ${booking.roomNumber}</ul>
+        </div>
+          `;
+      } else if (bookingDate.isAfter(currentDate) || bookingDate.isSame(currentDate)) {
+        upcomingStays.innerHTML += `
+          <div class="past-booking-card">
+            <h4>Date: ${booking.date}</h4>
+            <ul>Room: ${booking.roomNumber}</ul>
+          </div>
+          `;
+      } 
+    })
+
+    // run method in user class to get total spent
+    totalSpent.innerHTML = `
+        <ul>Thanks for staying with us!</ul>
+        <ul>$50000000</ul>
+          `;
   },
 
   checkAvailability() {
     domUpdates.show([searchResultsPage]);
-    domUpdates.hide([selectPage, landingPage, bookingPage, confirmationPage]);
+    domUpdates.hide([
+      selectPage,
+      landingPage,
+      bookingPage,
+      profilePage, 
+      confirmationPage
+    ]);
   },
 
   showRoomDetails() {
@@ -77,13 +140,20 @@ const domUpdates = {
       searchResultsPage,
       selectPage,
       landingPage,
-      confirmationPage
+      confirmationPage,
+      profilePage
     ]);
   },
 
   showConfirmationView() {
     domUpdates.show([confirmationPage]);
-    domUpdates.hide([bookingPage, searchResultsPage, selectPage, landingPage]);
+    domUpdates.hide([
+      bookingPage,
+      searchResultsPage,
+      profilePage,
+      selectPage,
+      landingPage
+    ]);
     setTimeout(function() {
       domUpdates.showLandingPage()
     }, 2000);

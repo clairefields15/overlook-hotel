@@ -23,6 +23,9 @@ let navBookBtn = document.getElementById('navBook');
 let bookRoomBtn = document.getElementById('bookRoomButton')
 let searchResultsPage = document.getElementById('searchResultsPage');
 let mobileViewProfileBtn = document.getElementById('mobileViewProfile');
+let modalOverlay = document.getElementById('modalOverlay');
+
+
 // let mobileLogInBtn = document.getElementById('mobileLogIn');
 // let mobileViewTripsBtn = document.getElementById('mobileViewTrips');
 // let navLogInBtn = document.getElementById('navLogIn');
@@ -36,6 +39,9 @@ let mobileViewProfileBtn = document.getElementById('mobileViewProfile');
   
 // variables
 let dayjs = require('dayjs')
+
+const currentDate = dayjs('2020/4/20');
+
 let customer, booking, room, hotel;
 let customersData, roomsData, bookingsData
 
@@ -43,13 +49,14 @@ let customersData, roomsData, bookingsData
 window.addEventListener('load', fetchHotelData);
 hamburgerBtn.addEventListener('click', domUpdates.openMobileNav);
 mobileBookBtn.addEventListener('click', domUpdates.showBookingView);
+modalOverlay.addEventListener('click', domUpdates.hideOverlay);
 bookNowBtn.addEventListener('click', domUpdates.showBookingView);
 navBookBtn.addEventListener('click', domUpdates.showBookingView);
 // instead of just changing the view, later check avail will run a whole bunch of other stuff
 checkAvailBtn.addEventListener('click', domUpdates.checkAvailability);
 searchResultsPage.addEventListener('click', () => selectRoom(event))
 bookRoomBtn.addEventListener('click', domUpdates.showConfirmationView)
-
+mobileViewProfileBtn.addEventListener('click', domUpdates.showUserProfile);
 
 //event handlers and functions
 export function fetchHotelData() {
@@ -62,11 +69,14 @@ export function assignVariables(data) {
   bookingsData = data[2].bookings;
 }
 
+
 export function pageLoad() {
-  customer = new Customer(customersData[0])
+  customer = new Customer(customersData[2])
   let allBookings = makeBookingInstances()
   let allRooms = makeRoomInstances()
   hotel = new Hotel(allBookings, allRooms)
+  let userBookings = hotel.getUserBookings(customer)
+  domUpdates.renderUserDashboard(customer, userBookings);
 }
 
 function makeRoomInstances() {
@@ -87,14 +97,16 @@ function makeBookingInstances() {
   return allBookings;
 }
 
+
 function selectRoom(event) {
   let target = event.target.closest('.room-card').id
   // will have to pass target to some class file to render the appropriate card on the next page
   if (target === '1') {
     domUpdates.showRoomDetails()
   }
-
 }
+
+
 
 
 

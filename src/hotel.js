@@ -5,6 +5,13 @@ class Hotel {
     this.availableRooms = [];
   }
 
+  getUserBookings(customer) {
+    let userBookings = this.bookings.filter(booking => {
+      return booking.userID === customer.id
+    })
+    customer.bookings.push(userBookings)
+    return userBookings
+  }
 }
 
 export default Hotel
