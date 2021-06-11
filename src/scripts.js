@@ -49,7 +49,7 @@ navBookBtn.addEventListener('click', domUpdates.showBookingView);
 checkAvailBtn.addEventListener('click', domUpdates.checkAvailability);
 searchResultsPage.addEventListener('click', () => selectRoom(event))
 bookRoomBtn.addEventListener('click', domUpdates.showConfirmationView)
-
+mobileViewProfileBtn.addEventListener('click', domUpdates.showUserProfile);
 
 //event handlers and functions
 export function fetchHotelData() {

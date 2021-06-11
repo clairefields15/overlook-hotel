@@ -18,6 +18,7 @@ let selectPage = document.getElementById('selectPage');
 let searchResultsPage = document.getElementById('searchResultsPage');
 let bookingPage = document.getElementById('bookingPage');
 let confirmationPage = document.getElementById('confirmationPage');
+let profilePage = document.getElementById('profilePage')
 
 const domUpdates = {
   hide(elements) {
@@ -34,14 +35,15 @@ const domUpdates = {
     let closeButton = document.querySelector('.close-btn');
     let attr = hamburgerBtn.getAttribute('aria-expanded');
     let menuDropdown = document.getElementById('menuDropdown');
+    let modalOverlay = document.getElementById('modalOverlay')
 
     if (attr === 'false') {
       hamburgerBtn.setAttribute('aria-expanded', true);
-      domUpdates.show([menuDropdown, closeButton]);
+      domUpdates.show([menuDropdown, closeButton, modalOverlay]);
       domUpdates.hide([hamburgerImg]);
     } else {
       hamburgerBtn.setAttribute('aria-expanded', false);
-      domUpdates.hide([menuDropdown, closeButton]);
+      domUpdates.hide([menuDropdown, closeButton, modalOverlay]);
       domUpdates.show([hamburgerImg]);
     }
   },
@@ -52,7 +54,19 @@ const domUpdates = {
       selectPage,
       searchResultsPage,
       bookingPage,
-      confirmationPage
+      confirmationPage,
+      profilePage
+    ]);
+  },
+
+  showUserProfile() {
+    domUpdates.show([profilePage]);
+    domUpdates.hide([
+      landingPage,
+      searchResultsPage,
+      bookingPage,
+      confirmationPage,
+      selectPage
     ]);
   },
 
@@ -62,13 +76,20 @@ const domUpdates = {
       landingPage,
       searchResultsPage,
       bookingPage,
-      confirmationPage
+      confirmationPage,
+      profilePage
     ]);
   },
 
   checkAvailability() {
     domUpdates.show([searchResultsPage]);
-    domUpdates.hide([selectPage, landingPage, bookingPage, confirmationPage]);
+    domUpdates.hide([
+      selectPage,
+      landingPage,
+      bookingPage,
+      profilePage, 
+      confirmationPage
+    ]);
   },
 
   showRoomDetails() {
@@ -77,13 +98,20 @@ const domUpdates = {
       searchResultsPage,
       selectPage,
       landingPage,
-      confirmationPage
+      confirmationPage,
+      profilePage
     ]);
   },
 
   showConfirmationView() {
     domUpdates.show([confirmationPage]);
-    domUpdates.hide([bookingPage, searchResultsPage, selectPage, landingPage]);
+    domUpdates.hide([
+      bookingPage,
+      searchResultsPage,
+      profilePage,
+      selectPage,
+      landingPage
+    ]);
     setTimeout(function() {
       domUpdates.showLandingPage()
     }, 2000);
