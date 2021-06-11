@@ -102,6 +102,8 @@ function getDate() {
   //currentDate = dayjs(Date.now()).format('YYYY-MM-DD');
   currentDate = dayjs('2020/2/14').format('YYYY-MM-DD');
   arrivalDate.value = currentDate;
+  arrivalDate.min = currentDate;
+
 }
 
 
