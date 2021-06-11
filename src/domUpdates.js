@@ -1,4 +1,6 @@
 let dayjs = require('dayjs');
+const currentDate = dayjs('2020/2/15');
+
 // console.log(dayjs().format('MMM D YYYY'));
 // bookings.forEach(booking => {
 //   const date = dayjs(booking.dataset.date).format('MMM D YYYY');
@@ -92,22 +94,26 @@ const domUpdates = {
     let totalSpent = document.getElementById('totalSpent');
 
     welcomeMsg.innerText = `Welcome ${user.name}`;
-
-    // run method in user class to get all stays
-    upcomingStays.innerHTML = `
-        <ul>trip 1</ul>
-        <ul>trip 2</ul>
-        <ul>trip 3</ul>
-        `;
-
+    
     bookings.forEach(booking => {
-      pastStays.innerHTML += `
+      let bookingDate = dayjs(booking.date)
+      console.log(bookingDate.isSame(currentDate))
+
+      if (bookingDate.isBefore(currentDate)) {
+        pastStays.innerHTML += `
         <div class="past-booking-card">
           <h4>Date: ${booking.date}</h4>
           <ul>Room: ${booking.roomNumber}</ul>
         </div>
           `;
-
+      } else if (bookingDate.isAfter(currentDate) || bookingDate.isSame(currentDate)) {
+        upcomingStays.innerHTML += `
+          <div class="past-booking-card">
+            <h4>Date: ${booking.date}</h4>
+            <ul>Room: ${booking.roomNumber}</ul>
+          </div>
+          `;
+      } 
     })
 
     // run method in user class to get total spent

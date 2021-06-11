@@ -39,6 +39,9 @@ let modalOverlay = document.getElementById('modalOverlay');
   
 // variables
 let dayjs = require('dayjs')
+
+const currentDate = dayjs('2020/4/20');
+
 let customer, booking, room, hotel;
 let customersData, roomsData, bookingsData
 
@@ -65,6 +68,7 @@ export function assignVariables(data) {
   roomsData = data[1].rooms;
   bookingsData = data[2].bookings;
 }
+
 
 export function pageLoad() {
   customer = new Customer(customersData[2])
