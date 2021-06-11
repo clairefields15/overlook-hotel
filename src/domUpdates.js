@@ -143,7 +143,7 @@ const domUpdates = {
       }
     });
 
-    totalSpent.innerText = `Thanks for staying with us! Your total bookings for the year come to: $${expenses}!`;
+    totalSpent.innerText = `Thanks for staying with us! You have spent $${expenses} on bookings.`;
   },
 
   checkAvailability() {
