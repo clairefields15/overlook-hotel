@@ -9,29 +9,29 @@ class Hotel {
     let userBookings = this.bookings.filter(booking => {
       return booking.userID === customer.id
     })
-    customer.bookings.push(userBookings)
     return userBookings
   }
-
-  matchBookingsToRooms(customer) {
-    let roomNumsBooked = this.getUserBookings(customer).map(booking => {
-      return booking.roomNumber
-    })
   
+  getFullRoomInfoForBookings(customer) {
+    let bookings = this.getUserBookings(customer)
+
     let roomsBooked = this.rooms.reduce((acc, room) => {
-      roomNumsBooked.forEach(roomBooked => {
-        if (roomBooked === room.number) {
-          acc.push(room)
+      bookings.forEach(booking => {
+        if (booking.roomNumber === room.number) {
+          acc.push({ room, booking })
         }
       })
       return acc
     }, [])
-  
+
+    customer.bookings.push(roomsBooked)
     return roomsBooked;
   }
 
   getUserExpenses(customer) {
-    let matchedRooms = this.matchBookingsToRooms(customer).map(room => room.costPerNight)
+    let matchedRooms = this.getFullRoomInfoForBookings(customer).map(
+      room => room.costPerNight
+    );
 
     let totalExpenses = matchedRooms.reduce((total, currentRoom) => {
       total += currentRoom
