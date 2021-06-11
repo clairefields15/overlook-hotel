@@ -96,18 +96,17 @@ const domUpdates = {
 
     welcomeMsg.innerText = `Welcome ${user.name}`;
 
-    // card should be a bit smaller/different than room-card but v similar!!
-    // maybe without the photo of the room, just so that I don't need to deal with matching those?
     bookings.forEach(booking => {
       let bookingDate = dayjs(booking.booking.date);
       if (bookingDate.isBefore(currentDate)) {
+        let formattedDate = bookingDate.format('MMM D YYYY')
         pastStays.innerHTML += `
           <div class="past-booking-card">
             <div class="image-area">
               <div class="image-container">
                 <img src="./images/1-bed-room.jpg" class="room-photo" alt="Light and airy room with double bed">
                 <div class="date-container>
-                  <p id="date">${bookingDate}</p>
+                  <p id="date">${formattedDate}</p>
                 </div>              
               </div>
             </div>
@@ -122,13 +121,15 @@ const domUpdates = {
         bookingDate.isAfter(currentDate) ||
         bookingDate.isSame(currentDate)
       ) {
+        let formattedDate = bookingDate.format('MMM D YYYY');
+        
         upcomingStays.innerHTML += `
           <div class="past-booking-card">
             <div class="image-area">
               <div class="image-container">
                 <img src="./images/1-bed-room.jpg" class="room-photo" alt="Light and airy room with double bed">
                 <div class="date-container>
-                  <p id="date">${bookingDate}</p>
+                  <p id="date">${formattedDate}</p>
                 </div>              
               </div>
             </div>
