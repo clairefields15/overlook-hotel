@@ -24,6 +24,11 @@ let bookRoomBtn = document.getElementById('bookRoomButton')
 let searchResultsPage = document.getElementById('searchResultsPage');
 let mobileViewProfileBtn = document.getElementById('mobileViewProfile');
 let modalOverlay = document.getElementById('modalOverlay');
+let welcomeMsg = document.getElementById('welcomeMsg');
+let upcomingStays = document.getElementById('upcomingStays');
+let pastStays = document.getElementById('pastStays');
+let totalSpent = document.getElementById('totalSpent');
+
 // let mobileLogInBtn = document.getElementById('mobileLogIn');
 // let mobileViewTripsBtn = document.getElementById('mobileViewTrips');
 // let navLogInBtn = document.getElementById('navLogIn');
@@ -53,7 +58,6 @@ searchResultsPage.addEventListener('click', () => selectRoom(event))
 bookRoomBtn.addEventListener('click', domUpdates.showConfirmationView)
 mobileViewProfileBtn.addEventListener('click', domUpdates.showUserProfile);
 
-
 //event handlers and functions
 export function fetchHotelData() {
   apiCalls.fetchHotelData();
@@ -67,6 +71,7 @@ export function assignVariables(data) {
 
 export function pageLoad() {
   customer = new Customer(customersData[0])
+  populateUserDashboard(customer)
   let allBookings = makeBookingInstances()
   let allRooms = makeRoomInstances()
   hotel = new Hotel(allBookings, allRooms)
@@ -90,14 +95,40 @@ function makeBookingInstances() {
   return allBookings;
 }
 
+function populateUserDashboard(user) {
+  welcomeMsg.innerText = `Welcome ${user.name}`;
+
+  // run method in user class to get all stays
+  upcomingStays.innerHTML = `
+    <ul>trip 1</ul>
+    <ul>trip 2</ul>
+    <ul>trip 3</ul>
+    `;
+  
+  pastStays.innerHTML = `
+    <ul>trip 1</ul>
+    <ul>trip 2</ul>
+    <ul>trip 3</ul>
+    `;
+
+    // run method in user class to get total spent
+  totalSpent.innerHTML = `
+    <ul>Thanks for staying with us!</ul>
+    <ul>$50000000</ul>
+      `;
+
+}
+
+
 function selectRoom(event) {
   let target = event.target.closest('.room-card').id
   // will have to pass target to some class file to render the appropriate card on the next page
   if (target === '1') {
     domUpdates.showRoomDetails()
   }
-
 }
+
+
 
 
 
