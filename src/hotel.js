@@ -29,12 +29,11 @@ class Hotel {
   }
 
   getUserExpenses(customer) {
-    let matchedRooms = this.getFullRoomInfoForBookings(customer).map(
-      room => room.costPerNight
-    );
+    let matchedRooms = this.getFullRoomInfoForBookings(customer);
 
     let totalExpenses = matchedRooms.reduce((total, currentRoom) => {
-      total += currentRoom
+      let rate = currentRoom.room.costPerNight
+      total += rate
       return total
     }, 0).toFixed(2)
 
