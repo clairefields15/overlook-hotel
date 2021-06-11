@@ -103,9 +103,7 @@ function getDate() {
   currentDate = dayjs('2020/2/14').format('YYYY-MM-DD');
   arrivalDate.value = currentDate;
   arrivalDate.min = currentDate;
-
 }
-
 
 function selectRoom(event) {
   let target = event.target.closest('.room-card').id

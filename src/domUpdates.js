@@ -39,19 +39,23 @@ const domUpdates = {
   },
 
   openMobileNav() {
+    let attr = hamburgerBtn.getAttribute("aria-expanded")
     if (attr === 'false') {
-      hamburgerBtn.setAttribute('aria-expanded', true);
+      hamburgerBtn.setAttribute('aria-expanded', 'true');
+      console.log('after', hamburgerBtn)
       domUpdates.show([menuDropdown, closeButton, modalOverlay]);
       domUpdates.hide([hamburgerImg]);
-    } else {
-      hamburgerBtn.setAttribute('aria-expanded', false);
+    } 
+    if (attr === 'true') {
+      hamburgerBtn.setAttribute('aria-expanded', 'false');
       domUpdates.hide([menuDropdown, closeButton, modalOverlay]);
       domUpdates.show([hamburgerImg]);
     }
+  
   },
 
   hideOverlay() {
-    hamburgerBtn.setAttribute('aria-expanded', false);
+    hamburgerBtn.setAttribute('aria-expanded', 'false');
     domUpdates.hide([modalOverlay, menuDropdown])
   },
 
