@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 let dayjs = require('dayjs');
 const currentDate = dayjs('2020/2/15');
 
@@ -94,30 +95,54 @@ const domUpdates = {
     let totalSpent = document.getElementById('totalSpent');
 
     welcomeMsg.innerText = `Welcome ${user.name}`;
-    
-    bookings.forEach(booking => {
-      let bookingDate = dayjs(booking.date)
 
+    // card should be a bit smaller/different than room-card but v similar!!
+    // maybe without the photo of the room, just so that I don't need to deal with matching those?
+    bookings.forEach(booking => {
+      let bookingDate = dayjs(booking.booking.date);
       if (bookingDate.isBefore(currentDate)) {
         pastStays.innerHTML += `
-        <div class="past-booking-card">
-          <h4>Date: ${booking.date}</h4>
-          <ul>Room: ${booking.roomNumber}</ul>
-        </div>
-          `;
-      } else if (bookingDate.isAfter(currentDate) || bookingDate.isSame(currentDate)) {
+          <div class="past-booking-card">
+            <div class="image-area">
+              <div class="image-container">
+                <img src="./images/1-bed-room.jpg" class="room-photo" alt="Light and airy room with double bed">
+                <div class="date-container>
+                  <p id="date">${bookingDate}</p>
+                </div>              
+              </div>
+            </div>
+            <div class="text-area">
+              <h3 id="roomType" class="room-type">${booking.room.type}</h3>
+              <p id="typeOfBed">${booking.room.numBeds} ${booking.room.bedSize}</p>
+              <p id="costPerNight">$${booking.room.costPerNight} per night</p>
+            </div>
+          </div>
+        `;
+      } else if (
+        bookingDate.isAfter(currentDate) ||
+        bookingDate.isSame(currentDate)
+      ) {
         upcomingStays.innerHTML += `
           <div class="past-booking-card">
-            <h4>Date: ${booking.date}</h4>
-            <ul>Room: ${booking.roomNumber}</ul>
+            <div class="image-area">
+              <div class="image-container">
+                <img src="./images/1-bed-room.jpg" class="room-photo" alt="Light and airy room with double bed">
+                <div class="date-container>
+                  <p id="date">${bookingDate}</p>
+                </div>              
+              </div>
+            </div>
+            <div class="text-area">
+              <h3 id="roomType" class="room-type">${booking.room.type}</h3>
+              <p id="typeOfBed">${booking.room.numBeds} ${booking.room.bedSize}</p>
+              <p id="costPerNight">$${booking.room.costPerNight} per night</p>
+            </div>
           </div>
-          `;
-      } 
-    })
+        `;
+      }
+    });
 
-    totalSpent.innerText = `
-      Thanks for staying with us! Your total bookings for the year come to: $${expenses}
-    `;
+    totalSpent.innerText = `Thanks for staying with us! Your total bookings for the year come to: $${expenses}`;
   },
 
   checkAvailability() {
