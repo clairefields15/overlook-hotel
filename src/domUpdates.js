@@ -101,49 +101,49 @@ const domUpdates = {
       if (bookingDate.isBefore(currentDate)) {
         let formattedDate = bookingDate.format('MMM D YYYY')
         pastStays.innerHTML += `
-          <div class="past-booking-card">
+          <article class="past-booking-card">
             <div class="image-area">
               <div class="image-container">
-                <img src="./images/1-bed-room.jpg" class="room-photo" alt="Light and airy room with double bed">
-                <div class="date-container>
-                  <p id="date">${formattedDate}</p>
-                </div>              
+                <img src="./images/1-bed-room.jpg" class="past-room-photo" alt="Light and airy room with double bed">
+                <div class="past-date">
+                  <p id="date" class="date">${formattedDate}</p>
+                  <h3 id="past-roomType" class="room-type">${booking.room.type}</h3>
+                </div>
               </div>
             </div>
-            <div class="text-area">
-              <h3 id="roomType" class="room-type">${booking.room.type}</h3>
+            <div class="past-text-area">
               <p id="typeOfBed">${booking.room.numBeds} ${booking.room.bedSize}</p>
               <p id="costPerNight">$${booking.room.costPerNight} per night</p>
             </div>
-          </div>
+          </article>
         `;
       } else if (
         bookingDate.isAfter(currentDate) ||
         bookingDate.isSame(currentDate)
       ) {
         let formattedDate = bookingDate.format('MMM D YYYY');
-        
+
         upcomingStays.innerHTML += `
-          <div class="past-booking-card">
+          <article class="past-booking-card">
             <div class="image-area">
               <div class="image-container">
-                <img src="./images/1-bed-room.jpg" class="room-photo" alt="Light and airy room with double bed">
-                <div class="date-container>
-                  <p id="date">${formattedDate}</p>
-                </div>              
+                <img src="./images/1-bed-room.jpg" class="past-room-photo" alt="Light and airy room with double bed">
+                <div class="past-date">
+                  <p id="date" class="date">${formattedDate}</p>
+                  <h3 id="past-roomType" class="room-type">${booking.room.type}</h3>
+                </div>
               </div>
             </div>
-            <div class="text-area">
-              <h3 id="roomType" class="room-type">${booking.room.type}</h3>
+            <div class="past-text-area">
               <p id="typeOfBed">${booking.room.numBeds} ${booking.room.bedSize}</p>
               <p id="costPerNight">$${booking.room.costPerNight} per night</p>
             </div>
-          </div>
+          </article>
         `;
       }
     });
 
-    totalSpent.innerText = `Thanks for staying with us! Your total bookings for the year come to: $${expenses}`;
+    totalSpent.innerText = `Thanks for staying with us! Your total bookings for the year come to: $${expenses}!`;
   },
 
   checkAvailability() {
