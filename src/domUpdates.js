@@ -56,7 +56,8 @@ const domUpdates = {
 
   hideOverlay() {
     hamburgerBtn.setAttribute('aria-expanded', 'false');
-    domUpdates.hide([modalOverlay, menuDropdown])
+    domUpdates.hide([modalOverlay, menuDropdown, closeButton])
+    domUpdates.show([hamburgerImg])
   },
 
   showLandingPage() {
