@@ -87,7 +87,7 @@ const domUpdates = {
     ]);
   },
 
-  renderUserDashboard(user, bookings) {
+  renderUserDashboard(user, bookings, expenses) {
     let welcomeMsg = document.getElementById('welcomeMsg');
     let upcomingStays = document.getElementById('upcomingStays');
     let pastStays = document.getElementById('pastStays');
@@ -97,7 +97,6 @@ const domUpdates = {
     
     bookings.forEach(booking => {
       let bookingDate = dayjs(booking.date)
-      console.log(bookingDate.isSame(currentDate))
 
       if (bookingDate.isBefore(currentDate)) {
         pastStays.innerHTML += `
@@ -116,11 +115,9 @@ const domUpdates = {
       } 
     })
 
-    // run method in user class to get total spent
-    totalSpent.innerHTML = `
-        <ul>Thanks for staying with us!</ul>
-        <ul>$50000000</ul>
-          `;
+    totalSpent.innerText = `
+      Thanks for staying with us! Your total bookings for the year come to: $${expenses}
+    `;
   },
 
   checkAvailability() {

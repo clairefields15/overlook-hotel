@@ -76,7 +76,8 @@ export function pageLoad() {
   let allRooms = makeRoomInstances()
   hotel = new Hotel(allBookings, allRooms)
   let userBookings = hotel.getUserBookings(customer)
-  domUpdates.renderUserDashboard(customer, userBookings);
+  let userExpenses = hotel.getUserExpenses(customer)
+  domUpdates.renderUserDashboard(customer, userBookings, userExpenses);
 }
 
 function makeRoomInstances() {
