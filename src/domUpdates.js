@@ -19,6 +19,12 @@ let searchResultsPage = document.getElementById('searchResultsPage');
 let bookingPage = document.getElementById('bookingPage');
 let confirmationPage = document.getElementById('confirmationPage');
 let profilePage = document.getElementById('profilePage')
+let hamburgerBtn = document.getElementById('hamburger');
+let hamburgerImg = document.querySelector('.ham-img');
+let closeButton = document.querySelector('.close-btn');
+let attr = hamburgerBtn.getAttribute('aria-expanded');
+let menuDropdown = document.getElementById('menuDropdown');
+let modalOverlay = document.getElementById('modalOverlay');
 
 const domUpdates = {
   hide(elements) {
@@ -30,13 +36,6 @@ const domUpdates = {
   },
 
   openMobileNav() {
-    let hamburgerBtn = document.getElementById('hamburger');
-    let hamburgerImg = document.querySelector('.ham-img');
-    let closeButton = document.querySelector('.close-btn');
-    let attr = hamburgerBtn.getAttribute('aria-expanded');
-    let menuDropdown = document.getElementById('menuDropdown');
-    let modalOverlay = document.getElementById('modalOverlay')
-
     if (attr === 'false') {
       hamburgerBtn.setAttribute('aria-expanded', true);
       domUpdates.show([menuDropdown, closeButton, modalOverlay]);
@@ -46,6 +45,11 @@ const domUpdates = {
       domUpdates.hide([menuDropdown, closeButton, modalOverlay]);
       domUpdates.show([hamburgerImg]);
     }
+  },
+
+  hideOverlay() {
+    hamburgerBtn.setAttribute('aria-expanded', false);
+    domUpdates.hide([modalOverlay, menuDropdown])
   },
 
   showLandingPage() {

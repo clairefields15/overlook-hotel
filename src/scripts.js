@@ -23,6 +23,7 @@ let navBookBtn = document.getElementById('navBook');
 let bookRoomBtn = document.getElementById('bookRoomButton')
 let searchResultsPage = document.getElementById('searchResultsPage');
 let mobileViewProfileBtn = document.getElementById('mobileViewProfile');
+let modalOverlay = document.getElementById('modalOverlay');
 // let mobileLogInBtn = document.getElementById('mobileLogIn');
 // let mobileViewTripsBtn = document.getElementById('mobileViewTrips');
 // let navLogInBtn = document.getElementById('navLogIn');
@@ -43,6 +44,7 @@ let customersData, roomsData, bookingsData
 window.addEventListener('load', fetchHotelData);
 hamburgerBtn.addEventListener('click', domUpdates.openMobileNav);
 mobileBookBtn.addEventListener('click', domUpdates.showBookingView);
+modalOverlay.addEventListener('click', domUpdates.hideOverlay);
 bookNowBtn.addEventListener('click', domUpdates.showBookingView);
 navBookBtn.addEventListener('click', domUpdates.showBookingView);
 // instead of just changing the view, later check avail will run a whole bunch of other stuff
@@ -50,6 +52,7 @@ checkAvailBtn.addEventListener('click', domUpdates.checkAvailability);
 searchResultsPage.addEventListener('click', () => selectRoom(event))
 bookRoomBtn.addEventListener('click', domUpdates.showConfirmationView)
 mobileViewProfileBtn.addEventListener('click', domUpdates.showUserProfile);
+
 
 //event handlers and functions
 export function fetchHotelData() {
