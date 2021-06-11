@@ -71,12 +71,13 @@ export function assignVariables(data) {
 
 
 export function pageLoad() {
-  customer = new Customer(customersData[2])
+  customer = new Customer(customersData[1])
   let allBookings = makeBookingInstances()
   let allRooms = makeRoomInstances()
   hotel = new Hotel(allBookings, allRooms)
-  let userBookings = hotel.getUserBookings(customer)
-  domUpdates.renderUserDashboard(customer, userBookings);
+  let userBookings = hotel.getFullRoomInfoForBookings(customer);
+  let userExpenses = hotel.getUserExpenses(customer)
+  domUpdates.renderUserDashboard(customer, userBookings, userExpenses);
 }
 
 function makeRoomInstances() {

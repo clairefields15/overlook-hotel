@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 let dayjs = require('dayjs');
 const currentDate = dayjs('2020/2/15');
 
@@ -87,40 +88,62 @@ const domUpdates = {
     ]);
   },
 
-  renderUserDashboard(user, bookings) {
+  renderUserDashboard(user, bookings, expenses) {
     let welcomeMsg = document.getElementById('welcomeMsg');
     let upcomingStays = document.getElementById('upcomingStays');
     let pastStays = document.getElementById('pastStays');
     let totalSpent = document.getElementById('totalSpent');
 
     welcomeMsg.innerText = `Welcome ${user.name}`;
-    
+
     bookings.forEach(booking => {
-      let bookingDate = dayjs(booking.date)
-      console.log(bookingDate.isSame(currentDate))
-
+      let bookingDate = dayjs(booking.booking.date);
       if (bookingDate.isBefore(currentDate)) {
+        let formattedDate = bookingDate.format('MMM D YYYY')
         pastStays.innerHTML += `
-        <div class="past-booking-card">
-          <h4>Date: ${booking.date}</h4>
-          <ul>Room: ${booking.roomNumber}</ul>
-        </div>
-          `;
-      } else if (bookingDate.isAfter(currentDate) || bookingDate.isSame(currentDate)) {
-        upcomingStays.innerHTML += `
-          <div class="past-booking-card">
-            <h4>Date: ${booking.date}</h4>
-            <ul>Room: ${booking.roomNumber}</ul>
-          </div>
-          `;
-      } 
-    })
+          <article class="past-booking-card">
+            <div class="image-area">
+              <div class="image-container">
+                <img src="./images/1-bed-room.jpg" class="past-room-photo" alt="Light and airy room with double bed">
+                <div class="past-date">
+                  <p id="date" class="date">${formattedDate}</p>
+                  <h3 id="past-roomType" class="room-type">${booking.room.type}</h3>
+                </div>
+              </div>
+            </div>
+            <div class="past-text-area">
+              <p id="typeOfBed">${booking.room.numBeds} ${booking.room.bedSize}</p>
+              <p id="costPerNight">$${booking.room.costPerNight} per night</p>
+            </div>
+          </article>
+        `;
+      } else if (
+        bookingDate.isAfter(currentDate) ||
+        bookingDate.isSame(currentDate)
+      ) {
+        let formattedDate = bookingDate.format('MMM D YYYY');
 
-    // run method in user class to get total spent
-    totalSpent.innerHTML = `
-        <ul>Thanks for staying with us!</ul>
-        <ul>$50000000</ul>
-          `;
+        upcomingStays.innerHTML += `
+          <article class="past-booking-card">
+            <div class="image-area">
+              <div class="image-container">
+                <img src="./images/1-bed-room.jpg" class="past-room-photo" alt="Light and airy room with double bed">
+                <div class="past-date">
+                  <p id="date" class="date">${formattedDate}</p>
+                  <h3 id="past-roomType" class="room-type">${booking.room.type}</h3>
+                </div>
+              </div>
+            </div>
+            <div class="past-text-area">
+              <p id="typeOfBed">${booking.room.numBeds} ${booking.room.bedSize}</p>
+              <p id="costPerNight">$${booking.room.costPerNight} per night</p>
+            </div>
+          </article>
+        `;
+      }
+    });
+
+    totalSpent.innerText = `Thanks for staying with us! Your total bookings for the year come to: $${expenses}!`;
   },
 
   checkAvailability() {
