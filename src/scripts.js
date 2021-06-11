@@ -64,8 +64,9 @@ export function assignVariables(data) {
 
 export function pageLoad() {
   customer = new Customer(customersData[0])
-  let allRooms = makeRoomInstances()
   let allBookings = makeBookingInstances()
+  let allRooms = makeRoomInstances()
+  hotel = new Hotel(allBookings, allRooms)
 }
 
 function makeRoomInstances() {
