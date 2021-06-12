@@ -88,9 +88,14 @@
   @include flex-center;
 }
 
+.button-container {
+  @include flex-center;
+}
+
 .book-room-btn {
   padding: 1em;
   border-radius: 0.5em;
+  margin: 1em;
 
   &:hover {
     background-color: lightgray;

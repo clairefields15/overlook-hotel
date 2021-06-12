@@ -217,8 +217,8 @@ const domUpdates = {
     ]);
   },
 
-  renderSelectedRoom(room) {
-    console.log('line 98 DOM', room);
+  renderSelectedRoom(room, date) {
+    const formattedDate = dayjs(date).format('MMM DD YYYY')
 
     selectedRoom.innerHTML = '';
 
@@ -227,11 +227,11 @@ const domUpdates = {
         <img src="./images/1-bed-room.jpg" class="room-photo" alt="Light and airy room with double bed">
       </div>
       <div class="text-area">
-        <h3 id="roomType" class="room-type">Single Room</h3>
-        <p id="typeOfBed">1 Queen Bed</p>
-        <p id="datesOfStay">Dates: Jun 1 2021 - Jun 4 2021</p>
-        <p id="costPerNight">$429.44 per night x 4 nights</p>
-        <p id="totalCost">Total: $1230.23</p><br>
+        <h3 id="roomType" class="room-type">${room.type}</h3>
+        <p id="typeOfBed">${room.numBeds} ${room.bedSize}</p>
+        <p id="datesOfStay">Date of Stay: ${formattedDate}</p>
+        <p id="costPerNight">$${room.costPerNight} per night x 1 night</p>
+        <p id="totalCost">Total: $${room.costPerNight}</p><br>
         <p>Money is fake anyway, so let's pretend you pay here.</p>
       </div>
     `;

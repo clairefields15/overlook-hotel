@@ -139,10 +139,11 @@ function filterRoomsByType() {
 }
 
 function selectRoom(event) {
-  const roomNumber = event.target.closest('.room-card').id
+  const date = dayjs(arrivalDate.value).format('YYYY/MM/DD');
+  const roomNumber = parseInt(event.target.closest('.room-card').id)
   const roomDetails = hotel.returnRoomDetails(roomNumber)
   domUpdates.showRoomDetails()
-  domUpdates.renderSelectedRoom(roomDetails);
+  domUpdates.renderSelectedRoom(roomDetails, date);
 }
 
 
