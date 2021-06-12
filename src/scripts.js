@@ -24,6 +24,8 @@ const mobileViewProfileBtn = document.getElementById('mobileViewProfile');
 const modalOverlay = document.getElementById('modalOverlay');
 const arrivalDate = document.getElementById('arrivalDate');
 const searchAgainBtn = document.getElementById('searchAgain')
+const selectRoomType = document.getElementById('selectRoomType');
+const roomTypeForm = document.getElementById('roomTypeForm');
 
 // const mobileLogInBtn = document.getElementById('mobileLogIn');
 // const mobileViewTripsBtn = document.getElementById('mobileViewTrips');
@@ -56,6 +58,7 @@ checkAvailBtn.addEventListener('click', getRoomTypes);
 searchResultsPage.addEventListener('click', () => selectRoom(event))
 bookRoomBtn.addEventListener('click', domUpdates.showConfirmationView)
 mobileViewProfileBtn.addEventListener('click', domUpdates.showUserProfile);
+selectRoomType.addEventListener('change', filterRoomsByType);
 
 //event handlers and functions
 export function fetchHotelData() {
@@ -121,6 +124,18 @@ function checkAvailability() {
 function getRoomTypes() {
   const results = hotel.getRoomTypes()
   domUpdates.populateRoomTypeSelector(results)
+}
+
+function filterRoomsByType() {
+  const selection = roomTypeForm.value;
+  const results = hotel.filterAvailableRoomsByType(selection)
+  console.log(results)
+
+  if (results.length === 0) {
+    domUpdates.renderApology();
+  } else {
+    domUpdates.renderAvailableRooms(results);
+  }
 }
 
 

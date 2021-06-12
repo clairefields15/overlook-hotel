@@ -165,6 +165,7 @@ const domUpdates = {
 
   renderAvailableRooms(availableRooms) {
     domUpdates.hide([searchAgainBtn])
+    filteredResultsArea.innerHTML = '';
     availableRooms.forEach(room => {
       filteredResultsArea.innerHTML += `
         <article class="room-card" id="${room.number}">
