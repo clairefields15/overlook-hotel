@@ -30,6 +30,7 @@ const modalOverlay = document.getElementById('modalOverlay');
 const filteredResultsArea = document.getElementById('filteredResults');
 const searchAgainBtn = document.getElementById('searchAgain');
 const roomTypeForm = document.getElementById('roomTypeForm');
+const selectedRoom = document.getElementById('selectedRoom');
 
 const domUpdates = {
   hide(elements) {
@@ -41,12 +42,12 @@ const domUpdates = {
   },
 
   openMobileNav() {
-    const attr = hamburgerBtn.getAttribute("aria-expanded")
+    const attr = hamburgerBtn.getAttribute('aria-expanded');
     if (attr === 'false') {
       hamburgerBtn.setAttribute('aria-expanded', 'true');
       domUpdates.show([menuDropdown, closeButton, modalOverlay]);
       domUpdates.hide([hamburgerImg]);
-    } 
+    }
     if (attr === 'true') {
       hamburgerBtn.setAttribute('aria-expanded', 'false');
       domUpdates.hide([menuDropdown, closeButton, modalOverlay]);
@@ -56,8 +57,8 @@ const domUpdates = {
 
   hideOverlay() {
     hamburgerBtn.setAttribute('aria-expanded', 'false');
-    domUpdates.hide([modalOverlay, menuDropdown, closeButton])
-    domUpdates.show([hamburgerImg])
+    domUpdates.hide([modalOverlay, menuDropdown, closeButton]);
+    domUpdates.show([hamburgerImg]);
   },
 
   showLandingPage() {
@@ -107,7 +108,7 @@ const domUpdates = {
     bookings.forEach(booking => {
       const bookingDate = dayjs(booking.booking.date);
       if (bookingDate.isBefore(currentDate)) {
-        const formattedDate = bookingDate.format('MMM D YYYY')
+        const formattedDate = bookingDate.format('MMM D YYYY');
         pastStays.innerHTML += `
           <article class="past-booking-card">
             <div class="image-area">
@@ -160,13 +161,13 @@ const domUpdates = {
       selectPage,
       landingPage,
       bookingPage,
-      profilePage, 
+      profilePage,
       confirmationPage
     ]);
   },
 
   renderAvailableRooms(availableRooms) {
-    domUpdates.hide([searchAgainBtn])
+    domUpdates.hide([searchAgainBtn]);
     filteredResultsArea.innerHTML = '';
     availableRooms.forEach(room => {
       filteredResultsArea.innerHTML += `
@@ -184,11 +185,11 @@ const domUpdates = {
           </div>
         </article>
       `;
-    })
+    });
   },
 
   renderApology() {
-    domUpdates.show([searchAgainBtn])
+    domUpdates.show([searchAgainBtn]);
     filteredResultsArea.innerHTML = '';
     filteredResultsArea.innerHTML = `
       <p>This is terribly unfortunate, but there are no rooms available that match your search parameters.</p> 
@@ -202,7 +203,7 @@ const domUpdates = {
       roomTypeForm.innerHTML += `
         <option value="${type}">${type}</option>
       `;
-    })
+    });
   },
 
   showRoomDetails() {
@@ -216,6 +217,26 @@ const domUpdates = {
     ]);
   },
 
+  renderSelectedRoom(room, date) {
+    const formattedDate = dayjs(date).format('MMM DD YYYY')
+
+    selectedRoom.innerHTML = '';
+
+    selectedRoom.innerHTML = `
+      <div class="room-image-container">
+        <img src="./images/1-bed-room.jpg" class="room-photo" alt="Light and airy room with double bed">
+      </div>
+      <div class="text-area">
+        <h3 id="roomType" class="room-type">${room.type}</h3>
+        <p id="typeOfBed">${room.numBeds} ${room.bedSize}</p>
+        <p id="datesOfStay">Date of Stay: ${formattedDate}</p>
+        <p id="costPerNight">$${room.costPerNight} per night x 1 night</p>
+        <p id="totalCost">Total: $${room.costPerNight}</p><br>
+        <p>Money is fake anyway, so let's pretend you pay here.</p>
+      </div>
+    `;
+  },
+
   showConfirmationView() {
     domUpdates.show([confirmationPage]);
     domUpdates.hide([
@@ -225,8 +246,8 @@ const domUpdates = {
       selectPage,
       landingPage
     ]);
-    setTimeout(function() {
-      domUpdates.showLandingPage()
+    setTimeout(function () {
+      domUpdates.showLandingPage();
     }, 2000);
   }
 };

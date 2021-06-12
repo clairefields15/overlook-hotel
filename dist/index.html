@@ -74,22 +74,16 @@
     <button id="searchAgain" class="main-button hidden">Change Dates</button>
   </section>  
   <section id="bookingPage" class="booking-page hidden">
-    <article class="book-this-room">
-      <div class="room-image-container">
-        <img src="./images/1-bed-room.jpg" class="room-photo" alt="Light and airy room with double bed">
-      </div>
-      <div class="text-area">
-        <h3 id="roomType" class="room-type">Single Room</h3>
-        <p id="typeOfBed">1 Queen Bed</p>
-        <p id="datesOfStay">Dates: Jun 1 2021 - Jun 4 2021</p>
-        <p id="costPerNight">$429.44 per night x 4 nights</p>
-        <p id="totalCost">Total: $1230.23</p><br>
-        <p>Money is fake anyway, so let's pretend you pay here.</p>
-      </div>
+    <article id="selectedRoom" class="book-this-room">
+    </article>
+    <div class="button-container">
       <button id="bookRoomButton" class="book-room-btn">
         Book Your Stay!
       </button>
-    </article>
+      <button id="goBackButton" class="book-room-btn">
+        Go back
+      </button>
+    </div>
   </section>
   <section id="confirmationPage" class="confirmation-page hidden">
     <p id="confirmation-msg">Your room is booked! Enjoy your stay!</p>
