@@ -137,5 +137,12 @@ describe.only('Hotel', () => {
     ]);
   })
 
+  it('should be able to filter available rooms by type', () => {
+    hotel.findAvailableRooms('2020/04/24');
+    let availableRooms = hotel.filterAvailableRoomsByType('2020/04/24', 'single room');
+    expect(availableRooms).to.deep.equal([room3])
+
+  })
+
   
 });

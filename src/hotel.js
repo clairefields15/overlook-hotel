@@ -61,7 +61,7 @@ class Hotel {
     // when you find available rooms, you're just finding those rooms
     // this is all this method should really do vv
     const availableRooms = this.rooms.filter(room => room.isAvailable)
-
+    this.availableRooms = availableRooms;
     return availableRooms;
   }
 
@@ -72,6 +72,12 @@ class Hotel {
       }
       return acc
     }, [])
+  }
+
+  filterAvailableRoomsByType(date, type) {
+    return this.availableRooms.filter(room => {
+      return room.type === type
+    })
   }
 
 

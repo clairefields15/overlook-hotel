@@ -43,6 +43,11 @@ const rooms = [
 // on the 23rd which rooms are available?
 // only room 3
 
+// on the 24th which rooms are available?
+// 1 and 3
+// what types are they?
+// residential suite and single room
+
 
 const bookings = [
   {
