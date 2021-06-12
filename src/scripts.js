@@ -12,31 +12,31 @@ import Booking from './booking';
 import Hotel from './hotel';
 import Room from './room';
 
-
-
 // query selectors
-let hamburgerBtn = document.getElementById('hamburger');
-let mobileBookBtn = document.getElementById('mobileBook');
-let bookNowBtn = document.getElementById('bookNowBtn');
-let checkAvailBtn = document.getElementById('checkAvailBtn');
-let navBookBtn = document.getElementById('navBook');
-let bookRoomBtn = document.getElementById('bookRoomButton')
-let searchResultsPage = document.getElementById('searchResultsPage');
-let mobileViewProfileBtn = document.getElementById('mobileViewProfile');
-let modalOverlay = document.getElementById('modalOverlay');
-let arrivalDate = document.getElementById('arrivalDate');
-let searchAgainBtn = document.getElementById('searchAgain')
+const hamburgerBtn = document.getElementById('hamburger');
+const mobileBookBtn = document.getElementById('mobileBook');
+const bookNowBtn = document.getElementById('bookNowBtn');
+const checkAvailBtn = document.getElementById('checkAvailBtn');
+const navBookBtn = document.getElementById('navBook');
+const bookRoomBtn = document.getElementById('bookRoomButton')
+const searchResultsPage = document.getElementById('searchResultsPage');
+const mobileViewProfileBtn = document.getElementById('mobileViewProfile');
+const modalOverlay = document.getElementById('modalOverlay');
+const arrivalDate = document.getElementById('arrivalDate');
+const searchAgainBtn = document.getElementById('searchAgain')
+const selectRoomType = document.getElementById('selectRoomType');
+const roomTypeForm = document.getElementById('roomTypeForm');
 
-// let mobileLogInBtn = document.getElementById('mobileLogIn');
-// let mobileViewTripsBtn = document.getElementById('mobileViewTrips');
-// let navLogInBtn = document.getElementById('navLogIn');
-// let navTripsBtn = document.getElementById('navTrips');
-// let navProfileBtn = document.getElementById('navProfile');
-// let desktopNavSection = document.getElementById('desktopNav');
-// let landingPage = document.getElementById('landingPage');
-// let selectPage = document.getElementById('selectPage');
-// let bookingPage = document.getElementById('bookingPage');
-// let confirmationPage = document.getElementById('confirmationPage');
+// const mobileLogInBtn = document.getElementById('mobileLogIn');
+// const mobileViewTripsBtn = document.getElementById('mobileViewTrips');
+// const navLogInBtn = document.getElementById('navLogIn');
+// const navTripsBtn = document.getElementById('navTrips');
+// const navProfileBtn = document.getElementById('navProfile');
+// const desktopNavSection = document.getElementById('desktopNav');
+// const landingPage = document.getElementById('landingPage');
+// const selectPage = document.getElementById('selectPage');
+// const bookingPage = document.getElementById('bookingPage');
+// const confirmationPage = document.getElementById('confirmationPage');
   
 // variables
 let dayjs = require('dayjs')
@@ -53,11 +53,12 @@ mobileBookBtn.addEventListener('click', domUpdates.showBookingView);
 modalOverlay.addEventListener('click', domUpdates.hideOverlay);
 bookNowBtn.addEventListener('click', domUpdates.showBookingView);
 navBookBtn.addEventListener('click', domUpdates.showBookingView);
-// instead of just changing the view, later check avail will run a whole bunch of other stuff
 checkAvailBtn.addEventListener('click', checkAvailability);
+checkAvailBtn.addEventListener('click', getRoomTypes);
 searchResultsPage.addEventListener('click', () => selectRoom(event))
 bookRoomBtn.addEventListener('click', domUpdates.showConfirmationView)
 mobileViewProfileBtn.addEventListener('click', domUpdates.showUserProfile);
+selectRoomType.addEventListener('change', filterRoomsByType);
 
 //event handlers and functions
 export function fetchHotelData() {
@@ -73,16 +74,16 @@ export function assignVariables(data) {
 
 export function pageLoad() {
   customer = new Customer(customersData[1])
-  let allBookings = makeBookingInstances()
-  let allRooms = makeRoomInstances()
+  const allBookings = makeBookingInstances()
+  const allRooms = makeRoomInstances()
   hotel = new Hotel(allBookings, allRooms)
-  let userBookings = hotel.getFullRoomInfoForBookings(customer);
-  let userExpenses = hotel.getUserExpenses(customer)
+  const userBookings = hotel.getFullRoomInfoForBookings(customer);
+  const userExpenses = hotel.getUserExpenses(customer)
   domUpdates.renderUserDashboard(customer, userBookings, userExpenses);
 }
 
 function makeRoomInstances() {
-  let allRooms = []
+  const allRooms = []
   roomsData.forEach(roomObj => {
     room = new Room (roomObj)
     allRooms.push(room)
@@ -91,7 +92,7 @@ function makeRoomInstances() {
 }
 
 function makeBookingInstances() {
-  let allBookings = [];
+  const allBookings = [];
   bookingsData.forEach(bookingObj => {
     booking = new Booking(bookingObj);
     allBookings.push(booking);
@@ -109,8 +110,8 @@ function getDate() {
 
 
 function checkAvailability() {
-  let input = dayjs(arrivalDate.value).format('YYYY/MM/DD');
-  let results = hotel.findAvailableRooms(input);
+  const input = dayjs(arrivalDate.value).format('YYYY/MM/DD');
+  const results = hotel.findAvailableRooms(input);
   domUpdates.showSearchResultsPage();
 
   if (results.length === 0) {
@@ -120,9 +121,27 @@ function checkAvailability() {
   }
 }
 
+function getRoomTypes() {
+  const results = hotel.getRoomTypes()
+  domUpdates.populateRoomTypeSelector(results)
+}
 
+function filterRoomsByType() {
+  const selection = roomTypeForm.value;
+  const results = hotel.filterAvailableRoomsByType(selection)
+
+  if (results.length === 0) {
+    domUpdates.renderApology();
+  } else {
+    domUpdates.renderAvailableRooms(results);
+  }
+}
+
+
+// console error when you click the change date button because of
+// the event listener on the whole page vvvvvvv
 function selectRoom(event) {
-  let target = event.target.closest('.room-card').id
+  const target = event.target.closest('.room-card').id
   // will have to pass target to some class file to render the appropriate card on the next page
   if (target === '1') {
     domUpdates.showRoomDetails()
@@ -131,9 +150,30 @@ function selectRoom(event) {
 
 
 
-
-
-
 /// you should not be able to book if you're not logged in!!! 
-// so maybe when you click book now it prompts you to log in
+// so maybe when you click book now it prompts you to log in?
+
+//username: customer50 (where 50 is the ID of the user)
+//password: overlook2021
+
+// passwordField.value === overlook2021
+// startsWith(customer)
+// makes sense to fetch all the customers to update the data source
+
+// checking the '50' against the users API, does a user with this ID exist
+// if the id exists, fetch a single customer
+
+// on authentication you can fetch just the single customer
+// whatever number they put in, try to fetch from the API
+
+// try not to rely on users that are in storage to check the userIDs
+// you could see all of the users inside of the dev tools/browser
+// try to make a fetch request for a single user, based on the id
+// if 404 that user doesn't exist
+
+// within the manager class you might need to fetch all the customers but generally, not
+
+
+
+
 

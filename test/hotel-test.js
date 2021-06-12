@@ -9,20 +9,26 @@ import { customers, rooms, bookings } from './test-data';
 const expect = chai.expect;
 
 describe.only('Hotel', () => {
-  let hotel, booking1, booking2, booking3, booking4, allBookings, 
-    room1, room2, room3, allRooms, leatha, rocio;
+  let hotel, booking1, booking2, booking3, booking4,
+    allBookings, room1, room2, room3, room4, allRooms, leatha, rocio;
 
   beforeEach(() => {
     hotel = new Hotel (allBookings, allRooms)
     booking1 = new Booking(bookings[0]);
     booking2 = new Booking(bookings[1]);
     booking3 = new Booking(bookings[2]);
-    booking4 = new Booking(bookings[3]);
-    allBookings = [booking1, booking2, booking3, booking4]
+    booking4 = new Booking(bookings[3]);    
+    allBookings = [
+      booking1,
+      booking2,
+      booking3,
+      booking4
+    ];
     room1 = new Room(rooms[0])
     room2 = new Room(rooms[1])
     room3 = new Room(rooms[2])
-    allRooms = [room1, room2, room3]
+    room4 = new Room(rooms[3])
+    allRooms = [room1, room2, room3, room4]
     leatha = new Customer(customers[0]);
     rocio = new Customer(customers[1]);
   });
@@ -125,8 +131,48 @@ describe.only('Hotel', () => {
 
   it('should be able to find which rooms are available on a certain date', () => {
     let availableRooms = hotel.findAvailableRooms('2020/04/22')
-    expect(availableRooms).to.deep.equal([room2, room3])
+    expect(availableRooms).to.deep.equal([room2, room3, room4])
   })
 
+  it('should be able to return all room types', () => {
+    let roomTypes = hotel.getRoomTypes()
+    expect(roomTypes).to.deep.equal([
+      'residential suite',
+      'suite',
+      'single room'
+    ]);
+  })
+
+  it('should be able to filter available rooms by type', () => {
+    let availRooms = hotel.findAvailableRooms('2020/04/24');
+    expect(availRooms).to.deep.equal([room1, room3, room4])
+
+    let availTypes = hotel.filterAvailableRoomsByType('single room');
+    expect(availTypes).to.deep.equal([room3, room4])
+
+    let availTypes2 = hotel.filterAvailableRoomsByType('residential suite');
+    expect(availTypes2).to.deep.equal([room1]);
+  })
+
+  
+  it('should return an empty array if no rooms of a specific type are available', () => {
+    let availRooms = hotel.findAvailableRooms('2020/04/24');
+    expect(availRooms).to.deep.equal([room1, room3, room4]);
+    
+    let availTypes = hotel.filterAvailableRoomsByType('suite');
+    expect(availTypes).to.deep.equal([]);
+  });
+  
+  it('should return an empty array if no rooms are available', () => {
+    const booking5 = new Booking(bookings[4]);
+    const booking6 = new Booking(bookings[5]);
+    const booking7 = new Booking(bookings[6]);
+    const booking8 = new Booking(bookings[7]);
+    const allBookings2 = [booking5, booking6, booking7, booking8]
+    const hotel2 = new Hotel(allBookings2, allRooms);
+
+    const availRooms = hotel2.findAvailableRooms('2020/02/14')
+    expect(availRooms).to.deep.equal([])
+  })
   
 });

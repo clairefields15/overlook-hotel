@@ -6,6 +6,7 @@ const fetchCustomers = () => {
     .catch(error => console.error(`Users API Error: ${error.message}`));
 };
 
+
 // iteration 3 log in??
 const fetchCustomer = (id) => {
   return fetch(`http://localhost:3001/api/v1/customers/${id}`)

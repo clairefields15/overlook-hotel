@@ -7,29 +7,29 @@ const currentDate = dayjs('2020/2/15');
 //   const date = dayjs(booking.dataset.date).format('MMM D YYYY');
 //   bookingElement.innerText = date;
 // });
-let mobileLogInBtn = document.getElementById('mobileLogIn');
-let mobileBookBtn = document.getElementById('mobileBook');
-let mobileViewTripsBtn = document.getElementById('mobileViewTrips');
-let mobileViewProfileBtn = document.getElementById('mobileViewProfile');
-let navLogInBtn = document.getElementById('navLogIn');
-let navBookBtn = document.getElementById('navBook');
-let navTripsBtn = document.getElementById('navTrips');
-let navProfileBtn = document.getElementById('navProfile');
-let desktopNavSection = document.getElementById('desktopNav');
-let landingPage = document.getElementById('landingPage');
-let selectPage = document.getElementById('selectPage');
-let searchResultsPage = document.getElementById('searchResultsPage');
-let bookingPage = document.getElementById('bookingPage');
-let confirmationPage = document.getElementById('confirmationPage');
-let profilePage = document.getElementById('profilePage')
-let hamburgerBtn = document.getElementById('hamburger');
-let hamburgerImg = document.querySelector('.ham-img');
-let closeButton = document.querySelector('.close-btn');
-let attr = hamburgerBtn.getAttribute('aria-expanded');
-let menuDropdown = document.getElementById('menuDropdown');
-let modalOverlay = document.getElementById('modalOverlay');
-let filteredResultsArea = document.getElementById('filteredResults');
-let searchAgainBtn = document.getElementById('searchAgain')
+const mobileLogInBtn = document.getElementById('mobileLogIn');
+const mobileBookBtn = document.getElementById('mobileBook');
+const mobileViewTripsBtn = document.getElementById('mobileViewTrips');
+const mobileViewProfileBtn = document.getElementById('mobileViewProfile');
+const navLogInBtn = document.getElementById('navLogIn');
+const navBookBtn = document.getElementById('navBook');
+const navTripsBtn = document.getElementById('navTrips');
+const navProfileBtn = document.getElementById('navProfile');
+const desktopNavSection = document.getElementById('desktopNav');
+const landingPage = document.getElementById('landingPage');
+const selectPage = document.getElementById('selectPage');
+const searchResultsPage = document.getElementById('searchResultsPage');
+const bookingPage = document.getElementById('bookingPage');
+const confirmationPage = document.getElementById('confirmationPage');
+const profilePage = document.getElementById('profilePage')
+const hamburgerBtn = document.getElementById('hamburger');
+const hamburgerImg = document.querySelector('.ham-img');
+const closeButton = document.querySelector('.close-btn');
+const menuDropdown = document.getElementById('menuDropdown');
+const modalOverlay = document.getElementById('modalOverlay');
+const filteredResultsArea = document.getElementById('filteredResults');
+const searchAgainBtn = document.getElementById('searchAgain');
+const roomTypeForm = document.getElementById('roomTypeForm');
 
 const domUpdates = {
   hide(elements) {
@@ -41,10 +41,9 @@ const domUpdates = {
   },
 
   openMobileNav() {
-    let attr = hamburgerBtn.getAttribute("aria-expanded")
+    const attr = hamburgerBtn.getAttribute("aria-expanded")
     if (attr === 'false') {
       hamburgerBtn.setAttribute('aria-expanded', 'true');
-      console.log('after', hamburgerBtn)
       domUpdates.show([menuDropdown, closeButton, modalOverlay]);
       domUpdates.hide([hamburgerImg]);
     } 
@@ -95,17 +94,20 @@ const domUpdates = {
   },
 
   renderUserDashboard(user, bookings, expenses) {
-    let welcomeMsg = document.getElementById('welcomeMsg');
-    let upcomingStays = document.getElementById('upcomingStays');
-    let pastStays = document.getElementById('pastStays');
-    let totalSpent = document.getElementById('totalSpent');
+    const welcomeMsg = document.getElementById('welcomeMsg');
+    const upcomingStays = document.getElementById('upcomingStays');
+    const pastStays = document.getElementById('pastStays');
+    const totalSpent = document.getElementById('totalSpent');
 
     welcomeMsg.innerText = `Welcome ${user.name}`;
 
+    pastStays.innerHTML = '';
+    upcomingStays.innerHTML = '';
+
     bookings.forEach(booking => {
-      let bookingDate = dayjs(booking.booking.date);
+      const bookingDate = dayjs(booking.booking.date);
       if (bookingDate.isBefore(currentDate)) {
-        let formattedDate = bookingDate.format('MMM D YYYY')
+        const formattedDate = bookingDate.format('MMM D YYYY')
         pastStays.innerHTML += `
           <article class="past-booking-card">
             <div class="image-area">
@@ -127,7 +129,7 @@ const domUpdates = {
         bookingDate.isAfter(currentDate) ||
         bookingDate.isSame(currentDate)
       ) {
-        let formattedDate = bookingDate.format('MMM D YYYY');
+        const formattedDate = bookingDate.format('MMM D YYYY');
 
         upcomingStays.innerHTML += `
           <article class="past-booking-card">
@@ -165,6 +167,7 @@ const domUpdates = {
 
   renderAvailableRooms(availableRooms) {
     domUpdates.hide([searchAgainBtn])
+    filteredResultsArea.innerHTML = '';
     availableRooms.forEach(room => {
       filteredResultsArea.innerHTML += `
         <article class="room-card" id="${room.number}">
@@ -186,9 +189,20 @@ const domUpdates = {
 
   renderApology() {
     domUpdates.show([searchAgainBtn])
+    filteredResultsArea.innerHTML = '';
     filteredResultsArea.innerHTML = `
-      <p>This is terribly unfortunate, but there are no rooms available that match your search parameters, please try a different date or room type.</p>
+      <p>This is terribly unfortunate, but there are no rooms available that match your search parameters.</p> 
+      <p>Please try selecting a different room type above, or change your dates.</p>
       `;
+  },
+
+  populateRoomTypeSelector(roomTypes) {
+    roomTypeForm.innerHTML = '';
+    roomTypes.forEach(type => {
+      roomTypeForm.innerHTML += `
+        <option value="${type}">${type}</option>
+      `;
+    })
   },
 
   showRoomDetails() {

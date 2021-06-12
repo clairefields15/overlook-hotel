@@ -63,15 +63,11 @@
     <button id="checkAvailBtn" class="main-button">Check Availability</button>
   </section>
   <section id="searchResultsPage" class="results-page hidden">
-    <label for="roomType" class="room-type-form-label">Filter results by room type:</label>
-    <select name="roomType" id="roomType" class="room-type-form">
-      <!-- this will be inner html -->
-      <option value="suite">suite</option>
-      <option value="king">king</option>
-      <option value="suite">suite</option>
-      <option value="suite">suite</option>
-      <!-- inner html ^^ -->
-    </select>
+    <form id="selectRoomType">
+      <label for="roomType" class="room-type-form-label">Filter results by room type:</label>
+      <select name="roomType" id="roomTypeForm" class="room-type-form">
+        <option value="">--Please choose an option--</option>
+      </select>
     </form>
     <section id="filteredResults" class="search-results">
     </section>
