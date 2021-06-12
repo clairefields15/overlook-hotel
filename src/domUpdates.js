@@ -29,6 +29,7 @@ let attr = hamburgerBtn.getAttribute('aria-expanded');
 let menuDropdown = document.getElementById('menuDropdown');
 let modalOverlay = document.getElementById('modalOverlay');
 let filteredResultsArea = document.getElementById('filteredResults');
+let searchAgainBtn = document.getElementById('searchAgain')
 
 const domUpdates = {
   hide(elements) {
@@ -163,8 +164,7 @@ const domUpdates = {
   },
 
   renderAvailableRooms(availableRooms) {
-    console.log('avail rooms DOM UPdates 165:', availableRooms)
-
+    domUpdates.hide([searchAgainBtn])
     availableRooms.forEach(room => {
       filteredResultsArea.innerHTML += `
         <article class="room-card" id="${room.number}">
@@ -182,7 +182,13 @@ const domUpdates = {
         </article>
       `;
     })
+  },
 
+  renderApology() {
+    domUpdates.show([searchAgainBtn])
+    filteredResultsArea.innerHTML = `
+      <p>This is terribly unfortunate, but there are no rooms available that match your search parameters, please try a different date or room type.</p>
+      `;
   },
 
   showRoomDetails() {
