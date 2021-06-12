@@ -19,6 +19,7 @@ const bookNowBtn = document.getElementById('bookNowBtn');
 const checkAvailBtn = document.getElementById('checkAvailBtn');
 const navBookBtn = document.getElementById('navBook');
 const bookRoomBtn = document.getElementById('bookRoomButton')
+const filteredResults = document.getElementById('filteredResults');
 const searchResultsPage = document.getElementById('searchResultsPage');
 const mobileViewProfileBtn = document.getElementById('mobileViewProfile');
 const modalOverlay = document.getElementById('modalOverlay');
@@ -55,7 +56,7 @@ bookNowBtn.addEventListener('click', domUpdates.showBookingView);
 navBookBtn.addEventListener('click', domUpdates.showBookingView);
 checkAvailBtn.addEventListener('click', checkAvailability);
 checkAvailBtn.addEventListener('click', getRoomTypes);
-searchResultsPage.addEventListener('click', () => selectRoom(event))
+filteredResults.addEventListener('click', () => selectRoom(event));
 bookRoomBtn.addEventListener('click', domUpdates.showConfirmationView)
 mobileViewProfileBtn.addEventListener('click', domUpdates.showUserProfile);
 selectRoomType.addEventListener('change', filterRoomsByType);
@@ -137,15 +138,11 @@ function filterRoomsByType() {
   }
 }
 
-
-// console error when you click the change date button because of
-// the event listener on the whole page vvvvvvv
 function selectRoom(event) {
-  const target = event.target.closest('.room-card').id
-  // will have to pass target to some class file to render the appropriate card on the next page
-  if (target === '1') {
-    domUpdates.showRoomDetails()
-  }
+  const roomNumber = event.target.closest('.room-card').id
+  const roomDetails = hotel.returnRoomDetails(roomNumber)
+  domUpdates.showRoomDetails()
+  domUpdates.renderSelectedRoom(roomDetails);
 }
 
 

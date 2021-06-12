@@ -174,5 +174,13 @@ describe.only('Hotel', () => {
     const availRooms = hotel2.findAvailableRooms('2020/02/14')
     expect(availRooms).to.deep.equal([])
   })
+
+  it('should find all room details when given a room number', () => {
+    const room1 = new Room(rooms[0])
+    const booking1 = new Booking(bookings[0])
+    const hotel1 = new Hotel([booking1], [room1])
+    const details = hotel1.returnRoomDetails(1)
+    expect(details).to.equal(room1)
+  })
   
 });
