@@ -128,5 +128,14 @@ describe.only('Hotel', () => {
     expect(availableRooms).to.deep.equal([room2, room3])
   })
 
+  it('should be able to return all room types', () => {
+    let roomTypes = hotel.getRoomTypes()
+    expect(roomTypes).to.deep.equal([
+      'residential suite',
+      'suite',
+      'single room'
+    ]);
+  })
+
   
 });
