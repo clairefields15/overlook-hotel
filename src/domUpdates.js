@@ -2,11 +2,6 @@
 let dayjs = require('dayjs');
 const currentDate = dayjs('2020/2/15');
 
-// console.log(dayjs().format('MMM D YYYY'));
-// bookings.forEach(booking => {
-//   const date = dayjs(booking.dataset.date).format('MMM D YYYY');
-//   bookingElement.innerText = date;
-// });
 const mobileLogInBtn = document.getElementById('mobileLogIn');
 const mobileBookBtn = document.getElementById('mobileBook');
 const mobileViewTripsBtn = document.getElementById('mobileViewTrips');

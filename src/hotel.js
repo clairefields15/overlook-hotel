@@ -53,6 +53,7 @@ class Hotel {
   findAvailableRooms(date) {
     const bookedRooms = this.findBookedRooms(date);
     this.rooms.forEach(room => {
+      room.isAvailable = true
       if (bookedRooms.includes(room.number)) {
         room.isAvailable = false;
       }
