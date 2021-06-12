@@ -44,7 +44,6 @@ const domUpdates = {
     const attr = hamburgerBtn.getAttribute("aria-expanded")
     if (attr === 'false') {
       hamburgerBtn.setAttribute('aria-expanded', 'true');
-      console.log('after', hamburgerBtn)
       domUpdates.show([menuDropdown, closeButton, modalOverlay]);
       domUpdates.hide([hamburgerImg]);
     } 
@@ -101,6 +100,9 @@ const domUpdates = {
     const totalSpent = document.getElementById('totalSpent');
 
     welcomeMsg.innerText = `Welcome ${user.name}`;
+
+    pastStays.innerHTML = '';
+    upcomingStays.innerHTML = '';
 
     bookings.forEach(booking => {
       const bookingDate = dayjs(booking.booking.date);
@@ -187,12 +189,15 @@ const domUpdates = {
 
   renderApology() {
     domUpdates.show([searchAgainBtn])
+    filteredResultsArea.innerHTML = '';
     filteredResultsArea.innerHTML = `
-      <p>This is terribly unfortunate, but there are no rooms available that match your search parameters, please try a different date or room type.</p>
+      <p>This is terribly unfortunate, but there are no rooms available that match your search parameters.</p> 
+      <p>Please try selecting a different room type above, or change your dates.</p>
       `;
   },
 
   populateRoomTypeSelector(roomTypes) {
+    roomTypeForm.innerHTML = '';
     roomTypes.forEach(type => {
       roomTypeForm.innerHTML += `
         <option value="${type}">${type}</option>

@@ -129,7 +129,6 @@ function getRoomTypes() {
 function filterRoomsByType() {
   const selection = roomTypeForm.value;
   const results = hotel.filterAvailableRoomsByType(selection)
-  console.log(results)
 
   if (results.length === 0) {
     domUpdates.renderApology();
