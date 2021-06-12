@@ -6,14 +6,6 @@ const customers = [
   {
     "id": 2,
     "name": "Rocio Schuster"
-  },
-  {
-    "id": 3,
-    "name": "Kelvin Schiller"
-  },
-  {
-    "id": 4,
-    "name": "Kennedi Emard"
   }
 ]
 
@@ -50,28 +42,28 @@ const bookings = [
     "id": "5fwrgu4i7k55hl6sz",
     "userID": 1,
     "date": "2020/04/22",
-    "roomNumber": 15,
+    "roomNumber": 1,
     "roomServiceCharges": []
   },
   {
     "id": "5fwrgu4i7k55hl6t5",
     "userID": 2,
-    "date": "2020/01/24",
-    "roomNumber": 24,
+    "date": "2020/04/23",
+    "roomNumber": 2,
     "roomServiceCharges": []
   },
   {
     "id": "5fwrgu4i7k55hl6t6",
     "userID": 1,
-    "date": "2020/01/10",
-    "roomNumber": 12,
+    "date": "2020/04/23",
+    "roomNumber": 1,
     "roomServiceCharges": []
   },
   {
     "id": "5fwrgu4i7k55hl6t7",
     "userID": 2,
-    "date": "2020/02/16",
-    "roomNumber": 7,
+    "date": "2020/04/24",
+    "roomNumber": 2,
     "roomServiceCharges": []
   }
 ]
