@@ -26,6 +26,7 @@ const filteredResultsArea = document.getElementById('filteredResults');
 const searchAgainBtn = document.getElementById('searchAgain');
 const roomTypeForm = document.getElementById('roomTypeForm');
 const selectedRoom = document.getElementById('selectedRoom');
+const yourDates = document.getElementById('yourDates');
 
 const domUpdates = {
   hide(elements) {
@@ -183,6 +184,13 @@ const domUpdates = {
     });
   },
 
+  renderYourDates(date) {
+    yourDates.innerText = '';
+    const formattedDate = dayjs(date).format('MMM DD YYYY');
+    yourDates.innerText = `You are viewing rooms available on ${formattedDate}` 
+
+  },
+
   renderApology() {
     domUpdates.show([searchAgainBtn]);
     filteredResultsArea.innerHTML = '';
@@ -235,7 +243,7 @@ const domUpdates = {
         <div class="button-container">
         <button id="${room.number}" class="book-room-btn">Book Your Stay!</button>
       <button id="goBackButton" class="go-back-btn">
-        Go back
+        View other rooms on this date
       </button>
     </div>
       </div>

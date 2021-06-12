@@ -29,6 +29,7 @@ const selectRoomType = document.getElementById('selectRoomType');
 const roomTypeForm = document.getElementById('roomTypeForm');
 const goBackButton = document.getElementById('goBackButton')
 const selectedRoom = document.getElementById('selectedRoom');
+const changeDates = document.getElementById('changeDates');
 
 // const mobileLogInBtn = document.getElementById('mobileLogIn');
 // const mobileViewTripsBtn = document.getElementById('mobileViewTrips');
@@ -51,6 +52,7 @@ let customersData, roomsData, bookingsData
 window.addEventListener('load', fetchHotelData);
 window.addEventListener('load', getDate)
 searchAgainBtn.addEventListener('click', domUpdates.showBookingView);
+changeDates.addEventListener('click', domUpdates.showBookingView)
 hamburgerBtn.addEventListener('click', domUpdates.openMobileNav);
 mobileBookBtn.addEventListener('click', domUpdates.showBookingView);
 modalOverlay.addEventListener('click', domUpdates.hideOverlay);
@@ -122,6 +124,7 @@ function checkAvailability() {
     domUpdates.renderApology();
   } else {
     domUpdates.renderAvailableRooms(results);
+    domUpdates.renderYourDates(input)
   }
 }
 
@@ -142,9 +145,6 @@ function filterRoomsByType() {
 }
 
 function selectRoom(event) {
-  if (event.target.id === 'searchAgain') {
-    console.log('hello we are here 146 scripts')
-  }
   const date = dayjs(arrivalDate.value).format('YYYY/MM/DD');
   const roomNumber = parseInt(event.target.closest('.room-card').id)
   const roomDetails = hotel.returnRoomDetails(roomNumber)
