@@ -6,7 +6,7 @@ import Room from '../src/room'
 import { customers, rooms, bookings } from './test-data'
 const expect = chai.expect;
 
-describe.only('Booking', () => {
+describe('Booking', () => {
   let booking1, booking2;
 
   beforeEach(() => {
@@ -39,7 +39,7 @@ describe.only('Booking', () => {
 
   it('should have a room number', () => {
     expect(booking1).to.have.a.property('roomNumber');
-    expect(booking1.roomNumber).to.equal(15);
+    expect(booking1.roomNumber).to.equal(1);
   });
 
   it('should have a user ID associated with it', () => {
@@ -52,12 +52,12 @@ describe.only('Booking', () => {
     expect(booking1.roomServiceCharges).to.deep.equal([]);
   });
 
-  it('should be able to instantiate a different customer', () => {
+  it('should be able to instantiate a different booking', () => {
     expect(booking2).to.be.an.instanceOf(Booking);
     expect(booking2.id).to.equal('5fwrgu4i7k55hl6t5');
     expect(booking2.userID).to.equal(2);
-    expect(booking2.date).to.equal('2020/01/24');
-    expect(booking2.roomNumber).to.equal(24);
+    expect(booking2.date).to.equal('2020/04/23');
+    expect(booking2.roomNumber).to.equal(2);
     expect(booking2.roomServiceCharges).to.deep.equal([]);
 
 

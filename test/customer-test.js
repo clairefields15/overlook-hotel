@@ -6,7 +6,7 @@ import Room from '../src/room'
 import { customers, rooms, bookings } from './test-data'
 const expect = chai.expect;
 
-describe.only('Customer', () => {
+describe('Customer', () => {
   let hotel,
     booking1,
     booking2,
@@ -65,25 +65,49 @@ describe.only('Customer', () => {
   })
 
   it('should be able to store all past, present, and future bookings', () => {
-    let booking = {
-  id: '5fwrgu4i7k55hl6sz',
-  userID: 1,
-  date: '2020/04/22',
-  roomNumber: 15,
-  roomServiceCharges: []
-}
-    customer1.getBookings()
-    customer1.bookings = hotel.filterBookingsByUser(customer1)
-    expect(customer1.bookings.length).to.equal(2)
-    expect(customer1.bookings[0]).to.equal(booking);
-
+    let booking = 
+    [
+      [
+        {
+          room: {
+            number: 1,
+            type: 'residential suite',
+            hasBidet: true,
+            bedSize: 'queen',
+            numBeds: 1,
+            costPerNight: 358.4,
+            isAvailable: true
+          },
+          booking: {
+            id: '5fwrgu4i7k55hl6sz',
+            userID: 1,
+            date: '2020/04/22',
+            roomNumber: 1,
+            roomServiceCharges: []
+          }
+        },
+        {
+          room: {
+            number: 1,
+            type: 'residential suite',
+            hasBidet: true,
+            bedSize: 'queen',
+            numBeds: 1,
+            costPerNight: 358.4,
+            isAvailable: true
+          },
+          booking: {
+            id: '5fwrgu4i7k55hl6t6',
+            userID: 1,
+            date: '2020/04/23',
+            roomNumber: 1,
+            roomServiceCharges: []
+          }
+        }
+      ]
+    ]
+    hotel.getFullRoomInfoForBookings(customer1);
+    expect(customer1.bookings).to.deep.equal(booking);
   })
-
-  it.skip('should be able to get total expenses', () => {
-    //total money spend on bookings past/present/future
-
-  })
-
-  
 
 });
