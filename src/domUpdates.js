@@ -164,24 +164,24 @@ const domUpdates = {
   renderAvailableRooms(availableRooms) {
     console.log('avail rooms DOM UPdates 165:', availableRooms)
 
-    // availableRooms.forEach(room => {
-    //   console.log(room)
-    //   searchResultsPage.innerHTML += `
-    //     <article class="room-card" id="${id}">
-    //       <div class="image-area">
-    //         <div class="image-container">
-    //           <img src="./images/1-bed-room.jpg" class="room-photo" alt="Light and airy room with double bed">
-    //           <button id="selectRoomButton" class="select-room-btn">Select this room</button>
-    //         </div>
-    //       </div>
-    //       <div class="text-area">
-    //         <h3 id="roomType" class="room-type">${type}</h3>
-    //         <p id="typeOfBed">${num beds} ${type bed}</p>
-    //         <p id="costPerNight">$${cost per night} per night</p>
-    //       </div>
-    //     </article>
-    //   `;
-    // })
+    availableRooms.forEach(room => {
+      searchResultsPage.innerHTML += `
+        <article class="room-card" id="${room.number}">
+          <div class="image-area">
+            <div class="image-container">
+              <img src="./images/1-bed-room.jpg" class="room-photo" alt="Light and airy room with double bed">
+              <button id="selectRoomButton" class="select-room-btn">Select this room</button>
+            </div>
+          </div>
+          <div class="text-area">
+            <h3 id="roomType" class="room-type">${room.type}</h3>
+            <p id="typeOfBed">${room.numBeds} ${room.bedSize}</p>
+            <p id="costPerNight">$${room.costPerNight} per night</p>
+          </div>
+        </article>
+      `;
+    })
+
   },
 
   showRoomDetails() {

@@ -108,7 +108,7 @@ function getDate() {
 
 function checkAvailability() {
   let input = dayjs(arrivalDate.value).format('YYYY/MM/DD');
-  let results = hotel.findBookedRooms(input);
+  let results = hotel.findAvailableRooms(input);
 
   domUpdates.showSearchResultsPage();
   domUpdates.renderAvailableRooms(results);
