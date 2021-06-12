@@ -50,7 +50,6 @@ class Hotel {
   // also not great for optimization, lots of iteratings, 5 loops??
   findAvailableRooms(date) {
     const bookedRooms = this.findBookedRooms(date)
-
     this.rooms.forEach(room => {
       if (bookedRooms.includes(room.number)) {
         room.isAvailable = false
@@ -74,7 +73,7 @@ class Hotel {
     }, [])
   }
 
-  filterAvailableRoomsByType(date, type) {
+  filterAvailableRoomsByType(type) {
     return this.availableRooms.filter(room => {
       return room.type === type
     })
