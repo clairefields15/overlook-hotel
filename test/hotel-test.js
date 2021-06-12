@@ -144,11 +144,25 @@ describe.only('Hotel', () => {
   })
 
   it('should be able to filter available rooms by type', () => {
-    hotel.findAvailableRooms('2020/04/24');
-    let availableRooms = hotel.filterAvailableRoomsByType('single room');
-    expect(availableRooms).to.deep.equal([room3, room4])
+    let availRooms = hotel.findAvailableRooms('2020/04/24');
+    expect(availRooms).to.deep.equal([room1, room3, room4])
+
+    let availTypes = hotel.filterAvailableRoomsByType('single room');
+    expect(availTypes).to.deep.equal([room3, room4])
+
+    let availTypes2 = hotel.filterAvailableRoomsByType('residential suite');
+    expect(availTypes2).to.deep.equal([room1]);
   })
 
+  
+  it('should return an empty array if no rooms of a specific type are available', () => {
+    let availRooms = hotel.findAvailableRooms('2020/04/24');
+    expect(availRooms).to.deep.equal([room1, room3, room4]);
+    
+    let availTypes = hotel.filterAvailableRoomsByType('suite');
+    expect(availTypes).to.deep.equal([]);
+  });
+  
   it('should return an empty array if no rooms are available', () => {
     const booking5 = new Booking(bookings[4]);
     const booking6 = new Booking(bookings[5]);
@@ -160,19 +174,5 @@ describe.only('Hotel', () => {
     const availRooms = hotel2.findAvailableRooms('2020/02/14')
     expect(availRooms).to.deep.equal([])
   })
-
-  it('should return an empty array if no rooms of a specific type are available', () => {
-    const booking1 = new Booking(bookings[8]);
-    const booking2 = new Booking(bookings[9]);
-    const allBookings3 = [booking1, booking2];
-    const hotel3 = new Hotel(allBookings3, allRooms);
-    
-    const availRooms = hotel3.findAvailableRooms('2020/02/15');
-    expect(availRooms).to.deep.equal([room1, room2]);
-    
-    const singleRoom = hotel.filterAvailableRoomsByType('single room')
-    expect(singleRoom).to.deep.equal([]);
-  });
-
   
 });
