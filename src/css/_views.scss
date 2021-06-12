@@ -30,11 +30,10 @@
   font-size: 1.5em;
   border-radius: 0.5em;
   margin: 1em;
-  margin-top: 8em;
 }
 
-.check-avail-button {
-  margin-top: 1em
+.landing-page-book-button {
+  margin-top: 8em;
 }
 
 // BOOKING PAGE
@@ -62,12 +61,27 @@
 }
 
 // SEARCH RESULTS PAGE
+.results-page {
+  @include flex-center;
+  text-align: center;
+}
+
 .search-results {
   display: grid;
   padding: 1.3em;
   grid-template-columns: 1fr;
-  grid-template-rows: repeat(8, 1.5fr);
   gap: 2em;
+}
+
+.room-type-form-label {
+  font-size: 1.5em;
+  margin: 1em;
+}
+
+.room-type-form {
+  width: 80vw;
+  padding: 1em;
+  margin: 1em;
 }
 
 // BOOKING PAGE

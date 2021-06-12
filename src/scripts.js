@@ -25,6 +25,7 @@ let searchResultsPage = document.getElementById('searchResultsPage');
 let mobileViewProfileBtn = document.getElementById('mobileViewProfile');
 let modalOverlay = document.getElementById('modalOverlay');
 let arrivalDate = document.getElementById('arrivalDate');
+let searchAgainBtn = document.getElementById('searchAgain')
 
 // let mobileLogInBtn = document.getElementById('mobileLogIn');
 // let mobileViewTripsBtn = document.getElementById('mobileViewTrips');
@@ -46,6 +47,7 @@ let customersData, roomsData, bookingsData
 // event listeners
 window.addEventListener('load', fetchHotelData);
 window.addEventListener('load', getDate)
+searchAgainBtn.addEventListener('click', domUpdates.showBookingView);
 hamburgerBtn.addEventListener('click', domUpdates.openMobileNav);
 mobileBookBtn.addEventListener('click', domUpdates.showBookingView);
 modalOverlay.addEventListener('click', domUpdates.hideOverlay);
@@ -108,10 +110,14 @@ function getDate() {
 
 function checkAvailability() {
   let input = dayjs(arrivalDate.value).format('YYYY/MM/DD');
-  let results = hotel.findBookedRooms(input);
-
+  let results = hotel.findAvailableRooms(input);
   domUpdates.showSearchResultsPage();
-  domUpdates.renderAvailableRooms(results);
+
+  if (results.length === 0) {
+    domUpdates.renderApology();
+  } else {
+    domUpdates.renderAvailableRooms(results);
+  }
 }
 
 
