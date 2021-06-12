@@ -40,6 +40,15 @@ class Hotel {
     return totalExpenses
   }
 
+  filterAvailableRoomsByDate(date) {
+    console.log('eere', date) 
+    console.log(this.bookings.length)
+
+    //1004 bookings total
+
+  }
+
+
 }
 
 export default Hotel
