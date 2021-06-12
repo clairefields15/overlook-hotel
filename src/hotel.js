@@ -45,15 +45,20 @@ class Hotel {
     }).map(room => room.roomNumber)
   }
 
+  findAvailableRooms(date) {
+    let bookedRooms = this.findBookedRooms(date)
+
+    this.rooms.forEach(room => {
+      if (bookedRooms.includes(room.number)) {
+        room.isAvailable = false
+      }
+    })
+
+    let availableRooms = this.rooms.filter(room => room.isAvailable)
+
+    return availableRooms;
+  }
   
-  // iterate through all the ROOMS
-  // if the unavailableRooms.includes(room.number) that means the room is not available
-  // so the property isAvailable on that room should be re-assigned to false
-
-  // then we can return all rooms that are available
-
-  //1004 bookings total
-
 
 }
 

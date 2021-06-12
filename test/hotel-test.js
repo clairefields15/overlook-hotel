@@ -123,5 +123,10 @@ describe.only('Hotel', () => {
     expect(roomNum).to.deep.equal([1]);
   })
 
+  it('should be able to find which rooms are available on a certain date', () => {
+    let availableRooms = hotel.findAvailableRooms('2020/04/22')
+    expect(availableRooms).to.deep.equal([room2, room3])
+  })
+
   
 });
