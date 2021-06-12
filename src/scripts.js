@@ -27,6 +27,7 @@ const arrivalDate = document.getElementById('arrivalDate');
 const searchAgainBtn = document.getElementById('searchAgain')
 const selectRoomType = document.getElementById('selectRoomType');
 const roomTypeForm = document.getElementById('roomTypeForm');
+const goBackButton = document.getElementById('goBackButton')
 
 // const mobileLogInBtn = document.getElementById('mobileLogIn');
 // const mobileViewTripsBtn = document.getElementById('mobileViewTrips');
@@ -60,6 +61,7 @@ filteredResults.addEventListener('click', () => selectRoom(event));
 bookRoomBtn.addEventListener('click', domUpdates.showConfirmationView)
 mobileViewProfileBtn.addEventListener('click', domUpdates.showUserProfile);
 selectRoomType.addEventListener('change', filterRoomsByType);
+goBackButton.addEventListener('click', goBackToSearchResults)
 
 //event handlers and functions
 export function fetchHotelData() {
@@ -124,6 +126,7 @@ function checkAvailability() {
 
 function getRoomTypes() {
   const results = hotel.getRoomTypes()
+  console.log('room types 129 ahhh', results)
   domUpdates.populateRoomTypeSelector(results)
 }
 
@@ -144,6 +147,10 @@ function selectRoom(event) {
   const roomDetails = hotel.returnRoomDetails(roomNumber)
   domUpdates.showRoomDetails()
   domUpdates.renderSelectedRoom(roomDetails, date);
+}
+
+function goBackToSearchResults() {
+  domUpdates.showSearchResultsPage();
 }
 
 

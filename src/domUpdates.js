@@ -199,6 +199,9 @@ const domUpdates = {
 
   populateRoomTypeSelector(roomTypes) {
     roomTypeForm.innerHTML = '';
+    roomTypeForm.innerHTML = `
+      <option value="">--Please choose an option--</option>
+    `;
     roomTypes.forEach(type => {
       roomTypeForm.innerHTML += `
         <option value="${type}">${type}</option>
