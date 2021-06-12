@@ -52,7 +52,7 @@ modalOverlay.addEventListener('click', domUpdates.hideOverlay);
 bookNowBtn.addEventListener('click', domUpdates.showBookingView);
 navBookBtn.addEventListener('click', domUpdates.showBookingView);
 // instead of just changing the view, later check avail will run a whole bunch of other stuff
-checkAvailBtn.addEventListener('click', domUpdates.checkAvailability);
+checkAvailBtn.addEventListener('click', checkAvailability);
 searchResultsPage.addEventListener('click', () => selectRoom(event))
 bookRoomBtn.addEventListener('click', domUpdates.showConfirmationView)
 mobileViewProfileBtn.addEventListener('click', domUpdates.showUserProfile);
@@ -104,6 +104,16 @@ function getDate() {
   arrivalDate.value = currentDate;
   arrivalDate.min = currentDate;
 }
+
+
+function checkAvailability() {
+  let input = dayjs(arrivalDate.value).format('YYYY/MM/DD');
+  let results = hotel.filterAvailableRoomsByDate(input);
+
+  domUpdates.showSearchResultsPage();
+  domUpdates.renderAvailableRooms(results);
+}
+
 
 function selectRoom(event) {
   let target = event.target.closest('.room-card').id
