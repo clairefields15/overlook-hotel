@@ -62,9 +62,9 @@
     </form>
     <button id="checkAvailBtn" class="check-avail-button main-button">Check Availability</button>
   </section>
-  <section id="searchResultsPage" class="search-results hidden">
-    <label for="roomType">Filter results by room type:</label>
-    <select name="roomType" id="roomType">
+  <section id="searchResultsPage" class="results-page hidden">
+    <label for="roomType" class="room-type-form-label">Filter results by room type:</label>
+    <select name="roomType" id="roomType" class="room-type-form">
       <!-- this will be inner html -->
       <option value="suite">suite</option>
       <option value="king">king</option>
@@ -73,6 +73,8 @@
       <!-- inner html ^^ -->
     </select>
     </form>
+    <section id="filteredResults" class="search-results">
+    </section>
   </section>  
   <section id="bookingPage" class="booking-page hidden">
     <article class="book-this-room">

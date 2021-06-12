@@ -28,6 +28,7 @@ let closeButton = document.querySelector('.close-btn');
 let attr = hamburgerBtn.getAttribute('aria-expanded');
 let menuDropdown = document.getElementById('menuDropdown');
 let modalOverlay = document.getElementById('modalOverlay');
+let filteredResultsArea = document.getElementById('filteredResults');
 
 const domUpdates = {
   hide(elements) {
@@ -165,7 +166,7 @@ const domUpdates = {
     console.log('avail rooms DOM UPdates 165:', availableRooms)
 
     availableRooms.forEach(room => {
-      searchResultsPage.innerHTML += `
+      filteredResultsArea.innerHTML += `
         <article class="room-card" id="${room.number}">
           <div class="image-area">
             <div class="image-container">
