@@ -14,7 +14,6 @@ class Hotel {
   
   getFullRoomInfoForBookings(customer) {
     let bookings = this.getUserBookings(customer)
-
     let roomsBooked = this.rooms.reduce((acc, room) => {
       bookings.forEach(booking => {
         if (booking.roomNumber === room.number) {
@@ -37,16 +36,23 @@ class Hotel {
       return total
     }, 0).toFixed(2)
 
-    return totalExpenses
+    return totalExpenses;
   }
 
-  filterAvailableRoomsByDate(date) {
-    console.log('eere', date) 
-    console.log(this.bookings.length)
-
-    //1004 bookings total
-
+  findBookedRooms(date) {
+    return this.bookings.filter(booking => {
+      return date === booking.date
+    }).map(room => room.roomNumber)
   }
+
+  
+  // iterate through all the ROOMS
+  // if the unavailableRooms.includes(room.number) that means the room is not available
+  // so the property isAvailable on that room should be re-assigned to false
+
+  // then we can return all rooms that are available
+
+  //1004 bookings total
 
 
 }

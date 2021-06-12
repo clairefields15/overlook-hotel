@@ -6,7 +6,7 @@ import Room from '../src/room'
 import { customers, rooms, bookings } from './test-data'
 const expect = chai.expect;
 
-describe.only('Customer', () => {
+describe('Customer', () => {
   let hotel,
     booking1,
     booking2,

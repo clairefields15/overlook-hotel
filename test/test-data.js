@@ -37,6 +37,13 @@ const rooms = [
   }
 ]
 
+// on the 22nd which rooms are available?
+// rooms 2 and 3
+
+// on the 23rd which rooms are available?
+// only room 3
+
+
 const bookings = [
   {
     "id": "5fwrgu4i7k55hl6sz",
