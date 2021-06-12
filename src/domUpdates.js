@@ -229,13 +229,20 @@ const domUpdates = {
       <div class="room-image-container">
         <img src="./images/1-bed-room.jpg" class="room-photo" alt="Light and airy room with double bed">
       </div>
-      <div class="text-area">
+      <div class="text-area" id="${room.number}">
         <h3 id="roomType" class="room-type">${room.type}</h3>
         <p id="typeOfBed">${room.numBeds} ${room.bedSize}</p>
         <p id="datesOfStay">Date of Stay: ${formattedDate}</p>
         <p id="costPerNight">$${room.costPerNight} per night x 1 night</p>
         <p id="totalCost">Total: $${room.costPerNight}</p><br>
         <p>Money is fake anyway, so let's pretend you pay here.</p>
+
+        <div class="button-container">
+        <button id="${room.number}" class="book-room-btn">Book Your Stay!</button>
+      <button id="goBackButton" class="go-back-btn">
+        Go back
+      </button>
+    </div>
       </div>
     `;
   },

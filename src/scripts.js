@@ -28,6 +28,7 @@ const searchAgainBtn = document.getElementById('searchAgain')
 const selectRoomType = document.getElementById('selectRoomType');
 const roomTypeForm = document.getElementById('roomTypeForm');
 const goBackButton = document.getElementById('goBackButton')
+const selectedRoom = document.getElementById('selectedRoom');
 
 // const mobileLogInBtn = document.getElementById('mobileLogIn');
 // const mobileViewTripsBtn = document.getElementById('mobileViewTrips');
@@ -58,10 +59,10 @@ navBookBtn.addEventListener('click', domUpdates.showBookingView);
 checkAvailBtn.addEventListener('click', checkAvailability);
 checkAvailBtn.addEventListener('click', getRoomTypes);
 filteredResults.addEventListener('click', () => selectRoom(event));
-bookRoomBtn.addEventListener('click', domUpdates.showConfirmationView)
 mobileViewProfileBtn.addEventListener('click', domUpdates.showUserProfile);
 selectRoomType.addEventListener('change', filterRoomsByType);
-goBackButton.addEventListener('click', goBackToSearchResults)
+selectedRoom.addEventListener('click', () => goBackToSearchResults(event))
+selectedRoom.addEventListener('click', () => bookRoom(event));
 
 //event handlers and functions
 export function fetchHotelData() {
@@ -126,7 +127,6 @@ function checkAvailability() {
 
 function getRoomTypes() {
   const results = hotel.getRoomTypes()
-  console.log('room types 129 ahhh', results)
   domUpdates.populateRoomTypeSelector(results)
 }
 
@@ -149,8 +149,23 @@ function selectRoom(event) {
   domUpdates.renderSelectedRoom(roomDetails, date);
 }
 
-function goBackToSearchResults() {
-  domUpdates.showSearchResultsPage();
+function goBackToSearchResults(event) {
+  if (event.target.id === 'goBackButton') {
+    domUpdates.showSearchResultsPage();
+  }
+}
+
+function bookRoom(event) {
+  if (event.target.classList.contains('book-room-btn')) {
+    const roomNumber = event.target.id
+    const date = dayjs(arrivalDate.value).format('YYYY/MM/DD');
+    console.log('room number', roomNumber);
+    console.log('user', customer.id)
+    console.log('selected date', date)
+
+  }
+
+  domUpdates.showConfirmationView;
 }
 
 
