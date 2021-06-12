@@ -2,11 +2,6 @@
 let dayjs = require('dayjs');
 const currentDate = dayjs('2020/2/15');
 
-// console.log(dayjs().format('MMM D YYYY'));
-// bookings.forEach(booking => {
-//   const date = dayjs(booking.dataset.date).format('MMM D YYYY');
-//   bookingElement.innerText = date;
-// });
 const mobileLogInBtn = document.getElementById('mobileLogIn');
 const mobileBookBtn = document.getElementById('mobileBook');
 const mobileViewTripsBtn = document.getElementById('mobileViewTrips');
@@ -31,6 +26,7 @@ const filteredResultsArea = document.getElementById('filteredResults');
 const searchAgainBtn = document.getElementById('searchAgain');
 const roomTypeForm = document.getElementById('roomTypeForm');
 const selectedRoom = document.getElementById('selectedRoom');
+const yourDates = document.getElementById('yourDates');
 
 const domUpdates = {
   hide(elements) {
@@ -188,6 +184,13 @@ const domUpdates = {
     });
   },
 
+  renderYourDates(date) {
+    yourDates.innerText = '';
+    const formattedDate = dayjs(date).format('MMM DD YYYY');
+    yourDates.innerText = `You are viewing rooms available on ${formattedDate}` 
+
+  },
+
   renderApology() {
     domUpdates.show([searchAgainBtn]);
     filteredResultsArea.innerHTML = '';
@@ -199,6 +202,9 @@ const domUpdates = {
 
   populateRoomTypeSelector(roomTypes) {
     roomTypeForm.innerHTML = '';
+    roomTypeForm.innerHTML = `
+      <option value="">--Please choose an option--</option>
+    `;
     roomTypes.forEach(type => {
       roomTypeForm.innerHTML += `
         <option value="${type}">${type}</option>
@@ -226,13 +232,20 @@ const domUpdates = {
       <div class="room-image-container">
         <img src="./images/1-bed-room.jpg" class="room-photo" alt="Light and airy room with double bed">
       </div>
-      <div class="text-area">
+      <div class="text-area" id="${room.number}">
         <h3 id="roomType" class="room-type">${room.type}</h3>
         <p id="typeOfBed">${room.numBeds} ${room.bedSize}</p>
         <p id="datesOfStay">Date of Stay: ${formattedDate}</p>
         <p id="costPerNight">$${room.costPerNight} per night x 1 night</p>
         <p id="totalCost">Total: $${room.costPerNight}</p><br>
         <p>Money is fake anyway, so let's pretend you pay here.</p>
+
+        <div class="button-container">
+        <button id="${room.number}" class="book-room-btn">Book Your Stay!</button>
+      <button id="goBackButton" class="go-back-btn">
+        View other rooms on this date
+      </button>
+    </div>
       </div>
     `;
   },

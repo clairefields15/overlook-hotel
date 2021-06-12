@@ -63,10 +63,11 @@
     <button id="checkAvailBtn" class="main-button">Check Availability</button>
   </section>
   <section id="searchResultsPage" class="results-page hidden">
+    <p id="yourDates"></p>
+    <button id="changeDates" class="go-back-btn">Change Dates</button>
     <form id="selectRoomType">
       <label for="roomType" class="room-type-form-label">Filter results by room type:</label>
       <select name="roomType" id="roomTypeForm" class="room-type-form">
-        <option value="">--Please choose an option--</option>
       </select>
     </form>
     <section id="filteredResults" class="search-results">
@@ -76,14 +77,14 @@
   <section id="bookingPage" class="booking-page hidden">
     <article id="selectedRoom" class="book-this-room">
     </article>
-    <div class="button-container">
+    <!-- <div class="button-container">
       <button id="bookRoomButton" class="book-room-btn">
         Book Your Stay!
       </button>
       <button id="goBackButton" class="book-room-btn">
         Go back
       </button>
-    </div>
+    </div> -->
   </section>
   <section id="confirmationPage" class="confirmation-page hidden">
     <p id="confirmation-msg">Your room is booked! Enjoy your stay!</p>

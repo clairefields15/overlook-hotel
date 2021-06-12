@@ -27,6 +27,9 @@ const arrivalDate = document.getElementById('arrivalDate');
 const searchAgainBtn = document.getElementById('searchAgain')
 const selectRoomType = document.getElementById('selectRoomType');
 const roomTypeForm = document.getElementById('roomTypeForm');
+const goBackButton = document.getElementById('goBackButton')
+const selectedRoom = document.getElementById('selectedRoom');
+const changeDates = document.getElementById('changeDates');
 
 // const mobileLogInBtn = document.getElementById('mobileLogIn');
 // const mobileViewTripsBtn = document.getElementById('mobileViewTrips');
@@ -49,6 +52,7 @@ let customersData, roomsData, bookingsData
 window.addEventListener('load', fetchHotelData);
 window.addEventListener('load', getDate)
 searchAgainBtn.addEventListener('click', domUpdates.showBookingView);
+changeDates.addEventListener('click', domUpdates.showBookingView)
 hamburgerBtn.addEventListener('click', domUpdates.openMobileNav);
 mobileBookBtn.addEventListener('click', domUpdates.showBookingView);
 modalOverlay.addEventListener('click', domUpdates.hideOverlay);
@@ -57,9 +61,10 @@ navBookBtn.addEventListener('click', domUpdates.showBookingView);
 checkAvailBtn.addEventListener('click', checkAvailability);
 checkAvailBtn.addEventListener('click', getRoomTypes);
 filteredResults.addEventListener('click', () => selectRoom(event));
-bookRoomBtn.addEventListener('click', domUpdates.showConfirmationView)
 mobileViewProfileBtn.addEventListener('click', domUpdates.showUserProfile);
 selectRoomType.addEventListener('change', filterRoomsByType);
+selectedRoom.addEventListener('click', () => goBackToSearchResults(event))
+selectedRoom.addEventListener('click', () => bookRoom(event));
 
 //event handlers and functions
 export function fetchHotelData() {
@@ -119,6 +124,7 @@ function checkAvailability() {
     domUpdates.renderApology();
   } else {
     domUpdates.renderAvailableRooms(results);
+    domUpdates.renderYourDates(input)
   }
 }
 
@@ -144,6 +150,25 @@ function selectRoom(event) {
   const roomDetails = hotel.returnRoomDetails(roomNumber)
   domUpdates.showRoomDetails()
   domUpdates.renderSelectedRoom(roomDetails, date);
+}
+
+function goBackToSearchResults(event) {
+  if (event.target.id === 'goBackButton') {
+    domUpdates.showSearchResultsPage();
+  }
+}
+
+function bookRoom(event) {
+  if (event.target.classList.contains('book-room-btn')) {
+    const roomNumber = event.target.id
+    const date = dayjs(arrivalDate.value).format('YYYY/MM/DD');
+    console.log('room number', roomNumber);
+    console.log('user', customer.id)
+    console.log('selected date', date)
+
+  }
+
+  domUpdates.showConfirmationView;
 }
 
 
