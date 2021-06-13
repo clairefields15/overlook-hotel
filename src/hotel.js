@@ -11,7 +11,6 @@ class Hotel {
     });
   }
 
-  // loop within a loop not great for optimization, 25000 operations
   getFullRoomInfoForBookings(customer) {
     const bookings = this.getUserBookings(customer);
     const roomsBooked = this.rooms.reduce((acc, room) => {
@@ -50,7 +49,6 @@ class Hotel {
       .map(booking => booking.roomNumber);
   }
 
-  // also not great for optimization, lots of iteratings, 5 loops??
   findAvailableRooms(date) {
     const bookedRooms = this.findBookedRooms(date);
     this.rooms.forEach(room => {
@@ -60,9 +58,6 @@ class Hotel {
       }
     });
 
-    // the only place where room avail is altered is when a room is BOOKED
-    // when you find available rooms, you're just finding those rooms
-    // this is all this method should really do vv
     const availableRooms = this.rooms.filter(room => room.isAvailable);
     this.availableRooms = availableRooms;
     return availableRooms;

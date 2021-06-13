@@ -1,15 +1,6 @@
 /* eslint-disable max-len */
 let dayjs = require('dayjs');
 
-const mobileLogInBtn = document.getElementById('mobileLogIn');
-const mobileBookBtn = document.getElementById('mobileBook');
-const mobileViewTripsBtn = document.getElementById('mobileViewTrips');
-const mobileViewProfileBtn = document.getElementById('mobileViewProfile');
-const navLogInBtn = document.getElementById('navLogIn');
-const navBookBtn = document.getElementById('navBook');
-const navTripsBtn = document.getElementById('navTrips');
-const navProfileBtn = document.getElementById('navProfile');
-const desktopNavSection = document.getElementById('desktopNav');
 const landingPage = document.getElementById('landingPage');
 const selectPage = document.getElementById('selectPage');
 const searchResultsPage = document.getElementById('searchResultsPage');
@@ -71,7 +62,7 @@ const domUpdates = {
   showUserProfile() {
     domUpdates.show([profilePage]);
     domUpdates.hide([
-      landingPage,
+      // landingPage,
       searchResultsPage,
       bookingPage,
       confirmationPage,
@@ -82,7 +73,7 @@ const domUpdates = {
   showBookingView() {
     domUpdates.show([selectPage]);
     domUpdates.hide([
-      landingPage,
+      // landingPage,
       searchResultsPage,
       bookingPage,
       confirmationPage,
@@ -155,7 +146,7 @@ const domUpdates = {
     domUpdates.show([searchResultsPage]);
     domUpdates.hide([
       selectPage,
-      landingPage,
+      // landingPage,
       bookingPage,
       profilePage,
       confirmationPage
@@ -217,7 +208,7 @@ const domUpdates = {
     domUpdates.hide([
       searchResultsPage,
       selectPage,
-      landingPage,
+      // landingPage,
       confirmationPage,
       profilePage
     ]);
@@ -257,7 +248,7 @@ const domUpdates = {
       searchResultsPage,
       profilePage,
       selectPage,
-      landingPage
+      // landingPage
     ]);
     setTimeout(function () {
       domUpdates.showLandingPage();
@@ -271,7 +262,7 @@ const domUpdates = {
       searchResultsPage,
       profilePage,
       selectPage,
-      landingPage,
+      // landingPage,
       confirmationMsg
     ]);
     setTimeout(function () {

@@ -15,33 +15,19 @@ import Room from './room';
 // query selectors
 const hamburgerBtn = document.getElementById('hamburger');
 const mobileBookBtn = document.getElementById('mobileBook');
-const bookNowBtn = document.getElementById('bookNowBtn');
 const checkAvailBtn = document.getElementById('checkAvailBtn');
 const navBookBtn = document.getElementById('navBook');
-const bookRoomBtn = document.getElementById('bookRoomButton')
 const filteredResults = document.getElementById('filteredResults');
-const searchResultsPage = document.getElementById('searchResultsPage');
 const mobileViewProfileBtn = document.getElementById('mobileViewProfile');
 const modalOverlay = document.getElementById('modalOverlay');
 const arrivalDate = document.getElementById('arrivalDate');
 const searchAgainBtn = document.getElementById('searchAgain')
 const selectRoomType = document.getElementById('selectRoomType');
 const roomTypeForm = document.getElementById('roomTypeForm');
-const goBackButton = document.getElementById('goBackButton')
 const selectedRoom = document.getElementById('selectedRoom');
 const changeDates = document.getElementById('changeDates');
 export const errorTag = document.getElementById('errorTag');
 
-// const mobileLogInBtn = document.getElementById('mobileLogIn');
-// const mobileViewTripsBtn = document.getElementById('mobileViewTrips');
-// const navLogInBtn = document.getElementById('navLogIn');
-// const navTripsBtn = document.getElementById('navTrips');
-// const navProfileBtn = document.getElementById('navProfile');
-// const desktopNavSection = document.getElementById('desktopNav');
-// const landingPage = document.getElementById('landingPage');
-// const selectPage = document.getElementById('selectPage');
-// const bookingPage = document.getElementById('bookingPage');
-// const confirmationPage = document.getElementById('confirmationPage');
   
 // variables
 let dayjs = require('dayjs')
@@ -57,7 +43,7 @@ changeDates.addEventListener('click', domUpdates.showBookingView)
 hamburgerBtn.addEventListener('click', domUpdates.openMobileNav);
 mobileBookBtn.addEventListener('click', domUpdates.showBookingView);
 modalOverlay.addEventListener('click', domUpdates.hideOverlay);
-bookNowBtn.addEventListener('click', domUpdates.showBookingView);
+// bookNowBtn.addEventListener('click', domUpdates.showBookingView);
 navBookBtn.addEventListener('click', domUpdates.showBookingView);
 checkAvailBtn.addEventListener('click', checkAvailability);
 checkAvailBtn.addEventListener('click', getRoomTypes);
@@ -86,7 +72,6 @@ export function pageLoad() {
   const allBookings = makeBookingInstances()
   const allRooms = makeRoomInstances()
   hotel = new Hotel(allBookings, allRooms)
-  // will have to swap this out in iteration 3 for log in page
   customer = new Customer(customersData[6])
   const userBookings = hotel.getFullRoomInfoForBookings(customer);
   const userExpenses = hotel.getUserExpenses(customer)
@@ -177,33 +162,3 @@ function bookRoom(event) {
     apiCalls.bookRoom(user, date, roomNumber)
   }
 }
-
-
-
-/// you should not be able to book if you're not logged in!!! 
-// so maybe when you click book now it prompts you to log in?
-
-//username: customer50 (where 50 is the ID of the user)
-//password: overlook2021
-
-// passwordField.value === overlook2021
-// startsWith(customer)
-// makes sense to fetch all the customers to update the data source
-
-// checking the '50' against the users API, does a user with this ID exist
-// if the id exists, fetch a single customer
-
-// on authentication you can fetch just the single customer
-// whatever number they put in, try to fetch from the API
-
-// try not to rely on users that are in storage to check the userIDs
-// you could see all of the users inside of the dev tools/browser
-// try to make a fetch request for a single user, based on the id
-// if 404 that user doesn't exist
-
-// within the manager class you might need to fetch all the customers but generally, not
-
-
-
-
-
