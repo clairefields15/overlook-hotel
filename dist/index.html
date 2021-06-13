@@ -39,10 +39,11 @@
 <body>
   <section id="landingPage" class="landing-page">
     <div class="hotel-exterior">
+      <h2 id="landingMsg"></h2>
       <button id="bookNowBtn" class="landing-page-book-button main-button">Book Now</button>
     </div>
   </section>
-  <section id="logInPage" class="log-in-page">
+  <section id="logInPage" class="log-in-page hidden">
     <form id="logInForm">
       <div class="input-container">
         <label class="label" for="username">Username:</label>
@@ -51,9 +52,9 @@
       <div class="input-container">
         <label class="label" for="password">Password:</label>
         <input class="input" type="password" id="passwordField" name="password" placeholder="Password" autocomplete="off" required>
-        <p id="passwordError" class="error-msg hidden"></p>
       </div>
     </form>
+    <p id="passwordError" class="error-msg"></p>
     <button id="logInBtn" class="go-back-btn" type="submit" value="Sign in">Log In</button>
   </section>
   <section id="profilePage" class="profile-page hidden">

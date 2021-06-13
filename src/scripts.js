@@ -128,31 +128,54 @@ function logIn(event) {
     setUser(username, password)
   } catch (error) {
     passwordError.innerText = error;
+    hideError()
   }
 }
 
+function hideError() {
+  setTimeout(() => passwordError.innerText = '', 2700)
+}
+
 function checkEmptyFields(username, password) {
-  if (username === '' || password === '') {
+  if (username === '') {
     usernameField.setAttribute('placeholder', '*username is required*')
+  }
+  if (password === '') {
     passwordField.setAttribute('placeholder', '*password is required*');
   }
 }
 
 function setUser(username, password) {
   checkPassword(password)
+  checkUsername(username)
   usernameField.value = '';
   passwordField.value = '';
-
-  if (username.startsWith('username')) {
-    let id = username.slice(8);
+  let id = username.slice(8);
+  if (id) {
     apiCalls.fetchCustomerData(id);
+  } else {
+    domUpdates.showLogInError();
+    errorTag.innerText = 'User does not exist, please try again.';
+    throw new Error('User does not exist');
+  }
+}
+
+function checkPassword(password) {
+  if (password !== 'overlook2021') {
+    passwordField.value = ''
+    throw new Error('Incorrect password');
+  }
+}
+
+function checkUsername(username) {
+  if (!username.startsWith('username')) {
+    usernameField.value = ''
+    throw new Error ('Incorrect username')
   }
 }
 
 export function instantiateUser(data) {
-  console.log('hiiii')
   customer = new Customer(data);
-  console.log('customer is', customer)
   const userBookings = hotel.getFullRoomInfoForBookings(customer);
   const userExpenses = hotel.getUserExpenses(customer);
   const sortedBookings = sortUserBookingsByDate(userBookings);
@@ -162,6 +185,8 @@ export function instantiateUser(data) {
     userExpenses,
     currentDate
   );
+
+  domUpdates.showLandingPageAfterLogIn(customer)
 }
 
 function sortUserBookingsByDate(bookings) {
@@ -187,13 +212,6 @@ function sortUserBookingsByDate(bookings) {
 // if 404 that user doesn't exist
 
 // within the manager class you might need to fetch all the customers but generally, not
-
-
-function checkPassword(password) {
-  if (password !== 'overlook2021') {
-    throw new Error ('Incorrect password')
-  }
-}
 
 function isCustomerLoggedIn() {
   if (customer) {

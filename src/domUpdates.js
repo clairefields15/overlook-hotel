@@ -29,6 +29,7 @@ const yourDates = document.getElementById('yourDates');
 const confirmationMsg = document.getElementById('confirmationMsg');
 const logInPage = document.getElementById('logInPage');
 const goHomeBtn = document.getElementById('mobileGoHome')
+const landingMsg = document.getElementById('landingMsg');
 
 const domUpdates = {
   hide(elements) {
@@ -72,8 +73,23 @@ const domUpdates = {
     ]);
   },
 
+  showLandingPageAfterLogIn(user) {
+    landingMsg.innerText = `Welcome ${user.name}`
+    domUpdates.show([landingPage, mobileBookBtn, mobileViewProfileBtn]);
+    domUpdates.hide([
+      selectPage,
+      searchResultsPage,
+      bookingPage,
+      confirmationPage,
+      profilePage,
+      logInPage,
+      goHomeBtn,
+      mobileLogInBtn
+    ]);
+  },
+
   showUserProfile() {
-    domUpdates.show([profilePage, goHomeBtn, mobileViewProfileBtn]);
+    domUpdates.show([profilePage, goHomeBtn]);
     domUpdates.hide([
       landingPage,
       searchResultsPage,
@@ -81,7 +97,8 @@ const domUpdates = {
       confirmationPage,
       selectPage,
       logInPage,
-      mobileLogInBtn
+      mobileLogInBtn,
+      mobileViewProfileBtn
     ]);
   },
 
@@ -93,7 +110,8 @@ const domUpdates = {
       bookingPage,
       confirmationPage,
       profilePage,
-      logInPage
+      logInPage,
+      mobileLogInBtn,
     ]);
   },
 
@@ -178,7 +196,8 @@ const domUpdates = {
       bookingPage,
       profilePage,
       confirmationPage,
-      logInPage
+      logInPage,
+      mobileLogInBtn
     ]);
   },
 
@@ -238,7 +257,8 @@ const domUpdates = {
       landingPage,
       confirmationPage,
       profilePage,
-      logInPage
+      logInPage,
+      mobileLogInBtn
     ]);
   },
 
@@ -277,7 +297,8 @@ const domUpdates = {
       profilePage,
       selectPage,
       landingPage,
-      logInPage
+      logInPage,
+      mobileLogInBtn
     ]);
     setTimeout(function () {
       domUpdates.showLandingPage();
@@ -293,10 +314,11 @@ const domUpdates = {
       selectPage,
       landingPage,
       confirmationMsg,
-      logInPage
+      logInPage,
+      mobileLogInBtn
     ]);
     setTimeout(function () {
-      domUpdates.showLandingPage();
+      domUpdates.showLandingPageAfterLogIn();
     }, 2000);
   },
 
@@ -309,11 +331,12 @@ const domUpdates = {
       selectPage,
       landingPage,
       confirmationMsg,
-      logInPage
+      logInPage,
+      mobileLogInBtn
     ]);
     setTimeout(function () {
       domUpdates.showLogInView();
-    }, 2000);
+    }, 3000);
   }
 };
 
