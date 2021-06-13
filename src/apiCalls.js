@@ -2,38 +2,39 @@ import domUpdates from './domUpdates';
 import {
   assignVariables,
   pageLoad,
-  errorTag
+  errorTag,
+  instantiateUser
 } from './scripts';
 
 const fetchCustomers = () => {
   return fetch('http://localhost:3001/api/v1/customers')
     .then(response => response.json())
-    .catch(error => console.error(`Users API Error: ${error.message}`));
+    .catch(error => console.error(`Customers API Error: ${error.message}`));
 };
 
 const fetchRooms = () => {
   return fetch('http://localhost:3001/api/v1/rooms')
     .then(response => response.json())
-    .catch(error => console.error(`Recipes API Error: ${error.message}`));
+    .catch(error => console.error(`Room API Error: ${error.message}`));
 };
 
 const fetchBookings = () => {
   return fetch('http://localhost:3001/api/v1/bookings')
     .then(response => response.json())
-    .catch(error => console.error(`Recipes API Error: ${error.message}`));
+    .catch(error => console.error(`Booking API Error: ${error.message}`));
 }
 
 const fetchHotelData = () => {
-  Promise.all([fetchCustomers(), fetchRooms(), fetchBookings()])
+  Promise.all([fetchRooms(), fetchBookings()])
     .then(data => assignVariables(data))
     .then(() => pageLoad());
 };
 
-// iteration 3 log in??
 const fetchCustomerData = (id) => {
   return fetch(`http://localhost:3001/api/v1/customers/${id}`)
-    .then(response => response.json())
-    .catch(error => console.error(`Ingredients API Error: ${error.message}`));
+    .then(handleLogInError)
+    .then(data => instantiateUser(data))
+    .catch(error => console.error(`Customer API Error: ${error.message}`));
 };
 
 //post request booking
@@ -50,7 +51,7 @@ const bookRoom = (user, dateSelected, roomNum) => {
     })
   })
     .then(handleError)
-    .then(() => fetchHotelData())
+    .then(() => fetchHotelData(user.id))
     .then(() => domUpdates.showConfirmationView())
     .catch(err => console.error(`POST Request Error: ${err.message}`));
 }
@@ -62,7 +63,17 @@ function handleError(response) {
     errorTag.innerText = 'Something went wrong, please try again.';
     throw new Error('Something went wrong');
   } else {
-    return response => response.json()
+    return response.json()
+  }
+}
+
+function handleLogInError(response) {
+  if (!response.ok) {
+    domUpdates.showLogInError();
+    errorTag.innerText = 'User does not exist, please try again.';
+    throw new Error('User does not exist');
+  } else {
+    return response.json();
   }
 }
 

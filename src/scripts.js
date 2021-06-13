@@ -31,8 +31,14 @@ const goBackButton = document.getElementById('goBackButton')
 const selectedRoom = document.getElementById('selectedRoom');
 const changeDates = document.getElementById('changeDates');
 export const errorTag = document.getElementById('errorTag');
+const mobileLogInBtn = document.getElementById('mobileLogIn');
+const goHomeBtn = document.getElementById('mobileGoHome');
+const logInBtn = document.getElementById('logInBtn');
+const usernameField = document.getElementById('usernameField');
+const passwordField = document.getElementById('passwordField');
+const usernameError = document.getElementById('usernameError');
+const passwordError = document.getElementById('passwordError')
 
-// const mobileLogInBtn = document.getElementById('mobileLogIn');
 // const mobileViewTripsBtn = document.getElementById('mobileViewTrips');
 // const navLogInBtn = document.getElementById('navLogIn');
 // const navTripsBtn = document.getElementById('navTrips');
@@ -51,13 +57,14 @@ let customersData, roomsData, bookingsData
 
 // event listeners
 window.addEventListener('load', fetchHotelData);
-window.addEventListener('load', getDate)
+goHomeBtn.addEventListener('click', domUpdates.showLandingPage)
+mobileLogInBtn.addEventListener('click', domUpdates.showLogInView)
 searchAgainBtn.addEventListener('click', domUpdates.showBookingView);
 changeDates.addEventListener('click', domUpdates.showBookingView)
 hamburgerBtn.addEventListener('click', domUpdates.openMobileNav);
 mobileBookBtn.addEventListener('click', domUpdates.showBookingView);
 modalOverlay.addEventListener('click', domUpdates.hideOverlay);
-bookNowBtn.addEventListener('click', domUpdates.showBookingView);
+bookNowBtn.addEventListener('click', isCustomerLoggedIn);
 navBookBtn.addEventListener('click', domUpdates.showBookingView);
 checkAvailBtn.addEventListener('click', checkAvailability);
 checkAvailBtn.addEventListener('click', getRoomTypes);
@@ -66,38 +73,25 @@ mobileViewProfileBtn.addEventListener('click', domUpdates.showUserProfile);
 selectRoomType.addEventListener('change', filterRoomsByType);
 selectedRoom.addEventListener('click', () => goBackToSearchResults(event))
 selectedRoom.addEventListener('click', () => bookRoom(event));
+logInBtn.addEventListener('click', () => logIn(event));
+
+
 
 //event handlers and functions
 export function fetchHotelData() {
   apiCalls.fetchHotelData();
 }
 
-export function fetchCustomer(id) {
-  apiCalls.fetchCustomerData(id)
-}
-
 export function assignVariables(data) {
-  customersData = data[0].customers;
-  roomsData = data[1].rooms;
-  bookingsData = data[2].bookings;
+  roomsData = data[0].rooms;
+  bookingsData = data[1].bookings;
 }
 
 export function pageLoad() {
   const allBookings = makeBookingInstances()
   const allRooms = makeRoomInstances()
   hotel = new Hotel(allBookings, allRooms)
-  // will have to swap this out in iteration 3 for log in page
-  customer = new Customer(customersData[6])
-  const userBookings = hotel.getFullRoomInfoForBookings(customer);
-  const userExpenses = hotel.getUserExpenses(customer)
-  const sortedBookings = sortUserBookingsByDate(userBookings)
-  domUpdates.renderUserDashboard(customer, sortedBookings, userExpenses, currentDate);
-}
-
-function sortUserBookingsByDate(bookings) {
-  return bookings.sort((a,b) => {
-    return dayjs(a.booking.date) - dayjs(b.booking.date) 
-  })
+  getDate()
 }
 
 function makeRoomInstances() {
@@ -124,6 +118,108 @@ function getDate() {
   arrivalDate.min = currentDate;
 }
 
+function logIn(event) {
+  event.preventDefault()
+  const username = usernameField.value;
+  const password = passwordField.value;
+  checkEmptyFields(username, password);
+
+  try {
+    setUser(username, password)
+  } catch (error) {
+    passwordError.innerText = error;
+    hideError()
+  }
+}
+
+function hideError() {
+  setTimeout(() => passwordError.innerText = '', 2700)
+}
+
+function checkEmptyFields(username, password) {
+  if (username === '') {
+    usernameField.setAttribute('placeholder', '*username is required*')
+  }
+  if (password === '') {
+    passwordField.setAttribute('placeholder', '*password is required*');
+  }
+}
+
+function setUser(username, password) {
+  checkPassword(password)
+  checkUsername(username)
+  usernameField.value = '';
+  passwordField.value = '';
+  let id = username.slice(8);
+  if (id) {
+    apiCalls.fetchCustomerData(id);
+  } else {
+    domUpdates.showLogInError();
+    errorTag.innerText = 'User does not exist, please try again.';
+    throw new Error('User does not exist');
+  }
+}
+
+function checkPassword(password) {
+  if (password !== 'overlook2021') {
+    passwordField.value = ''
+    throw new Error('Incorrect password');
+  }
+}
+
+function checkUsername(username) {
+  if (!username.startsWith('username')) {
+    usernameField.value = ''
+    throw new Error ('Incorrect username')
+  }
+}
+
+export function instantiateUser(data) {
+  customer = new Customer(data);
+  const userBookings = hotel.getFullRoomInfoForBookings(customer);
+  const userExpenses = hotel.getUserExpenses(customer);
+  const sortedBookings = sortUserBookingsByDate(userBookings);
+  domUpdates.renderUserDashboard(
+    customer,
+    sortedBookings,
+    userExpenses,
+    currentDate
+  );
+
+  domUpdates.showLandingPageAfterLogIn(customer)
+}
+
+function sortUserBookingsByDate(bookings) {
+  return bookings.sort((a, b) => {
+    return dayjs(a.booking.date) - dayjs(b.booking.date);
+  });
+}
+
+//username: customer50 (where 50 is the ID of the user)
+
+// startsWith(customer)
+// makes sense to fetch all the customers to update the data source
+
+// checking the '50' against the users API, does a user with this ID exist
+// if the id exists, fetch a single customer
+
+// on authentication you can fetch just the single customer
+// whatever number they put in, try to fetch from the API
+
+// try not to rely on users that are in storage to check the userIDs
+// you could see all of the users inside of the dev tools/browser
+// try to make a fetch request for a single user, based on the id
+// if 404 that user doesn't exist
+
+// within the manager class you might need to fetch all the customers but generally, not
+
+function isCustomerLoggedIn() {
+  if (customer) {
+    domUpdates.showBookingView()
+  } else if (!customer) {
+    domUpdates.showLogInView()
+  }
+}
 
 function checkAvailability() {
   const input = dayjs(arrivalDate.value).format('YYYY/MM/DD');
@@ -177,31 +273,6 @@ function bookRoom(event) {
     apiCalls.bookRoom(user, date, roomNumber)
   }
 }
-
-
-
-/// you should not be able to book if you're not logged in!!! 
-// so maybe when you click book now it prompts you to log in?
-
-//username: customer50 (where 50 is the ID of the user)
-//password: overlook2021
-
-// passwordField.value === overlook2021
-// startsWith(customer)
-// makes sense to fetch all the customers to update the data source
-
-// checking the '50' against the users API, does a user with this ID exist
-// if the id exists, fetch a single customer
-
-// on authentication you can fetch just the single customer
-// whatever number they put in, try to fetch from the API
-
-// try not to rely on users that are in storage to check the userIDs
-// you could see all of the users inside of the dev tools/browser
-// try to make a fetch request for a single user, based on the id
-// if 404 that user doesn't exist
-
-// within the manager class you might need to fetch all the customers but generally, not
 
 
 

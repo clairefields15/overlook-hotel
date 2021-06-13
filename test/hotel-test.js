@@ -8,7 +8,7 @@ import Hotel from '../src/hotel';
 import { customers, rooms, bookings } from './test-data';
 const expect = chai.expect;
 
-describe.only('Hotel', () => {
+describe('Hotel', () => {
   let hotel, booking1, booking2, booking3, booking4,
     allBookings, room1, room2, room3, room4, allRooms, leatha, rocio;
 

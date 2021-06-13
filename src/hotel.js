@@ -14,7 +14,7 @@ class Hotel {
   // loop within a loop not great for optimization, 25000 operations
   getFullRoomInfoForBookings(customer) {
     const bookings = this.getUserBookings(customer);
-    const roomsBooked = this.rooms.reduce((acc, room) => {
+    let roomsBooked = this.rooms.reduce((acc, room) => {
       bookings.forEach(booking => {
         if (booking.roomNumber === room.number) {
           acc.push({ room, booking });
@@ -31,7 +31,7 @@ class Hotel {
   getUserExpenses(customer) {
     const matchedRooms = this.getFullRoomInfoForBookings(customer);
 
-    const totalExpenses = matchedRooms
+    let totalExpenses = matchedRooms
       .reduce((total, currentRoom) => {
         const rate = currentRoom.room.costPerNight;
         total += rate;
@@ -63,7 +63,7 @@ class Hotel {
     // the only place where room avail is altered is when a room is BOOKED
     // when you find available rooms, you're just finding those rooms
     // this is all this method should really do vv
-    const availableRooms = this.rooms.filter(room => room.isAvailable);
+    let availableRooms = this.rooms.filter(room => room.isAvailable);
     this.availableRooms = availableRooms;
     return availableRooms;
   }

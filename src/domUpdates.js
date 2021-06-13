@@ -27,6 +27,9 @@ const roomTypeForm = document.getElementById('roomTypeForm');
 const selectedRoom = document.getElementById('selectedRoom');
 const yourDates = document.getElementById('yourDates');
 const confirmationMsg = document.getElementById('confirmationMsg');
+const logInPage = document.getElementById('logInPage');
+const goHomeBtn = document.getElementById('mobileGoHome')
+const landingMsg = document.getElementById('landingMsg');
 
 const domUpdates = {
   hide(elements) {
@@ -58,24 +61,44 @@ const domUpdates = {
   },
 
   showLandingPage() {
-    domUpdates.show([landingPage]);
+    domUpdates.show([landingPage, mobileLogInBtn]);
     domUpdates.hide([
       selectPage,
       searchResultsPage,
       bookingPage,
       confirmationPage,
-      profilePage
+      profilePage,
+      logInPage,
+      goHomeBtn
+    ]);
+  },
+
+  showLandingPageAfterLogIn(user) {
+    landingMsg.innerText = `Welcome ${user.name}`
+    domUpdates.show([landingPage, mobileBookBtn, mobileViewProfileBtn]);
+    domUpdates.hide([
+      selectPage,
+      searchResultsPage,
+      bookingPage,
+      confirmationPage,
+      profilePage,
+      logInPage,
+      goHomeBtn,
+      mobileLogInBtn
     ]);
   },
 
   showUserProfile() {
-    domUpdates.show([profilePage]);
+    domUpdates.show([profilePage, goHomeBtn]);
     domUpdates.hide([
       landingPage,
       searchResultsPage,
       bookingPage,
       confirmationPage,
-      selectPage
+      selectPage,
+      logInPage,
+      mobileLogInBtn,
+      mobileViewProfileBtn
     ]);
   },
 
@@ -86,7 +109,21 @@ const domUpdates = {
       searchResultsPage,
       bookingPage,
       confirmationPage,
-      profilePage
+      profilePage,
+      logInPage,
+      mobileLogInBtn,
+    ]);
+  },
+
+  showLogInView() {
+    domUpdates.show([logInPage, goHomeBtn]);
+    domUpdates.hide([
+      landingPage,
+      searchResultsPage,
+      bookingPage,
+      confirmationPage,
+      profilePage,
+      mobileLogInBtn
     ]);
   },
 
@@ -158,7 +195,9 @@ const domUpdates = {
       landingPage,
       bookingPage,
       profilePage,
-      confirmationPage
+      confirmationPage,
+      logInPage,
+      mobileLogInBtn
     ]);
   },
 
@@ -187,12 +226,10 @@ const domUpdates = {
   renderYourDates(date) {
     yourDates.innerText = '';
     const formattedDate = dayjs(date).format('MMM DD YYYY');
-    yourDates.innerText = `You are viewing rooms available on ${formattedDate}` 
-
+    yourDates.innerText = `You are viewing rooms available on ${formattedDate}`;
   },
 
   renderApology() {
-    //domUpdates.show([searchAgainBtn]);
     filteredResultsArea.innerHTML = '';
     filteredResultsArea.innerHTML = `
       <p>This is terribly unfortunate, but there are no rooms available that match your search parameters.</p> 
@@ -219,12 +256,14 @@ const domUpdates = {
       selectPage,
       landingPage,
       confirmationPage,
-      profilePage
+      profilePage,
+      logInPage,
+      mobileLogInBtn
     ]);
   },
 
   renderSelectedRoom(room, date) {
-    const formattedDate = dayjs(date).format('MMM DD YYYY')
+    const formattedDate = dayjs(date).format('MMM DD YYYY');
 
     selectedRoom.innerHTML = '';
 
@@ -257,7 +296,9 @@ const domUpdates = {
       searchResultsPage,
       profilePage,
       selectPage,
-      landingPage
+      landingPage,
+      logInPage,
+      mobileLogInBtn
     ]);
     setTimeout(function () {
       domUpdates.showLandingPage();
@@ -272,11 +313,30 @@ const domUpdates = {
       profilePage,
       selectPage,
       landingPage,
-      confirmationMsg
+      confirmationMsg,
+      logInPage,
+      mobileLogInBtn
     ]);
     setTimeout(function () {
-      domUpdates.showLandingPage();
+      domUpdates.showLandingPageAfterLogIn();
     }, 2000);
+  },
+
+  showLogInError() {
+    domUpdates.show([confirmationPage]);
+    domUpdates.hide([
+      bookingPage,
+      searchResultsPage,
+      profilePage,
+      selectPage,
+      landingPage,
+      confirmationMsg,
+      logInPage,
+      mobileLogInBtn
+    ]);
+    setTimeout(function () {
+      domUpdates.showLogInView();
+    }, 3000);
   }
 };
 
