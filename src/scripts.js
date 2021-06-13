@@ -30,6 +30,7 @@ const roomTypeForm = document.getElementById('roomTypeForm');
 const goBackButton = document.getElementById('goBackButton')
 const selectedRoom = document.getElementById('selectedRoom');
 const changeDates = document.getElementById('changeDates');
+export const errorTag = document.getElementById('errorTag');
 
 // const mobileLogInBtn = document.getElementById('mobileLogIn');
 // const mobileViewTripsBtn = document.getElementById('mobileViewTrips');
@@ -160,15 +161,13 @@ function goBackToSearchResults(event) {
 
 function bookRoom(event) {
   if (event.target.classList.contains('book-room-btn')) {
-    const roomNumber = event.target.id
+    const userID = customer.id
     const date = dayjs(arrivalDate.value).format('YYYY/MM/DD');
-    console.log('room number', roomNumber);
-    console.log('user', customer.id)
-    console.log('selected date', date)
+    const roomNumber = parseInt(event.target.id)
+
+    apiCalls.bookRoom(userID, date, roomNumber)
 
   }
-
-  domUpdates.showConfirmationView;
 }
 
 

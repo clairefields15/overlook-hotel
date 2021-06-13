@@ -122,8 +122,12 @@
   & p {
     font-size: 3em;
     padding: 1em;
-    padding-top: 30vh;
   }
+}
+
+.error-msg {
+  color: rgb(147, 29, 29);
+  font-size: 2em;
 }
 
 // DASHBOARD

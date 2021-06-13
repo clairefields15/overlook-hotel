@@ -1,4 +1,5 @@
-import { assignVariables, pageLoad } from './scripts';
+import domUpdates from './domUpdates';
+import { assignVariables, pageLoad, errorTag } from './scripts';
 
 const fetchCustomers = () => {
   return fetch('http://localhost:3001/api/v1/customers')
@@ -7,12 +8,6 @@ const fetchCustomers = () => {
 };
 
 
-// iteration 3 log in??
-const fetchCustomer = (id) => {
-  return fetch(`http://localhost:3001/api/v1/customers/${id}`)
-    .then(response => response.json())
-    .catch(error => console.error(`Ingredients API Error: ${error.message}`));
-};
 
 const fetchRooms = () => {
   return fetch('http://localhost:3001/api/v1/rooms')
@@ -32,6 +27,14 @@ const fetchHotelData = () => {
     .then(() => pageLoad());
 };
 
+
+// iteration 3 log in??
+const fetchCustomer = (id) => {
+  return fetch(`http://localhost:3001/api/v1/customers/${id}`)
+    .then(response => response.json())
+    .catch(error => console.error(`Ingredients API Error: ${error.message}`));
+};
+
 const fetchCustomerData = (id) => {
   Promise(fetchCustomer)
     .then(data => assignVariables(data))
@@ -40,17 +43,30 @@ const fetchCustomerData = (id) => {
 
 
 
-
 //post request booking
-
-const bookRoom = (userID, date, roomNumber) => {
-  fetch(url)
+const bookRoom = (id, dateSelected, roomNum) => {
+  return fetch('http://localhost:3001/api/v1/bookings', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      userID: id,
+      date: dateSelected,
+      roomNumber: roomNum
+    })
+  })
+    .then(handleError)
+    .then(() => domUpdates.showConfirmationView())
+    .catch(err => console.error(`POST Request Error: ${err.message}`));
 }
+
 
 function handleError(response) {
   if (!response.ok) {
-    errorTag.innerText = 'you fucked up';
-    throw new Error('you fucked up');
+    domUpdates.showPostError()
+    errorTag.innerText = 'Something went wrong, please try again.';
+    throw new Error('Something went wrong');
   } else {
     return response => response.json()
   }
@@ -64,5 +80,6 @@ export default {
   fetchCustomers,
   fetchRooms,
   fetchBookings,
-  fetchHotelData
+  fetchHotelData,
+  bookRoom
 };
