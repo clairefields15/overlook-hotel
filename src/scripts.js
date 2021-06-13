@@ -72,30 +72,32 @@ export function fetchHotelData() {
   apiCalls.fetchHotelData();
 }
 
+export function fetchCustomer(id) {
+  apiCalls.fetchCustomerData(id)
+}
+
 export function assignVariables(data) {
   customersData = data[0].customers;
   roomsData = data[1].rooms;
   bookingsData = data[2].bookings;
 }
 
-
 export function pageLoad() {
-  customer = new Customer(customersData[5])
   const allBookings = makeBookingInstances()
   const allRooms = makeRoomInstances()
   hotel = new Hotel(allBookings, allRooms)
+  // will have to swap this out in iteration 3 for log in page
+  customer = new Customer(customersData[6])
   const userBookings = hotel.getFullRoomInfoForBookings(customer);
   const userExpenses = hotel.getUserExpenses(customer)
   const sortedBookings = sortUserBookingsByDate(userBookings)
-  domUpdates.renderUserDashboard(customer, sortedBookings, userExpenses);
+  domUpdates.renderUserDashboard(customer, sortedBookings, userExpenses, currentDate);
 }
 
 function sortUserBookingsByDate(bookings) {
-  const sortedBookings = bookings.sort((a,b) => {
+  return bookings.sort((a,b) => {
     return dayjs(a.booking.date) - dayjs(b.booking.date) 
   })
-
-  return sortedBookings
 }
 
 function makeRoomInstances() {
@@ -117,9 +119,7 @@ function makeBookingInstances() {
 }
 
 function getDate() {
-  //use this later:
-  //currentDate = dayjs(Date.now()).format('YYYY-MM-DD');
-  currentDate = dayjs('2020/2/14').format('YYYY-MM-DD');
+  currentDate = dayjs(Date.now()).format('YYYY-MM-DD');
   arrivalDate.value = currentDate;
   arrivalDate.min = currentDate;
 }
@@ -170,11 +170,11 @@ function goBackToSearchResults(event) {
 
 function bookRoom(event) {
   if (event.target.classList.contains('book-room-btn')) {
-    const userID = customer.id
+    const user = customer
     const date = dayjs(arrivalDate.value).format('YYYY/MM/DD');
     const roomNumber = parseInt(event.target.id)
 
-    apiCalls.bookRoom(userID, date, roomNumber)
+    apiCalls.bookRoom(user, date, roomNumber)
   }
 }
 

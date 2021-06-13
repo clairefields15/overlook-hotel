@@ -1,6 +1,5 @@
 /* eslint-disable max-len */
 let dayjs = require('dayjs');
-const currentDate = dayjs('2020/2/15');
 
 const mobileLogInBtn = document.getElementById('mobileLogIn');
 const mobileBookBtn = document.getElementById('mobileBook');
@@ -91,7 +90,7 @@ const domUpdates = {
     ]);
   },
 
-  renderUserDashboard(user, bookings, expenses) {
+  renderUserDashboard(user, bookings, expenses, currentDate) {
     const welcomeMsg = document.getElementById('welcomeMsg');
     const upcomingStays = document.getElementById('upcomingStays');
     const pastStays = document.getElementById('pastStays');

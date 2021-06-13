@@ -1,13 +1,15 @@
 import domUpdates from './domUpdates';
-import { assignVariables, pageLoad, errorTag } from './scripts';
+import {
+  assignVariables,
+  pageLoad,
+  errorTag
+} from './scripts';
 
 const fetchCustomers = () => {
   return fetch('http://localhost:3001/api/v1/customers')
     .then(response => response.json())
     .catch(error => console.error(`Users API Error: ${error.message}`));
 };
-
-
 
 const fetchRooms = () => {
   return fetch('http://localhost:3001/api/v1/rooms')
@@ -27,36 +29,28 @@ const fetchHotelData = () => {
     .then(() => pageLoad());
 };
 
-
 // iteration 3 log in??
-const fetchCustomer = (id) => {
+const fetchCustomerData = (id) => {
   return fetch(`http://localhost:3001/api/v1/customers/${id}`)
     .then(response => response.json())
     .catch(error => console.error(`Ingredients API Error: ${error.message}`));
 };
 
-const fetchCustomerData = (id) => {
-  Promise(fetchCustomer)
-    .then(data => assignVariables(data))
-    .then(() => pageLoad());
-};
-
-
-
 //post request booking
-const bookRoom = (id, dateSelected, roomNum) => {
+const bookRoom = (user, dateSelected, roomNum) => {
   return fetch('http://localhost:3001/api/v1/bookings', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-      userID: id,
+      userID: user.id,
       date: dateSelected,
       roomNumber: roomNum
     })
   })
     .then(handleError)
+    .then(() => fetchHotelData())
     .then(() => domUpdates.showConfirmationView())
     .catch(err => console.error(`POST Request Error: ${err.message}`));
 }
@@ -74,12 +68,11 @@ function handleError(response) {
 
 
 
-
-
 export default {
   fetchCustomers,
   fetchRooms,
   fetchBookings,
   fetchHotelData,
-  bookRoom
+  bookRoom,
+  fetchCustomerData
 };
