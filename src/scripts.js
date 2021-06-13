@@ -30,6 +30,7 @@ const roomTypeForm = document.getElementById('roomTypeForm');
 const goBackButton = document.getElementById('goBackButton')
 const selectedRoom = document.getElementById('selectedRoom');
 const changeDates = document.getElementById('changeDates');
+export const errorTag = document.getElementById('errorTag');
 
 // const mobileLogInBtn = document.getElementById('mobileLogIn');
 // const mobileViewTripsBtn = document.getElementById('mobileViewTrips');
@@ -71,21 +72,32 @@ export function fetchHotelData() {
   apiCalls.fetchHotelData();
 }
 
+export function fetchCustomer(id) {
+  apiCalls.fetchCustomerData(id)
+}
+
 export function assignVariables(data) {
   customersData = data[0].customers;
   roomsData = data[1].rooms;
   bookingsData = data[2].bookings;
 }
 
-
 export function pageLoad() {
-  customer = new Customer(customersData[1])
   const allBookings = makeBookingInstances()
   const allRooms = makeRoomInstances()
   hotel = new Hotel(allBookings, allRooms)
+  // will have to swap this out in iteration 3 for log in page
+  customer = new Customer(customersData[6])
   const userBookings = hotel.getFullRoomInfoForBookings(customer);
   const userExpenses = hotel.getUserExpenses(customer)
-  domUpdates.renderUserDashboard(customer, userBookings, userExpenses);
+  const sortedBookings = sortUserBookingsByDate(userBookings)
+  domUpdates.renderUserDashboard(customer, sortedBookings, userExpenses, currentDate);
+}
+
+function sortUserBookingsByDate(bookings) {
+  return bookings.sort((a,b) => {
+    return dayjs(a.booking.date) - dayjs(b.booking.date) 
+  })
 }
 
 function makeRoomInstances() {
@@ -107,9 +119,7 @@ function makeBookingInstances() {
 }
 
 function getDate() {
-  //use this later:
-  //currentDate = dayjs(Date.now()).format('YYYY-MM-DD');
-  currentDate = dayjs('2020/2/14').format('YYYY-MM-DD');
+  currentDate = dayjs(Date.now()).format('YYYY-MM-DD');
   arrivalDate.value = currentDate;
   arrivalDate.min = currentDate;
 }
@@ -160,15 +170,12 @@ function goBackToSearchResults(event) {
 
 function bookRoom(event) {
   if (event.target.classList.contains('book-room-btn')) {
-    const roomNumber = event.target.id
+    const user = customer
     const date = dayjs(arrivalDate.value).format('YYYY/MM/DD');
-    console.log('room number', roomNumber);
-    console.log('user', customer.id)
-    console.log('selected date', date)
+    const roomNumber = parseInt(event.target.id)
 
+    apiCalls.bookRoom(user, date, roomNumber)
   }
-
-  domUpdates.showConfirmationView;
 }
 
 

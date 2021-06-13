@@ -1,6 +1,5 @@
 /* eslint-disable max-len */
 let dayjs = require('dayjs');
-const currentDate = dayjs('2020/2/15');
 
 const mobileLogInBtn = document.getElementById('mobileLogIn');
 const mobileBookBtn = document.getElementById('mobileBook');
@@ -27,6 +26,7 @@ const searchAgainBtn = document.getElementById('searchAgain');
 const roomTypeForm = document.getElementById('roomTypeForm');
 const selectedRoom = document.getElementById('selectedRoom');
 const yourDates = document.getElementById('yourDates');
+const confirmationMsg = document.getElementById('confirmationMsg');
 
 const domUpdates = {
   hide(elements) {
@@ -90,7 +90,7 @@ const domUpdates = {
     ]);
   },
 
-  renderUserDashboard(user, bookings, expenses) {
+  renderUserDashboard(user, bookings, expenses, currentDate) {
     const welcomeMsg = document.getElementById('welcomeMsg');
     const upcomingStays = document.getElementById('upcomingStays');
     const pastStays = document.getElementById('pastStays');
@@ -192,11 +192,11 @@ const domUpdates = {
   },
 
   renderApology() {
-    domUpdates.show([searchAgainBtn]);
+    //domUpdates.show([searchAgainBtn]);
     filteredResultsArea.innerHTML = '';
     filteredResultsArea.innerHTML = `
       <p>This is terribly unfortunate, but there are no rooms available that match your search parameters.</p> 
-      <p>Please try selecting a different room type above, or change your dates.</p>
+      <p>Please select a different room type, or change your dates.</p>
       `;
   },
 
@@ -251,13 +251,28 @@ const domUpdates = {
   },
 
   showConfirmationView() {
-    domUpdates.show([confirmationPage]);
+    domUpdates.show([confirmationPage, confirmationMsg]);
     domUpdates.hide([
       bookingPage,
       searchResultsPage,
       profilePage,
       selectPage,
       landingPage
+    ]);
+    setTimeout(function () {
+      domUpdates.showLandingPage();
+    }, 2000);
+  },
+
+  showPostError() {
+    domUpdates.show([confirmationPage]);
+    domUpdates.hide([
+      bookingPage,
+      searchResultsPage,
+      profilePage,
+      selectPage,
+      landingPage,
+      confirmationMsg
     ]);
     setTimeout(function () {
       domUpdates.showLandingPage();

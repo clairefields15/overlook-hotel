@@ -1,17 +1,14 @@
-import { assignVariables, pageLoad } from './scripts';
+import domUpdates from './domUpdates';
+import {
+  assignVariables,
+  pageLoad,
+  errorTag
+} from './scripts';
 
 const fetchCustomers = () => {
   return fetch('http://localhost:3001/api/v1/customers')
     .then(response => response.json())
     .catch(error => console.error(`Users API Error: ${error.message}`));
-};
-
-
-// iteration 3 log in??
-const fetchCustomer = (id) => {
-  return fetch(`http://localhost:3001/api/v1/customers/${id}`)
-    .then(response => response.json())
-    .catch(error => console.error(`Ingredients API Error: ${error.message}`));
 };
 
 const fetchRooms = () => {
@@ -32,25 +29,38 @@ const fetchHotelData = () => {
     .then(() => pageLoad());
 };
 
+// iteration 3 log in??
 const fetchCustomerData = (id) => {
-  Promise(fetchCustomer)
-    .then(data => assignVariables(data))
-    .then(() => pageLoad());
+  return fetch(`http://localhost:3001/api/v1/customers/${id}`)
+    .then(response => response.json())
+    .catch(error => console.error(`Ingredients API Error: ${error.message}`));
 };
 
-
-
-
 //post request booking
-
-const bookRoom = (userID, date, roomNumber) => {
-  fetch(url)
+const bookRoom = (user, dateSelected, roomNum) => {
+  return fetch('http://localhost:3001/api/v1/bookings', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      userID: user.id,
+      date: dateSelected,
+      roomNumber: roomNum
+    })
+  })
+    .then(handleError)
+    .then(() => fetchHotelData())
+    .then(() => domUpdates.showConfirmationView())
+    .catch(err => console.error(`POST Request Error: ${err.message}`));
 }
+
 
 function handleError(response) {
   if (!response.ok) {
-    errorTag.innerText = 'you fucked up';
-    throw new Error('you fucked up');
+    domUpdates.showPostError()
+    errorTag.innerText = 'Something went wrong, please try again.';
+    throw new Error('Something went wrong');
   } else {
     return response => response.json()
   }
@@ -58,11 +68,11 @@ function handleError(response) {
 
 
 
-
-
 export default {
   fetchCustomers,
   fetchRooms,
   fetchBookings,
-  fetchHotelData
+  fetchHotelData,
+  bookRoom,
+  fetchCustomerData
 };
