@@ -23,6 +23,7 @@ class Hotel {
       return acc;
     }, []);
 
+
     customer.bookings.push(roomsBooked);
     return roomsBooked;
   }

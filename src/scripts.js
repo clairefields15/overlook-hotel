@@ -80,13 +80,22 @@ export function assignVariables(data) {
 
 
 export function pageLoad() {
-  customer = new Customer(customersData[1])
+  customer = new Customer(customersData[5])
   const allBookings = makeBookingInstances()
   const allRooms = makeRoomInstances()
   hotel = new Hotel(allBookings, allRooms)
   const userBookings = hotel.getFullRoomInfoForBookings(customer);
   const userExpenses = hotel.getUserExpenses(customer)
-  domUpdates.renderUserDashboard(customer, userBookings, userExpenses);
+  const sortedBookings = sortUserBookingsByDate(userBookings)
+  domUpdates.renderUserDashboard(customer, sortedBookings, userExpenses);
+}
+
+function sortUserBookingsByDate(bookings) {
+  const sortedBookings = bookings.sort((a,b) => {
+    return dayjs(a.booking.date) - dayjs(b.booking.date) 
+  })
+
+  return sortedBookings
 }
 
 function makeRoomInstances() {
@@ -166,7 +175,6 @@ function bookRoom(event) {
     const roomNumber = parseInt(event.target.id)
 
     apiCalls.bookRoom(userID, date, roomNumber)
-
   }
 }
 
