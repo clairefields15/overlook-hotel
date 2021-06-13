@@ -27,6 +27,7 @@ const roomTypeForm = document.getElementById('roomTypeForm');
 const selectedRoom = document.getElementById('selectedRoom');
 const yourDates = document.getElementById('yourDates');
 const confirmationMsg = document.getElementById('confirmationMsg');
+const logInPage = document.getElementById('logInPage');
 
 const domUpdates = {
   hide(elements) {
@@ -64,7 +65,8 @@ const domUpdates = {
       searchResultsPage,
       bookingPage,
       confirmationPage,
-      profilePage
+      profilePage,
+      logInPage
     ]);
   },
 
@@ -75,12 +77,25 @@ const domUpdates = {
       searchResultsPage,
       bookingPage,
       confirmationPage,
-      selectPage
+      selectPage,
+      logInPage
     ]);
   },
 
   showBookingView() {
     domUpdates.show([selectPage]);
+    domUpdates.hide([
+      landingPage,
+      searchResultsPage,
+      bookingPage,
+      confirmationPage,
+      profilePage,
+      logInPage
+    ]);
+  },
+
+  showLogInView() {
+    domUpdates.show([logInPage]);
     domUpdates.hide([
       landingPage,
       searchResultsPage,
@@ -158,7 +173,8 @@ const domUpdates = {
       landingPage,
       bookingPage,
       profilePage,
-      confirmationPage
+      confirmationPage,
+      logInPage
     ]);
   },
 
@@ -187,8 +203,7 @@ const domUpdates = {
   renderYourDates(date) {
     yourDates.innerText = '';
     const formattedDate = dayjs(date).format('MMM DD YYYY');
-    yourDates.innerText = `You are viewing rooms available on ${formattedDate}` 
-
+    yourDates.innerText = `You are viewing rooms available on ${formattedDate}`;
   },
 
   renderApology() {
@@ -219,12 +234,13 @@ const domUpdates = {
       selectPage,
       landingPage,
       confirmationPage,
-      profilePage
+      profilePage,
+      logInPage
     ]);
   },
 
   renderSelectedRoom(room, date) {
-    const formattedDate = dayjs(date).format('MMM DD YYYY')
+    const formattedDate = dayjs(date).format('MMM DD YYYY');
 
     selectedRoom.innerHTML = '';
 
@@ -257,7 +273,8 @@ const domUpdates = {
       searchResultsPage,
       profilePage,
       selectPage,
-      landingPage
+      landingPage,
+      logInPage
     ]);
     setTimeout(function () {
       domUpdates.showLandingPage();
@@ -272,7 +289,8 @@ const domUpdates = {
       profilePage,
       selectPage,
       landingPage,
-      confirmationMsg
+      confirmationMsg,
+      logInPage
     ]);
     setTimeout(function () {
       domUpdates.showLandingPage();

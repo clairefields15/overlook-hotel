@@ -35,6 +35,29 @@
   margin-top: 8em;
 }
 
+
+// LOG IN PAGE
+.log-in-page {
+  background-color:grey;
+  height: 100vh;
+  @include flex-center;
+  text-align: center;
+}
+
+.input-container {
+  @include flex-center;
+  margin: 1em
+}
+
+.label {
+  color:black;
+  margin-bottom: 1em;
+}
+
+.input {
+  padding: 0.5em;
+}
+
 // BOOKING PAGE
 .select-page {
   @include flex-center;

@@ -31,8 +31,8 @@ const goBackButton = document.getElementById('goBackButton')
 const selectedRoom = document.getElementById('selectedRoom');
 const changeDates = document.getElementById('changeDates');
 export const errorTag = document.getElementById('errorTag');
+const mobileLogInBtn = document.getElementById('mobileLogIn');
 
-// const mobileLogInBtn = document.getElementById('mobileLogIn');
 // const mobileViewTripsBtn = document.getElementById('mobileViewTrips');
 // const navLogInBtn = document.getElementById('navLogIn');
 // const navTripsBtn = document.getElementById('navTrips');
@@ -52,6 +52,7 @@ let customersData, roomsData, bookingsData
 // event listeners
 window.addEventListener('load', fetchHotelData);
 window.addEventListener('load', getDate)
+mobileLogInBtn.addEventListener('click', domUpdates.showLogInView)
 searchAgainBtn.addEventListener('click', domUpdates.showBookingView);
 changeDates.addEventListener('click', domUpdates.showBookingView)
 hamburgerBtn.addEventListener('click', domUpdates.openMobileNav);
