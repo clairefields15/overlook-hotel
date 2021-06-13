@@ -5,6 +5,7 @@ class Customer {
     this.id = customer.id;
     this.name = customer.name;
     this.bookings = [];
+    this.isLoggedIn = false;
   }
 
   getBookings() {
@@ -13,9 +14,7 @@ class Customer {
 
   setBookings(booking) {
     this.bookings.push(booking)
-
   }
-
 
 }
 

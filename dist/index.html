@@ -22,6 +22,7 @@
     </button>
     <div id="modalOverlay" class="modal-overlay hidden">
       <div id="menuDropdown" class="mobile-dropdown hidden">
+        <button id="mobileGoHome" class="nav-button hidden">Home</button>
         <button id="mobileBook" class="nav-button hidden">Book</button>
         <button id="mobileViewProfile" class="nav-button hidden">Your Profile</button>
         <button id="mobileLogIn" class="nav-button">Log In</button>
@@ -31,6 +32,7 @@
       <button id="navBook" class="nav-button hidden">Book</button>
       <button id="navProfile" class="nav-button hidden">Profile</button>
       <button id="navLogIn" class="nav-button hidden">Log In</button>
+      <button id="goHome" class="nav-button">Go Home</button>
     </div>
   </nav>
 </header>
@@ -44,14 +46,15 @@
     <form id="logInForm">
       <div class="input-container">
         <label class="label" for="username">Username:</label>
-        <input class="input" type="text" id="username" name="username" required>
+        <input class="input" type="text" id="usernameField" name="username" placeholder="Username" autocomplete="off" required>
       </div>
       <div class="input-container">
         <label class="label" for="password">Password:</label>
-        <input class="input" type="password" id="password" name="password" required>
+        <input class="input" type="password" id="passwordField" name="password" placeholder="Password" autocomplete="off" required>
+        <p id="passwordError" class="error-msg hidden"></p>
       </div>
     </form>
-    <button class="go-back-btn" type="submit" value="Sign in">Log In</button>
+    <button id="logInBtn" class="go-back-btn" type="submit" value="Sign in">Log In</button>
   </section>
   <section id="profilePage" class="profile-page hidden">
     <h2 id="welcomeMsg" class="welcome-msg">Welcome, User!</h2>

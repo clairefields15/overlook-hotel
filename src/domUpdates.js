@@ -28,6 +28,7 @@ const selectedRoom = document.getElementById('selectedRoom');
 const yourDates = document.getElementById('yourDates');
 const confirmationMsg = document.getElementById('confirmationMsg');
 const logInPage = document.getElementById('logInPage');
+const goHomeBtn = document.getElementById('mobileGoHome')
 
 const domUpdates = {
   hide(elements) {
@@ -59,26 +60,28 @@ const domUpdates = {
   },
 
   showLandingPage() {
-    domUpdates.show([landingPage]);
+    domUpdates.show([landingPage, mobileLogInBtn]);
     domUpdates.hide([
       selectPage,
       searchResultsPage,
       bookingPage,
       confirmationPage,
       profilePage,
-      logInPage
+      logInPage,
+      goHomeBtn
     ]);
   },
 
   showUserProfile() {
-    domUpdates.show([profilePage]);
+    domUpdates.show([profilePage, goHomeBtn, mobileViewProfileBtn]);
     domUpdates.hide([
       landingPage,
       searchResultsPage,
       bookingPage,
       confirmationPage,
       selectPage,
-      logInPage
+      logInPage,
+      mobileLogInBtn
     ]);
   },
 
@@ -95,13 +98,14 @@ const domUpdates = {
   },
 
   showLogInView() {
-    domUpdates.show([logInPage]);
+    domUpdates.show([logInPage, goHomeBtn]);
     domUpdates.hide([
       landingPage,
       searchResultsPage,
       bookingPage,
       confirmationPage,
-      profilePage
+      profilePage,
+      mobileLogInBtn
     ]);
   },
 
@@ -207,7 +211,6 @@ const domUpdates = {
   },
 
   renderApology() {
-    //domUpdates.show([searchAgainBtn]);
     filteredResultsArea.innerHTML = '';
     filteredResultsArea.innerHTML = `
       <p>This is terribly unfortunate, but there are no rooms available that match your search parameters.</p> 
@@ -294,6 +297,22 @@ const domUpdates = {
     ]);
     setTimeout(function () {
       domUpdates.showLandingPage();
+    }, 2000);
+  },
+
+  showLogInError() {
+    domUpdates.show([confirmationPage]);
+    domUpdates.hide([
+      bookingPage,
+      searchResultsPage,
+      profilePage,
+      selectPage,
+      landingPage,
+      confirmationMsg,
+      logInPage
+    ]);
+    setTimeout(function () {
+      domUpdates.showLogInView();
     }, 2000);
   }
 };
