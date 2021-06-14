@@ -47,17 +47,20 @@ const logInBtn = document.getElementById('logInBtn');
 const usernameField = document.getElementById('usernameField');
 const passwordField = document.getElementById('passwordField');
 const passwordError = document.getElementById('passwordError');
+const mobileLogOutBtn = document.getElementById('mobileLogOut');
 
 // ***** ----- EVENT LISTENERS ----- ***** //
 window.addEventListener('load', apiCalls.fetchHotelData);
-goHomeBtn.addEventListener('click', domUpdates.showLandingPage);
 mobileLogInBtn.addEventListener('click', domUpdates.showLogInView);
+mobileLogOutBtn.addEventListener('click', logOut)
 searchAgainBtn.addEventListener('click', domUpdates.showBookingView);
 changeDates.addEventListener('click', domUpdates.showBookingView);
 hamburgerBtn.addEventListener('click', domUpdates.openMobileNav);
 mobileBookBtn.addEventListener('click', domUpdates.showBookingView);
 modalOverlay.addEventListener('click', domUpdates.hideOverlay);
-bookNowBtn.addEventListener('click', isCustomerLoggedIn);
+// should check is logged in first 
+goHomeBtn.addEventListener('click', () => isCustomerLoggedIn(event));
+bookNowBtn.addEventListener('click', () => isCustomerLoggedIn(event));
 navBookBtn.addEventListener('click', domUpdates.showBookingView);
 checkAvailBtn.addEventListener('click', checkAvailability);
 checkAvailBtn.addEventListener('click', getRoomTypes);
@@ -79,11 +82,13 @@ export function assignVariables(apiData) {
 
 export function instantiateUser(data) {
   customer = new Customer(data);
+  customer.setBookings(hotel)
   renderDashboard(customer)
   domUpdates.showLandingPageAfterLogIn(customer);
 }
 
 function renderDashboard(customer) {
+  customer.setBookings(hotel);
   const expenses = customer.getExpenses(hotel);
   domUpdates.renderUserDashboard(customer, expenses, currentDate);
 }
@@ -127,11 +132,19 @@ function setCalendarDate() {
 
 // --- User Log In  --- //
 
-function isCustomerLoggedIn() {
-  if (customer) {
+function isCustomerLoggedIn(event) {
+  const target = event.target.id
+
+  if (customer && target === 'bookNowBtn') {
     domUpdates.showBookingView();
-  } else if (!customer) {
+  } else if (!customer && target === 'bookNowBtn') {
     domUpdates.showLogInView();
+  }
+
+  if (customer && target === 'mobileGoHome') {
+    domUpdates.showLandingPageAfterLogIn(customer);
+  } else if (!customer && target === 'mobileGoHome') {
+    domUpdates.showLandingPage();
   }
 }
 
@@ -160,6 +173,7 @@ function checkEmptyFields(username, password) {
 
 function setUser(username, password) {
   passwordField.value = '';
+  usernameField.value = '';
   checkPassword(password);
   checkUsername(username);
 
@@ -189,6 +203,13 @@ function checkUsername(username) {
     usernameField.value = '';
     throw new Error('Incorrect username');
   }
+}
+
+// --- User Log Out  --- //
+
+function logOut() {
+  customer = null;
+  domUpdates.showLandingPage();
 }
 
 // --- Search for Room  --- //

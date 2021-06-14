@@ -6,6 +6,7 @@ const mobileBookBtn = document.getElementById('mobileBook');
 const mobileViewTripsBtn = document.getElementById('mobileViewTrips');
 const mobileViewProfileBtn = document.getElementById('mobileViewProfile');
 const navLogInBtn = document.getElementById('navLogIn');
+const mobileLogOutBtn = document.getElementById('mobileLogOut');
 const navBookBtn = document.getElementById('navBook');
 const navTripsBtn = document.getElementById('navTrips');
 const navProfileBtn = document.getElementById('navProfile');
@@ -67,6 +68,7 @@ const domUpdates = {
   },
 
   showLandingPage() {
+    landingMsg.innerText = '';
     domUpdates.show([landingPage, mobileLogInBtn]);
     domUpdates.hide([
       selectPage,
@@ -75,13 +77,21 @@ const domUpdates = {
       confirmationPage,
       profilePage,
       logInPage,
-      goHomeBtn
+      goHomeBtn,
+      mobileLogOutBtn,
+      mobileViewProfileBtn,
+      mobileBookBtn,
     ]);
   },
 
   showLandingPageAfterLogIn(user) {
     landingMsg.innerText = `Welcome ${user.name}`;
-    domUpdates.show([landingPage, mobileBookBtn, mobileViewProfileBtn]);
+    domUpdates.show([
+      landingPage,
+      mobileBookBtn,
+      mobileViewProfileBtn,
+      mobileLogOutBtn
+    ]);
     domUpdates.hide([
       selectPage,
       searchResultsPage,
