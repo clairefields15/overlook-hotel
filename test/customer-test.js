@@ -64,10 +64,10 @@ describe('Customer', () => {
     expect(customer1.bookings).to.deep.equal([]);
   })
 
-  it('should be able to store all bookings', () => {
-    let booking = 
-    [
-      [
+  describe('setBookings()', () => {
+    
+    it('should be able to store all bookings', () => {
+      let booking = [
         {
           room: {
             number: 1,
@@ -78,13 +78,7 @@ describe('Customer', () => {
             costPerNight: 358.4,
             isAvailable: true
           },
-          booking: {
-            id: '5fwrgu4i7k55hl6sz',
-            userID: 1,
-            date: '2020/04/22',
-            roomNumber: 1,
-            roomServiceCharges: []
-          }
+          date: '2020/04/22'
         },
         {
           room: {
@@ -96,18 +90,24 @@ describe('Customer', () => {
             costPerNight: 358.4,
             isAvailable: true
           },
-          booking: {
-            id: '5fwrgu4i7k55hl6t6',
-            userID: 1,
-            date: '2020/04/23',
-            roomNumber: 1,
-            roomServiceCharges: []
-          }
+          date: '2020/04/23'
         }
       ]
-    ]
-    hotel.getFullRoomInfoForBookings(customer1);
-    expect(customer1.bookings).to.deep.equal(booking);
+  
+      customer1.setBookings(hotel)
+      expect(customer1.bookings).to.deep.equal(booking);
+    })
+
+  })
+
+  describe('getExpenses()', () => {
+
+    it('should be able to return a users expenses', () => {
+
+      expect(customer1.expenses).to.equal(null)
+      expect(customer1.getExpenses(hotel)).to.equal('716.80');
+    })
+
   })
 
 });
