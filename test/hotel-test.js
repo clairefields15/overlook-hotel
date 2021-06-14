@@ -91,13 +91,7 @@ describe('Hotel', () => {
             costPerNight: 358.4,
             isAvailable: true
           },
-          booking: {
-            id: '5fwrgu4i7k55hl6sz',
-            userID: 1,
-            date: '2020/04/22',
-            roomNumber: 1,
-            roomServiceCharges: []
-          }
+          date: '2020/04/22'
         },
         {
           room: {
@@ -109,13 +103,7 @@ describe('Hotel', () => {
             costPerNight: 358.4,
             isAvailable: true
           },
-          booking: {
-            id: '5fwrgu4i7k55hl6t6',
-            userID: 1,
-            date: '2020/04/23',
-            roomNumber: 1,
-            roomServiceCharges: []
-          }
+          date: '2020/04/23'
         }
       ]
       expect(bookingInfo).to.deep.equal(bookingsAndRooms)

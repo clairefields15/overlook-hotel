@@ -16,13 +16,12 @@ class Hotel {
     let roomsBooked = this.rooms.reduce((roomsBooked, room) => {
       bookings.forEach(booking => {
         if (booking.roomNumber === room.number) {
-          roomsBooked.push({ room, booking });
+          roomsBooked.push({ room, date: booking.date });
         }
       });
       return roomsBooked;
     }, []);
 
-    customer.bookings.push(roomsBooked);
     return roomsBooked;
   }
 
