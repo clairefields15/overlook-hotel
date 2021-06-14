@@ -6,38 +6,52 @@ import {
   instantiateUser
 } from './scripts';
 
-const fetchCustomers = () => {
-  return fetch('http://localhost:3001/api/v1/customers')
-    .then(response => response.json())
-    .catch(error => console.error(`Customers API Error: ${error.message}`));
-};
+// Endpoints
+
+const endpoints = {
+  rooms: 'http://localhost:3001/api/v1/rooms',
+  bookings: 'http://localhost:3001/api/v1/bookings',
+  customers: 'http://localhost:3001/api/v1/customers'
+}
+
 
 const fetchRooms = () => {
-  return fetch('http://localhost:3001/api/v1/rooms')
+  return fetch(endpoints.rooms)
     .then(response => response.json())
     .catch(error => console.error(`Room API Error: ${error.message}`));
 };
 
 const fetchBookings = () => {
-  return fetch('http://localhost:3001/api/v1/bookings')
+  return fetch(endpoints.bookings)
     .then(response => response.json())
     .catch(error => console.error(`Booking API Error: ${error.message}`));
 }
 
-const fetchHotelData = () => {
-  Promise.all([fetchRooms(), fetchBookings()])
-    .then(data => assignVariables(data))
-    .then(() => pageLoad());
+
+const fetchCustomers = () => {
+  return fetch(endpoints.customers)
+    .then(response => response.json())
+    .catch(error => console.error(`Customers API Error: ${error.message}`));
 };
 
-const fetchCustomerData = (id) => {
+const fetchCustomer = (id) => {
   return fetch(`http://localhost:3001/api/v1/customers/${id}`)
     .then(handleLogInError)
     .then(data => instantiateUser(data))
     .catch(error => console.error(`Customer API Error: ${error.message}`));
 };
 
+// fetch rooms and bookings
+const fetchHotelData = () => {
+  Promise.all([fetchRooms(), fetchBookings()])
+    .then(data => assignVariables(data))
+    .then(() => pageLoad());
+};
+
+
 //post request booking
+
+// might want to just run instantiate user after booking?
 const bookRoom = (user, dateSelected, roomNum) => {
   return fetch('http://localhost:3001/api/v1/bookings', {
     method: 'POST',
@@ -51,8 +65,9 @@ const bookRoom = (user, dateSelected, roomNum) => {
     })
   })
     .then(handleError)
-    .then(() => fetchHotelData(user.id))
     .then(() => domUpdates.showConfirmationView())
+    .then(() => fetchHotelData())
+    .then(() => pageLoad())
     .catch(err => console.error(`POST Request Error: ${err.message}`));
 }
 
@@ -78,12 +93,11 @@ function handleLogInError(response) {
 }
 
 
-
 export default {
   fetchCustomers,
   fetchRooms,
   fetchBookings,
   fetchHotelData,
   bookRoom,
-  fetchCustomerData
+  fetchCustomer
 };

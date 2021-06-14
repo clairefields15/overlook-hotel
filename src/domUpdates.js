@@ -30,6 +30,8 @@ const confirmationMsg = document.getElementById('confirmationMsg');
 const logInPage = document.getElementById('logInPage');
 const goHomeBtn = document.getElementById('mobileGoHome')
 const landingMsg = document.getElementById('landingMsg');
+const passwordError = document.getElementById('passwordError');
+
 
 const domUpdates = {
   hide(elements) {
@@ -38,6 +40,10 @@ const domUpdates = {
 
   show(elements) {
     elements.forEach(element => element.classList.remove('hidden'));
+  },
+
+  hideError() {
+    setTimeout(() => (passwordError.innerText = ''), 2700);
   },
 
   openMobileNav() {
@@ -169,9 +175,6 @@ const domUpdates = {
       mobileLogInBtn,
       mobileBookBtn
     ]);
-    setTimeout(function () {
-      domUpdates.showLandingPageAfterLogIn();
-    }, 2000);
   },
 
   showPostError() {
