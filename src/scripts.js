@@ -81,7 +81,7 @@ export function assignVariables(apiData) {
 // but maybe should also run after a successful booking? line 102 looks pretty similar
 export function instantiateUser(data) {
   customer = new Customer(data);
-  const userBookings = hotel.getFullRoomInfoForBookings(customer);
+  const userBookings = customer.setBookings(hotel)
   const userExpenses = hotel.getUserExpenses(customer);
   const sortedBookings = sortUserBookingsByDate(userBookings);
   domUpdates.renderUserDashboard(
@@ -99,9 +99,10 @@ export function pageLoad() {
   hotel = new Hotel(allBookings, allRooms);
   setDate();
 
+
   // is all of this necessary? it runs after a successful booking
   if (customer) {
-    const userBookings = hotel.getFullRoomInfoForBookings(customer);
+    const userBookings = customer.setBookings(hotel);
     const userExpenses = hotel.getUserExpenses(customer);
     const sortedBookings = sortUserBookingsByDate(userBookings);
     domUpdates.renderUserDashboard(
@@ -259,7 +260,7 @@ function bookRoom(event) {
     const user = customer;
     const date = dayjs(arrivalDate.value).format('YYYY/MM/DD');
     const roomNumber = parseInt(event.target.id);
-
+    console.log('before', hotel)
     apiCalls.bookRoom(user, date, roomNumber);
   }
 }
