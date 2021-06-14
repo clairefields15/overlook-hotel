@@ -112,7 +112,7 @@ export function pageLoad() {
 
 function sortUserBookingsByDate(bookings) {
   return bookings.sort((a, b) => {
-    return dayjs(a.booking.date) - dayjs(b.booking.date);
+    return dayjs(a.date) - dayjs(b.date);
   });
 }
 
@@ -254,7 +254,6 @@ function bookRoom(event) {
     const user = customer;
     const date = dayjs(arrivalDate.value).format('YYYY/MM/DD');
     const roomNumber = parseInt(event.target.id);
-    console.log('before', hotel)
     apiCalls.bookRoom(user, date, roomNumber);
   }
 }

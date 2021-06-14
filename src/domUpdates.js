@@ -226,10 +226,10 @@ const domUpdates = {
 
     // no future/present bookings
     const findUpcomingBookings = bookings.filter(booking =>
-      dayjs(booking.booking.date).isAfter(currentDate)
+      dayjs(booking.date).isAfter(currentDate)
     );
     const findPresentBookings = bookings.filter(booking =>
-      dayjs(booking.booking.date).isSame(currentDate)
+      dayjs(booking.date).isSame(currentDate)
     );
 
     if ((findUpcomingBookings.length + findPresentBookings.length) === 0) {
@@ -242,8 +242,7 @@ const domUpdates = {
 
     // render bookings
     bookings.forEach(booking => {
-      const bookingDate = dayjs(booking.booking.date);
-
+      const bookingDate = dayjs(booking.date);
       if (bookingDate.isBefore(currentDate)) {
         const formattedDate = bookingDate.format('MMM D YYYY');
         pastStays.innerHTML += `
