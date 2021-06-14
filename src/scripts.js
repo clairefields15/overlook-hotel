@@ -84,36 +84,22 @@ export function instantiateUser(data) {
 }
 
 function renderDashboard(customer) {
-  const userBookings = customer.setBookings(hotel);
-  const userExpenses = customer.getExpenses(hotel);
-  const sortedBookings = sortUserBookingsByDate(userBookings);
-  domUpdates.renderUserDashboard(
-    customer,
-    sortedBookings,
-    userExpenses,
-    currentDate
-  );
+  const expenses = customer.getExpenses(hotel);
+  domUpdates.renderUserDashboard(customer, expenses, currentDate);
 }
 
 export function pageLoad() {
   const allBookings = makeBookingInstances();
   const allRooms = makeRoomInstances();
   hotel = new Hotel(allBookings, allRooms);
-  setDate();
+  setCalendarDate();
 
-  // this runs after a successful booking:
   if (customer) {
     renderDashboard(customer)
     setTimeout(function () {
       domUpdates.showUserProfile();
     }, 1500);
   }
-}
-
-function sortUserBookingsByDate(bookings) {
-  return bookings.sort((a, b) => {
-    return dayjs(a.date) - dayjs(b.date);
-  });
 }
 
 function makeBookingInstances() {
@@ -134,7 +120,7 @@ function makeRoomInstances() {
   return allRooms;
 }
 
-function setDate() {
+function setCalendarDate() {
   arrivalDate.value = currentDate;
   arrivalDate.min = currentDate;
 }

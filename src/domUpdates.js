@@ -80,7 +80,7 @@ const domUpdates = {
   },
 
   showLandingPageAfterLogIn(user) {
-    landingMsg.innerText = `Welcome ${user.name}`
+    landingMsg.innerText = `Welcome ${user.name}`;
     domUpdates.show([landingPage, mobileBookBtn, mobileViewProfileBtn]);
     domUpdates.hide([
       selectPage,
@@ -213,84 +213,96 @@ const domUpdates = {
     }, 3000);
   },
 
-  renderUserDashboard(user, bookings, expenses, currentDate) {
+  renderUserDashboard(user, expenses, currentDate) {
     const welcomeMsg = document.getElementById('welcomeMsg');
-    const upcomingStays = document.getElementById('upcomingStays');
-    const pastStays = document.getElementById('pastStays');
     const totalSpent = document.getElementById('totalSpent');
 
     welcomeMsg.innerText = `Welcome ${user.name}`;
+    totalSpent.innerText = `Thanks for staying with us! You have spent $${expenses} on bookings.`;
 
+    domUpdates.renderUpcomingBookings(user, currentDate);
+    domUpdates.renderPastBookings(user, currentDate);
+  },
+
+  renderPastBookings(user, currentDate) {
+    const pastStays = document.getElementById('pastStays');
     pastStays.innerHTML = '';
+    
+    let pastBookings = user.getPastBookings(currentDate);
+    let sortedPastBookings = user.sortBookingsAscendingDates(pastBookings);
+
+    if (pastBookings.length === 0) {
+      pastStays.innerHTML += `
+        <article class="past-booking-card">
+          <p>You have no past stays.</p>
+        </article>
+      `;
+    }
+
+    sortedPastBookings.forEach(booking => {
+      const bookingDate = dayjs(booking.date);
+      const formattedDate = bookingDate.format('MMM D YYYY');
+
+      pastStays.innerHTML += `
+        <article class="past-booking-card">
+          <div class="image-area">
+            <div class="image-container">
+              <img src="./images/1-bed-room.jpg" class="past-room-photo" alt="Light and airy room with double bed">
+              <div class="past-date">
+                <p id="date" class="date">${formattedDate}</p>
+                <h3 id="past-roomType" class="room-type">${booking.room.type}</h3>
+              </div>
+            </div>
+          </div>
+          <div class="past-text-area">
+            <p id="typeOfBed">${booking.room.numBeds} ${booking.room.bedSize}</p>
+            <p id="costPerNight">$${booking.room.costPerNight} per night</p>
+          </div>
+        </article>
+      `;
+    });
+  },
+
+  renderUpcomingBookings(user, currentDate) {
+    const upcomingStays = document.getElementById('upcomingStays');
     upcomingStays.innerHTML = '';
 
-    // no future/present bookings
-    const findUpcomingBookings = bookings.filter(booking =>
-      dayjs(booking.date).isAfter(currentDate)
-    );
-    const findPresentBookings = bookings.filter(booking =>
-      dayjs(booking.date).isSame(currentDate)
-    );
+    let upcomingBookings = user.getUpcomingBookings(currentDate);
+    let sortedUpcomingBookings = user.sortBookingsAscendingDates(upcomingBookings)
 
-    if ((findUpcomingBookings.length + findPresentBookings.length) === 0) {
+    if (upcomingBookings.length === 0) {
       upcomingStays.innerHTML += `
         <article class="past-booking-card">
           <p>You have no upcoming stays.</p>
         </article>
       `;
     }
-
-    // render bookings
-    bookings.forEach(booking => {
+    
+    sortedUpcomingBookings.forEach(booking => {
       const bookingDate = dayjs(booking.date);
-      if (bookingDate.isBefore(currentDate)) {
-        const formattedDate = bookingDate.format('MMM D YYYY');
-        pastStays.innerHTML += `
-          <article class="past-booking-card">
-            <div class="image-area">
-              <div class="image-container">
-                <img src="./images/1-bed-room.jpg" class="past-room-photo" alt="Light and airy room with double bed">
-                <div class="past-date">
-                  <p id="date" class="date">${formattedDate}</p>
-                  <h3 id="past-roomType" class="room-type">${booking.room.type}</h3>
-                </div>
+      const formattedDate = bookingDate.format('MMM D YYYY');
+
+      upcomingStays.innerHTML += `
+        <article class="past-booking-card">
+          <div class="image-area">
+            <div class="image-container">
+              <img src="./images/1-bed-room.jpg" class="past-room-photo" alt="Light and airy room with double bed">
+              <div class="past-date">
+                <p id="date" class="date">${formattedDate}</p>
+                <h3 id="past-roomType" class="room-type">${booking.room.type}</h3>
               </div>
             </div>
-            <div class="past-text-area">
-              <p id="typeOfBed">${booking.room.numBeds} ${booking.room.bedSize}</p>
-              <p id="costPerNight">$${booking.room.costPerNight} per night</p>
-            </div>
-          </article>
-        `;
-      } else if (
-        bookingDate.isAfter(currentDate) ||
-        bookingDate.isSame(currentDate)
-      ) {
-        const formattedDate = bookingDate.format('MMM D YYYY');
-
-        upcomingStays.innerHTML += `
-          <article class="past-booking-card">
-            <div class="image-area">
-              <div class="image-container">
-                <img src="./images/1-bed-room.jpg" class="past-room-photo" alt="Light and airy room with double bed">
-                <div class="past-date">
-                  <p id="date" class="date">${formattedDate}</p>
-                  <h3 id="past-roomType" class="room-type">${booking.room.type}</h3>
-                </div>
-              </div>
-            </div>
-            <div class="past-text-area">
-              <p id="typeOfBed">${booking.room.numBeds} ${booking.room.bedSize}</p>
-              <p id="costPerNight">$${booking.room.costPerNight} per night</p>
-            </div>
-          </article>
-        `;
-      }
-
+          </div>
+          <div class="past-text-area">
+            <p id="typeOfBed">${booking.room.numBeds} ${booking.room.bedSize}</p>
+            <p id="costPerNight">$${booking.room.costPerNight} per night</p>
+          </div>
+        </article>
+      `;
     });
 
-    totalSpent.innerText = `Thanks for staying with us! You have spent $${expenses} on bookings.`;
   },
+
 
   renderAvailableRooms(availableRooms) {
     domUpdates.hide([searchAgainBtn]);
@@ -365,8 +377,7 @@ const domUpdates = {
     </div>
       </div>
     `;
-  },
-
+  }
 };
 
 export default domUpdates;

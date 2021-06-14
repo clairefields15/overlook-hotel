@@ -53,7 +53,7 @@ describe('Booking', () => {
     expect(booking2).to.be.an.instanceOf(Booking);
     expect(booking2.id).to.equal('5fwrgu4i7k55hl6t5');
     expect(booking2.userID).to.equal(2);
-    expect(booking2.date).to.equal('2020/04/23');
+    expect(booking2.date).to.equal('2020/05/13');
     expect(booking2.roomNumber).to.equal(2);
     expect(booking2.roomServiceCharges).to.deep.equal([]);
   })
