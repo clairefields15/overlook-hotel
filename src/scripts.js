@@ -77,12 +77,15 @@ export function assignVariables(apiData) {
   bookingsData = apiData[1].bookings;
 }
 
-// this runs in apicalls after a successful log in 
-// but maybe should also run after a successful booking? line 102 looks pretty similar
 export function instantiateUser(data) {
   customer = new Customer(data);
-  const userBookings = customer.setBookings(hotel)
-  const userExpenses = customer.getExpenses(hotel)
+  renderDashboard(customer)
+  domUpdates.showLandingPageAfterLogIn(customer);
+}
+
+function renderDashboard(customer) {
+  const userBookings = customer.setBookings(hotel);
+  const userExpenses = customer.getExpenses(hotel);
   const sortedBookings = sortUserBookingsByDate(userBookings);
   domUpdates.renderUserDashboard(
     customer,
@@ -90,7 +93,6 @@ export function instantiateUser(data) {
     userExpenses,
     currentDate
   );
-  domUpdates.showLandingPageAfterLogIn(customer);
 }
 
 export function pageLoad() {
@@ -99,22 +101,12 @@ export function pageLoad() {
   hotel = new Hotel(allBookings, allRooms);
   setDate();
 
-
-  // is all of this necessary? it runs after a successful booking
+  // this runs after a successful booking:
   if (customer) {
-    const userBookings = customer.setBookings(hotel);
-    const userExpenses = customer.getExpenses(hotel);
-    const sortedBookings = sortUserBookingsByDate(userBookings);
-    domUpdates.renderUserDashboard(
-      customer,
-      sortedBookings,
-      userExpenses,
-      currentDate
-    );
-    // maybe show dashboard instead of landing page?
+    renderDashboard(customer)
     setTimeout(function () {
-      domUpdates.showLandingPageAfterLogIn(customer);
-    }, 2000);
+      domUpdates.showUserProfile();
+    }, 1500);
   }
 }
 
@@ -185,9 +177,12 @@ function setUser(username, password) {
   checkPassword(password);
   checkUsername(username);
 
-  // this might be why username03 can log in as if username3
   let id = username.slice(8);
-  if (id) {
+  if (id.startsWith(0)) {
+    domUpdates.showLogInError();
+    errorTag.innerText = 'User does not exist, please try again.';
+    throw new Error('User does not exist');
+  } else if (id) {
     apiCalls.fetchCustomer(id);
   } else {
     domUpdates.showLogInError();

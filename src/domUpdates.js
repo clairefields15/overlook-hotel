@@ -240,7 +240,7 @@ const domUpdates = {
       `;
     }
 
-
+    // render bookings
     bookings.forEach(booking => {
       const bookingDate = dayjs(booking.booking.date);
 
