@@ -64,7 +64,7 @@ describe('Customer', () => {
     expect(customer1.bookings).to.deep.equal([]);
   })
 
-  it('should be able to store all past, present, and future bookings', () => {
+  it('should be able to store all bookings', () => {
     let booking = 
     [
       [

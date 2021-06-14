@@ -13,13 +13,13 @@ class Hotel {
 
   getFullRoomInfoForBookings(customer) {
     const bookings = this.getUserBookings(customer);
-    let roomsBooked = this.rooms.reduce((acc, room) => {
+    let roomsBooked = this.rooms.reduce((roomsBooked, room) => {
       bookings.forEach(booking => {
         if (booking.roomNumber === room.number) {
-          acc.push({ room, booking });
+          roomsBooked.push({ room, booking });
         }
       });
-      return acc;
+      return roomsBooked;
     }, []);
 
     customer.bookings.push(roomsBooked);
