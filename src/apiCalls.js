@@ -27,7 +27,6 @@ const fetchBookings = () => {
     .catch(error => console.error(`Booking API Error: ${error.message}`));
 }
 
-
 const fetchCustomers = () => {
   return fetch(endpoints.customers)
     .then(response => response.json())
@@ -64,18 +63,17 @@ const bookRoom = (user, dateSelected, roomNum) => {
       roomNumber: roomNum
     })
   })
-    .then(handleError)
-    .then(() => domUpdates.showConfirmationView())
+    .then(handlePostError)
+    .then(()=> domUpdates.showConfirmationView())
     .then(() => fetchHotelData())
     .then(() => pageLoad())
     .catch(err => console.error(`POST Request Error: ${err.message}`));
 }
 
 
-function handleError(response) {
+function handlePostError(response) {
   if (!response.ok) {
-    domUpdates.showPostError()
-    errorTag.innerText = 'Something went wrong, please try again.';
+    domUpdates.showPostError(response)
     throw new Error('Something went wrong');
   } else {
     return response.json()
@@ -84,14 +82,12 @@ function handleError(response) {
 
 function handleLogInError(response) {
   if (!response.ok) {
-    domUpdates.showLogInError();
-    errorTag.innerText = 'User does not exist, please try again.';
+    domUpdates.showLogInError(response);
     throw new Error('User does not exist');
   } else {
     return response.json();
   }
 }
-
 
 export default {
   fetchCustomers,

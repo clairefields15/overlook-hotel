@@ -30,11 +30,11 @@
       </div>
     </div>
     <div id="desktopNav" class="desktop-nav hidden">
+      <button id="goHome" class="nav-button">Go Home</button>
       <button id="navBook" class="nav-button hidden">Book</button>
       <button id="navProfile" class="nav-button hidden">Profile</button>
       <button id="navLogIn" class="nav-button hidden">Log In</button>
       <button id="navLogOut" class="nav-button hidden">Log Out</button>
-      <button id="goHome" class="nav-button">Go Home</button>
     </div>
   </nav>
 </header>
@@ -56,7 +56,7 @@
         <input class="input" type="password" id="passwordField" name="password" placeholder="Password" autocomplete="off" required>
       </div>
     </form>
-    <p id="passwordError" class="error-msg"></p>
+    <p id="errorMessage" class="error-msg"></p>
     <button id="logInBtn" class="go-back-btn" type="submit" value="Sign in">Log In</button>
   </section>
   <section id="profilePage" class="profile-page hidden">
@@ -94,6 +94,7 @@
   <section id="bookingPage" class="booking-page hidden">
     <article id="selectedRoom" class="book-this-room">
     </article>
+    <p class="error-msg" id="postErrorMsg"></p>
   </section>
   <section id="confirmationPage" class="confirmation-page hidden">
     <p id="errorTag" class="error-msg"></p>
