@@ -82,7 +82,7 @@ export function assignVariables(apiData) {
 export function instantiateUser(data) {
   customer = new Customer(data);
   const userBookings = customer.setBookings(hotel)
-  const userExpenses = hotel.getUserExpenses(customer);
+  const userExpenses = customer.getExpenses(hotel)
   const sortedBookings = sortUserBookingsByDate(userBookings);
   domUpdates.renderUserDashboard(
     customer,
@@ -103,7 +103,7 @@ export function pageLoad() {
   // is all of this necessary? it runs after a successful booking
   if (customer) {
     const userBookings = customer.setBookings(hotel);
-    const userExpenses = hotel.getUserExpenses(customer);
+    const userExpenses = customer.getExpenses(hotel);
     const sortedBookings = sortUserBookingsByDate(userBookings);
     domUpdates.renderUserDashboard(
       customer,
@@ -181,10 +181,9 @@ function checkEmptyFields(username, password) {
 }
 
 function setUser(username, password) {
+  passwordField.value = '';
   checkPassword(password);
   checkUsername(username);
-  usernameField.value = '';
-  passwordField.value = '';
 
   // this might be why username03 can log in as if username3
   let id = username.slice(8);

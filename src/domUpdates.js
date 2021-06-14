@@ -224,8 +224,26 @@ const domUpdates = {
     pastStays.innerHTML = '';
     upcomingStays.innerHTML = '';
 
+    // no future/present bookings
+    const findUpcomingBookings = bookings.filter(booking =>
+      dayjs(booking.booking.date).isAfter(currentDate)
+    );
+    const findPresentBookings = bookings.filter(booking =>
+      dayjs(booking.booking.date).isSame(currentDate)
+    );
+
+    if ((findUpcomingBookings.length + findPresentBookings.length) === 0) {
+      upcomingStays.innerHTML += `
+        <article class="past-booking-card">
+          <p>You have no upcoming stays.</p>
+        </article>
+      `;
+    }
+
+
     bookings.forEach(booking => {
       const bookingDate = dayjs(booking.booking.date);
+
       if (bookingDate.isBefore(currentDate)) {
         const formattedDate = bookingDate.format('MMM D YYYY');
         pastStays.innerHTML += `
@@ -269,6 +287,7 @@ const domUpdates = {
           </article>
         `;
       }
+
     });
 
     totalSpent.innerText = `Thanks for staying with us! You have spent $${expenses} on bookings.`;
