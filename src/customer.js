@@ -1,3 +1,4 @@
+import dayjs from 'dayjs';
 import Hotel from './hotel'
 class Customer {
   constructor(customer) {
@@ -8,15 +9,35 @@ class Customer {
   }
 
   setBookings(hotel) {
-    this.bookings = hotel.getFullRoomInfoForBookings(this)
-    return this.bookings
+    this.bookings = hotel.getFullRoomInfoForBookings(this);
+    return this.bookings;
   }
 
   getExpenses(hotel) {
-    this.expenses = hotel.getUserExpenses(this) 
-    return this.expenses
+    this.expenses = hotel.getUserExpenses(this);
+    return this.expenses;
   }
 
+  getUpcomingBookings(currentDate) {
+    return this.bookings.filter(booking => {
+      return (
+        dayjs(booking.date).isAfter(currentDate) ||
+        dayjs(booking.date).isSame(currentDate)
+      );
+    });
+  }
+
+  getPastBookings(currentDate) {
+    return this.bookings.filter(booking => {
+      return dayjs(booking.date).isBefore(currentDate);
+    });
+  }
+
+  sortBookingsAscendingDates(bookings) {
+    return bookings.sort((a, b) => {
+      return dayjs(a.date) - dayjs(b.date);
+    });
+  }
 }
 
 export default Customer

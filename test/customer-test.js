@@ -110,4 +110,111 @@ describe('Customer', () => {
 
   })
 
+  describe('getUpcomingBookings()', () => {
+    it('should get all present and future bookings based on date', () => {
+      customer1.setBookings(hotel);
+      let bookings = customer1.getUpcomingBookings('2020/04/21');
+
+      const upcoming = [
+        {
+          room: {
+            number: 1,
+            type: 'residential suite',
+            hasBidet: true,
+            bedSize: 'queen',
+            numBeds: 1,
+            costPerNight: 358.4,
+            isAvailable: true
+          },
+          date: '2020/04/22'
+        },
+        {
+          room: {
+            number: 1,
+            type: 'residential suite',
+            hasBidet: true,
+            bedSize: 'queen',
+            numBeds: 1,
+            costPerNight: 358.4,
+            isAvailable: true
+          },
+          date: '2020/04/23'
+        }
+      ]
+      expect(bookings).to.deep.equal(upcoming);
+    });
+  });
+
+  describe('getPastBookings()', () => {
+    it('should get all past bookings based on date', () => {
+      customer1.setBookings(hotel);
+      let bookings = customer1.getPastBookings('2020/05/23');
+
+      const past = [
+        {
+          room: {
+            number: 1,
+            type: 'residential suite',
+            hasBidet: true,
+            bedSize: 'queen',
+            numBeds: 1,
+            costPerNight: 358.4,
+            isAvailable: true
+          },
+          date: '2020/04/22'
+        },
+        {
+          room: {
+            number: 1,
+            type: 'residential suite',
+            hasBidet: true,
+            bedSize: 'queen',
+            numBeds: 1,
+            costPerNight: 358.4,
+            isAvailable: true
+          },
+          date: '2020/04/23'
+        }
+      ];
+      expect(bookings).to.deep.equal(past);
+    });
+  });
+
+  describe('sortBookingsAscendingDates()', () => {
+
+    it('should sort bookings by date', () => {
+      let bookings = customer2.setBookings(hotel)
+      let sort = customer2.sortBookingsAscendingDates(bookings)
+
+      let sortedDates = [
+        {
+          room: {
+            number: 2,
+            type: 'suite',
+            hasBidet: false,
+            bedSize: 'full',
+            numBeds: 2,
+            costPerNight: 477.38,
+            isAvailable: true
+          },
+          date: '2020/04/24'
+        },
+        {
+          room: {
+            number: 2,
+            type: 'suite',
+            hasBidet: false,
+            bedSize: 'full',
+            numBeds: 2,
+            costPerNight: 477.38,
+            isAvailable: true
+          },
+          date: '2020/05/13'
+        }
+      ]
+
+      expect(sort).to.deep.equal(sortedDates);
+    })
+  })
+
 });
