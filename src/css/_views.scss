@@ -88,22 +88,20 @@
   text-align: center;
 }
 
-.search-results {
-  display: grid;
-  padding: 1.3em;
-  grid-template-columns: 1fr;
-  gap: 2em;
-}
-
 .room-type-form-label {
   font-size: 1.5em;
-  margin: 1em;
 }
 
 .room-type-form {
-  width: 80vw;
   padding: 1em;
   margin: 1em;
+  display: flex;
+  flex-direction: column;
+}
+
+.apology {
+  @include flex-center;
+  text-align: center;
 }
 
 // BOOKING PAGE
@@ -159,19 +157,12 @@
   text-align: center;
 }
 
-.upcomingStays,
-.pastStays {
+.search-results {
   display: grid;
   padding: 1.3em;
-  grid-template-columns: repeat(1, 1fr);
-  grid-template-rows: repeat(10, 1fr);
+  grid-template-columns: 1fr;
   gap: 2em;
 }
-
-
-
-
-
 
 
 // --------- MEDIA QUERIES ----------- //
@@ -181,9 +172,10 @@
   display: grid;
   padding: 1.3em;
   grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(4, 1fr);
   gap: 2em;
 }
+
+//log in form is pretty small in this view!
 
 }
 
@@ -193,9 +185,14 @@
   display: grid;
   padding: 1.3em;
   grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(3, 1fr);
   gap: 2em;
 }
+
+.room-photo {
+  max-width: 30em;
+}
+
+//log in form is really small in this view!
 }
 
 /* desktop size */
@@ -204,7 +201,21 @@
   display: grid;
   padding: 1.3em;
   grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: 1fr 1fr;
   gap: 2em;
 }
+
+.room-photo {
+  max-width: 30em;
+}
+
+.book-this-room {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
+//can't see full landing page photo in this view
+//need to ditch the hamburger button
+// filter results by room type is really long in this view
+// photo is wayyy too big when you select a room
+
 }
