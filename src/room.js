@@ -8,8 +8,6 @@ class Room {
     this.costPerNight = room.costPerNight;
     this.isAvailable = true;
   }
-
 }
-
 
 export default Room

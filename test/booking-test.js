@@ -1,9 +1,6 @@
 import chai from 'chai';
-import Customer from '../src/customer' 
 import Booking from '../src/booking' 
-import Room from '../src/room' 
-
-import { customers, rooms, bookings } from './test-data'
+import { bookings } from './test-data'
 const expect = chai.expect;
 
 describe('Booking', () => {
@@ -59,9 +56,6 @@ describe('Booking', () => {
     expect(booking2.date).to.equal('2020/04/23');
     expect(booking2.roomNumber).to.equal(2);
     expect(booking2.roomServiceCharges).to.deep.equal([]);
-
-
-
   })
 
 })
