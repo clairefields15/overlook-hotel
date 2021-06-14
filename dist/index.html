@@ -65,28 +65,31 @@
     <article id="totalSpent">
     </article>
     <h2>Your Upcoming Stays!</h2>
-    <article id="upcomingStays">
+    <article id="upcomingStays" class="search-results">
     </article>
     <h2>Your Past Stays!</h2>
-    <article id="pastStays">
+    <article id="pastStays" class="search-results">
     </article>
   </section>
   <section id="selectPage" class="select-page hidden">
     <form class="selectDates">
-      <p>Select your 1 night stay!</p>
-      <label for="arrive">Arrive</label>
+      <label for="arrive">Select Arrival Date</label>
       <input type="date" id="arrivalDate" value="2021-01-01" min="2021-01-01" name="arrive" required>
     </form>
     <button id="checkAvailBtn" class="main-button">Check Availability</button>
   </section>
   <section id="searchResultsPage" class="results-page hidden">
-    <p id="yourDates"></p>
-    <button id="changeDates" class="go-back-btn">Change Dates</button>
-    <form id="selectRoomType">
+    <div class="room-type-form">
+      <p id="yourDates"></p>
+      <button id="changeDates" class="go-back-btn">Change Dates</button>
+    </div>
+    <form id="selectRoomType" class="room-type-form">
       <label for="roomType" class="room-type-form-label">Filter results by room type:</label>
       <select name="roomType" id="roomTypeForm" class="room-type-form">
       </select>
     </form>
+    <section id="apologyMessage" class="apology">
+    </section>
     <section id="filteredResults" class="search-results">
     </section>
     <button id="searchAgain" class="main-button hidden">Change Dates</button>

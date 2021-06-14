@@ -49,6 +49,8 @@ const passwordField = document.getElementById('passwordField');
 const errorMessage = document.getElementById('errorMessage');
 const mobileLogOutBtn = document.getElementById('mobileLogOut');
 const postErrorMsg = document.getElementById('postErrorMsg');
+const apologyMessage = document.getElementById('apologyMessage');
+
 
 
 // ***** ----- EVENT LISTENERS ----- ***** //
@@ -237,6 +239,7 @@ function getRoomTypes() {
 }
 
 function filterRoomsByType() {
+  apologyMessage.innerHTML = '';
   const selection = roomTypeForm.value;
   const results = hotel.filterAvailableRoomsByType(selection);
 

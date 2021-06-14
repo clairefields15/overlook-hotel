@@ -34,6 +34,7 @@ const landingMsg = document.getElementById('landingMsg');
 const errorMessage = document.getElementById('errorMessage');
 const errorTag = document.getElementById('errorTag');
 const postErrorMsg = document.getElementById('postErrorMsg');
+const apologyMessage = document.getElementById('apologyMessage');
 
 
 const domUpdates = {
@@ -229,11 +230,12 @@ const domUpdates = {
     let sortedPastBookings = user.sortBookingsAscendingDates(pastBookings);
 
     if (pastBookings.length === 0) {
-      pastStays.innerHTML += `
-        <article class="past-booking-card">
-          <p>You have no past stays.</p>
-        </article>
+      const noStays = `
+      <article class="no-stays-card">
+        <p>You have no past stays.</p>
+      </article>
       `;
+      pastStays.insertAdjacentHTML('beforebegin', noStays); 
     }
 
     sortedPastBookings.forEach(booking => {
@@ -269,11 +271,12 @@ const domUpdates = {
       user.sortBookingsAscendingDates(upcomingBookings);
 
     if (upcomingBookings.length === 0) {
-      upcomingStays.innerHTML += `
-        <article class="past-booking-card">
-          <p>You have no upcoming stays.</p>
-        </article>
+      const noStays = `
+      <article class="no-stays-card">
+        <p>You have no upcoming stays.</p>
+      </article>
       `;
+      upcomingStays.insertAdjacentHTML('beforebegin', noStays) 
     }
 
     sortedUpcomingBookings.forEach(booking => {
@@ -330,7 +333,8 @@ const domUpdates = {
 
   renderApology() {
     filteredResultsArea.innerHTML = '';
-    filteredResultsArea.innerHTML = `
+    apologyMessage.innerHTML = '';
+    apologyMessage.innerHTML = `
       <p>This is terribly unfortunate, but there are no rooms available that match your search parameters.</p> 
       <p>Please select a different room type, or change your dates.</p>
       `;
