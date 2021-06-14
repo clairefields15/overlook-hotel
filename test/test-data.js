@@ -13,7 +13,6 @@ const customers = [
   }
 ];
 
-
 const rooms = [
   {
     number: 1,

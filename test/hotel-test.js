@@ -3,8 +3,6 @@ import Customer from '../src/customer';
 import Booking from '../src/booking';
 import Room from '../src/room';
 import Hotel from '../src/hotel';
-
-
 import { customers, rooms, bookings } from './test-data';
 const expect = chai.expect;
 

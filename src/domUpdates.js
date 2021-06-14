@@ -89,7 +89,7 @@ const domUpdates = {
   },
 
   showUserProfile() {
-    domUpdates.show([profilePage, goHomeBtn]);
+    domUpdates.show([profilePage, mobileBookBtn, goHomeBtn]);
     domUpdates.hide([
       landingPage,
       searchResultsPage,
@@ -103,7 +103,7 @@ const domUpdates = {
   },
 
   showBookingView() {
-    domUpdates.show([selectPage]);
+    domUpdates.show([selectPage, goHomeBtn]);
     domUpdates.hide([
       landingPage,
       searchResultsPage,
@@ -112,6 +112,7 @@ const domUpdates = {
       profilePage,
       logInPage,
       mobileLogInBtn,
+      mobileBookBtn
     ]);
   },
 
@@ -123,8 +124,90 @@ const domUpdates = {
       bookingPage,
       confirmationPage,
       profilePage,
-      mobileLogInBtn
+      mobileLogInBtn,
+      mobileBookBtn
     ]);
+  },
+
+  showSearchResultsPage() {
+    domUpdates.show([searchResultsPage, goHomeBtn]);
+    domUpdates.hide([
+      selectPage,
+      landingPage,
+      bookingPage,
+      profilePage,
+      confirmationPage,
+      logInPage,
+      mobileLogInBtn,
+      mobileBookBtn
+    ]);
+  },
+
+  showRoomDetails() {
+    domUpdates.show([bookingPage, goHomeBtn]);
+    domUpdates.hide([
+      searchResultsPage,
+      selectPage,
+      landingPage,
+      confirmationPage,
+      profilePage,
+      logInPage,
+      mobileLogInBtn,
+      mobileBookBtn
+    ]);
+  },
+
+  showConfirmationView() {
+    domUpdates.show([confirmationPage, confirmationMsg]);
+    domUpdates.hide([
+      bookingPage,
+      searchResultsPage,
+      profilePage,
+      selectPage,
+      landingPage,
+      logInPage,
+      mobileLogInBtn,
+      mobileBookBtn
+    ]);
+    setTimeout(function () {
+      domUpdates.showLandingPageAfterLogIn();
+    }, 2000);
+  },
+
+  showPostError() {
+    domUpdates.show([confirmationPage]);
+    domUpdates.hide([
+      bookingPage,
+      searchResultsPage,
+      profilePage,
+      selectPage,
+      landingPage,
+      confirmationMsg,
+      logInPage,
+      mobileLogInBtn,
+      mobileBookBtn
+    ]);
+    setTimeout(function () {
+      domUpdates.showLandingPageAfterLogIn();
+    }, 2000);
+  },
+
+  showLogInError() {
+    domUpdates.show([confirmationPage]);
+    domUpdates.hide([
+      bookingPage,
+      searchResultsPage,
+      profilePage,
+      selectPage,
+      landingPage,
+      confirmationMsg,
+      logInPage,
+      mobileLogInBtn,
+      mobileBookBtn
+    ]);
+    setTimeout(function () {
+      domUpdates.showLogInView();
+    }, 3000);
   },
 
   renderUserDashboard(user, bookings, expenses, currentDate) {
@@ -188,19 +271,6 @@ const domUpdates = {
     totalSpent.innerText = `Thanks for staying with us! You have spent $${expenses} on bookings.`;
   },
 
-  showSearchResultsPage() {
-    domUpdates.show([searchResultsPage]);
-    domUpdates.hide([
-      selectPage,
-      landingPage,
-      bookingPage,
-      profilePage,
-      confirmationPage,
-      logInPage,
-      mobileLogInBtn
-    ]);
-  },
-
   renderAvailableRooms(availableRooms) {
     domUpdates.hide([searchAgainBtn]);
     filteredResultsArea.innerHTML = '';
@@ -249,19 +319,6 @@ const domUpdates = {
     });
   },
 
-  showRoomDetails() {
-    domUpdates.show([bookingPage]);
-    domUpdates.hide([
-      searchResultsPage,
-      selectPage,
-      landingPage,
-      confirmationPage,
-      profilePage,
-      logInPage,
-      mobileLogInBtn
-    ]);
-  },
-
   renderSelectedRoom(room, date) {
     const formattedDate = dayjs(date).format('MMM DD YYYY');
 
@@ -289,55 +346,6 @@ const domUpdates = {
     `;
   },
 
-  showConfirmationView() {
-    domUpdates.show([confirmationPage, confirmationMsg]);
-    domUpdates.hide([
-      bookingPage,
-      searchResultsPage,
-      profilePage,
-      selectPage,
-      landingPage,
-      logInPage,
-      mobileLogInBtn
-    ]);
-    setTimeout(function () {
-      domUpdates.showLandingPage();
-    }, 2000);
-  },
-
-  showPostError() {
-    domUpdates.show([confirmationPage]);
-    domUpdates.hide([
-      bookingPage,
-      searchResultsPage,
-      profilePage,
-      selectPage,
-      landingPage,
-      confirmationMsg,
-      logInPage,
-      mobileLogInBtn
-    ]);
-    setTimeout(function () {
-      domUpdates.showLandingPageAfterLogIn();
-    }, 2000);
-  },
-
-  showLogInError() {
-    domUpdates.show([confirmationPage]);
-    domUpdates.hide([
-      bookingPage,
-      searchResultsPage,
-      profilePage,
-      selectPage,
-      landingPage,
-      confirmationMsg,
-      logInPage,
-      mobileLogInBtn
-    ]);
-    setTimeout(function () {
-      domUpdates.showLogInView();
-    }, 3000);
-  }
 };
 
 export default domUpdates;

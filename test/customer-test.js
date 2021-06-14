@@ -53,11 +53,6 @@ describe('Customer', () => {
     expect(customer1.name).to.equal('Leatha Ullrich');
   });
 
-  it('should default to being logged out', () => {
-    expect(customer1).to.have.a.property('isLoggedIn');
-    expect(customer1.isLoggedIn).to.equal(false);
-  });
-
   it('should be able to instantiate a different customer', () => {
     expect(customer2).to.be.an.instanceOf(Customer);
     expect(customer2.id).to.equal(2);
@@ -113,12 +108,6 @@ describe('Customer', () => {
     ]
     hotel.getFullRoomInfoForBookings(customer1);
     expect(customer1.bookings).to.deep.equal(booking);
-  })
-
-  it('should be able to log in', () => {
-    customer1.logIn()
-    expect(customer1.isLoggedIn).to.equal(true)
-
   })
 
 });
