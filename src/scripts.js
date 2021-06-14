@@ -46,8 +46,10 @@ const goHomeBtn = document.getElementById('mobileGoHome');
 const logInBtn = document.getElementById('logInBtn');
 const usernameField = document.getElementById('usernameField');
 const passwordField = document.getElementById('passwordField');
-const passwordError = document.getElementById('passwordError');
+const errorMessage = document.getElementById('errorMessage');
 const mobileLogOutBtn = document.getElementById('mobileLogOut');
+const postErrorMsg = document.getElementById('postErrorMsg');
+
 
 // ***** ----- EVENT LISTENERS ----- ***** //
 window.addEventListener('load', apiCalls.fetchHotelData);
@@ -133,6 +135,7 @@ function setCalendarDate() {
 // --- User Log In  --- //
 
 function isCustomerLoggedIn(event) {
+  postErrorMsg.innerText = '';
   const target = event.target.id
 
   if (customer && target === 'bookNowBtn') {
@@ -152,23 +155,27 @@ function logIn(event) {
   event.preventDefault();
   const username = usernameField.value;
   const password = passwordField.value;
-  checkEmptyFields(username, password);
-
-  try {
-    setUser(username, password);
-  } catch (error) {
-    passwordError.innerText = error;
-    domUpdates.hideError();
+  
+  if (!checkEmptyFields(username, password)) {
+    try {
+      setUser(username, password);
+    } catch (error) {
+      errorMessage.innerText = error;
+    }
   }
 }
 
 function checkEmptyFields(username, password) {
+  let emptyFields = false;
   if (username === '') {
-    usernameField.setAttribute('placeholder', '*username is required*');
+    emptyFields = true;
+    usernameField.setAttribute('placeholder', 'Username is required');
   }
   if (password === '') {
-    passwordField.setAttribute('placeholder', '*password is required*');
+    emptyFields = true;
+    passwordField.setAttribute('placeholder', 'Password is required');
   }
+  return emptyFields
 }
 
 function setUser(username, password) {
@@ -179,29 +186,23 @@ function setUser(username, password) {
 
   let id = username.slice(8);
   if (id.startsWith(0)) {
-    domUpdates.showLogInError();
-    errorTag.innerText = 'User does not exist, please try again.';
-    throw new Error('User does not exist');
+    throw new Error('Invalid user credentials');
   } else if (id) {
     apiCalls.fetchCustomer(id);
   } else {
-    domUpdates.showLogInError();
-    errorTag.innerText = 'User does not exist, please try again.';
-    throw new Error('User does not exist');
+    throw new Error('Invalid user credentials');
   }
 }
 
 function checkPassword(password) {
   if (password !== 'overlook2021') {
-    passwordField.value = '';
-    throw new Error('Incorrect password');
+    throw new Error('Invalid user credentials');
   }
 }
 
 function checkUsername(username) {
   if (!username.startsWith('username')) {
-    usernameField.value = '';
-    throw new Error('Incorrect username');
+    throw new Error('Invalid user credentials');
   }
 }
 
@@ -209,6 +210,7 @@ function checkUsername(username) {
 
 function logOut() {
   customer = null;
+  postErrorMsg.innerText = '';
   domUpdates.showLandingPage();
 }
 
@@ -267,6 +269,7 @@ function bookRoom(event) {
 
 function viewOtherRooms(event) {
   if (event.target.id === 'goBackButton') {
+    postErrorMsg.innerText = ''
     domUpdates.showSearchResultsPage();
   }
 }

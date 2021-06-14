@@ -31,7 +31,9 @@ const confirmationMsg = document.getElementById('confirmationMsg');
 const logInPage = document.getElementById('logInPage');
 const goHomeBtn = document.getElementById('mobileGoHome')
 const landingMsg = document.getElementById('landingMsg');
-const passwordError = document.getElementById('passwordError');
+const errorMessage = document.getElementById('errorMessage');
+const errorTag = document.getElementById('errorTag');
+const postErrorMsg = document.getElementById('postErrorMsg');
 
 
 const domUpdates = {
@@ -41,10 +43,6 @@ const domUpdates = {
 
   show(elements) {
     elements.forEach(element => element.classList.remove('hidden'));
-  },
-
-  hideError() {
-    setTimeout(() => (passwordError.innerText = ''), 2700);
   },
 
   openMobileNav() {
@@ -80,7 +78,7 @@ const domUpdates = {
       goHomeBtn,
       mobileLogOutBtn,
       mobileViewProfileBtn,
-      mobileBookBtn,
+      mobileBookBtn
     ]);
   },
 
@@ -130,6 +128,7 @@ const domUpdates = {
       mobileLogInBtn,
       mobileBookBtn
     ]);
+    postErrorMsg.innerText = '';
   },
 
   showLogInView() {
@@ -183,44 +182,32 @@ const domUpdates = {
       landingPage,
       logInPage,
       mobileLogInBtn,
-      mobileBookBtn
+      mobileBookBtn,
+      errorTag
     ]);
   },
 
-  showPostError() {
-    domUpdates.show([confirmationPage]);
-    domUpdates.hide([
-      bookingPage,
-      searchResultsPage,
-      profilePage,
-      selectPage,
-      landingPage,
-      confirmationMsg,
-      logInPage,
-      mobileLogInBtn,
-      mobileBookBtn
-    ]);
-    setTimeout(function () {
-      domUpdates.showLandingPageAfterLogIn();
-    }, 2000);
+  showPostError(response) {
+    if (response.status === 404) {
+      postErrorMsg.innerText =
+        'Something went wrong while booking, please try again.';
+    } else if (response.status === 500) {
+      postErrorMsg.innerText =
+        'So sorry, our servers are down, try again later.';
+    } else {
+      postErrorMsg.innerText = 'Something went wrong.';
+    }
   },
 
-  showLogInError() {
-    domUpdates.show([confirmationPage]);
-    domUpdates.hide([
-      bookingPage,
-      searchResultsPage,
-      profilePage,
-      selectPage,
-      landingPage,
-      confirmationMsg,
-      logInPage,
-      mobileLogInBtn,
-      mobileBookBtn
-    ]);
-    setTimeout(function () {
-      domUpdates.showLogInView();
-    }, 3000);
+  showLogInError(response) {
+    if (response.status === 404) {
+      errorMessage.innerText = 'Username does not exist';
+    } else if (response.status === 500) {
+      errorMessage.innerText =
+        'So sorry, our servers are down, try again later.';
+    } else {
+      errorMessage.innerText = 'Something went wrong.';
+    }
   },
 
   renderUserDashboard(user, expenses, currentDate) {
@@ -237,7 +224,7 @@ const domUpdates = {
   renderPastBookings(user, currentDate) {
     const pastStays = document.getElementById('pastStays');
     pastStays.innerHTML = '';
-    
+
     let pastBookings = user.getPastBookings(currentDate);
     let sortedPastBookings = user.sortBookingsAscendingDates(pastBookings);
 
@@ -278,7 +265,8 @@ const domUpdates = {
     upcomingStays.innerHTML = '';
 
     let upcomingBookings = user.getUpcomingBookings(currentDate);
-    let sortedUpcomingBookings = user.sortBookingsAscendingDates(upcomingBookings)
+    let sortedUpcomingBookings =
+      user.sortBookingsAscendingDates(upcomingBookings);
 
     if (upcomingBookings.length === 0) {
       upcomingStays.innerHTML += `
@@ -287,7 +275,7 @@ const domUpdates = {
         </article>
       `;
     }
-    
+
     sortedUpcomingBookings.forEach(booking => {
       const bookingDate = dayjs(booking.date);
       const formattedDate = bookingDate.format('MMM D YYYY');
@@ -310,9 +298,7 @@ const domUpdates = {
         </article>
       `;
     });
-
   },
-
 
   renderAvailableRooms(availableRooms) {
     domUpdates.hide([searchAgainBtn]);
