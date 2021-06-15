@@ -1,15 +1,17 @@
 # Overlook Hotel
 
-nice photo here
-
 ## Introduction
 
-Final solo project for Mod 2 of the Front End Engineering program at the Turing School of Software & Design.
+Welcome to the Overlook Hotel, we're glad you're here!
+
+This was the final solo project for Mod 2 of the Front End Engineering program at the Turing School of Software & Design. It was designed and built by Claire Fields. 
+The application is a hotel management tool where customers can log in, book a room, and view their past, present, and upcoming stays.  
+
+This application was built mobile-first, is fully responsive, and in addition to meeting the requirements of Iterations 1-3 on the [project spec](https://frontend.turing.edu/projects/overlook.html), I added an additional feature.  The `rooms` database that was provided did not have any image urls associated with it, so I fetched images from a curated collection in the unsplash API and assigned them to rooms based on type or number of beds. Please enjoy!
 
 
 ## Overview of the app
 
-Welcome to the Overlook Hotel, we're glad you're here!
 
 When you first come to the site you will be greeted by a gorgeous photo of the exterior of our hotel- isn't it trendy?
 ![overlook hotel splash page on mobile](https://imgur.com/3kxOxKC.jpg)
@@ -53,12 +55,17 @@ Assuming your booking is sucessful and has been successfully POSTed to the booki
 
 
 And that's about it for functionality! Oh, one more thing, let's log out.
+![gif of log out](https://media.giphy.com/media/vUSEnpx7EWoFgHqCGm/giphy.gif)
+
+
+And for the nerds in the audience, let's check out what happens in the odd event that our server has crashed and users are trying to log in.
+![gif showing server down error](https://media.giphy.com/media/9tnhAUOu3s5fPRQptk/giphy.gif)
 
 
 
+## Future Features
 
-## Video walkthrough of the app
-[Link to youtube](www.youtube.com)
+In future, I hope to add manager interaction to the app. The manager should be able to log in with different credentials, see a dashboard page showing total available rooms for today, total revenue for totday and percentage of rooms occupied for today. The manger should also be able to search for any user by name and view their name, bookings, and total amount spent. The manager should be able to add a room booking for that user and delete any upcoming bookings.
 
 
 ## Setup
@@ -77,11 +84,12 @@ And that's about it for functionality! Oh, one more thing, let's log out.
 
 - Vanilla JavaScript
 - HTML
-- SCSS (CSS)
+- SASS (SCSS/CSS)
 - Testing with Mocha and Chai
 - Webpack
 - dayjs 
-- fetching from the Unsplash API
+- fetching customer, booking and room data from an API provided by Turing
+- fetching room images from the Unsplash API
 
 
 ## Contributors
