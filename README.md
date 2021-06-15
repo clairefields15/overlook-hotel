@@ -31,6 +31,7 @@ One of the learning goals of this project was to practice some log in authentica
 
 
 Once you have successfully logged into the site, you can view a user dashboard which will show you how much you have spent to date, as well as any current, upcoming or past trips. If you have no upcoming or past trips, that message will also be displayed. Poor Moises here has no upcoming stays, let's book him a room!
+
 ![gif of user dashboard with no upcoming trips](https://media.giphy.com/media/xmUEL7JoERtv4VrkLs/giphy.gif)
 
 
@@ -39,26 +40,33 @@ All stays on this app are for one night only, so let's watch as Moises selects a
 ![gif of user picking a date and browsing rooms](https://media.giphy.com/media/5AlKZKJ4Gdf9T57iDd/giphy.gif)
 
 Users may filter available rooms by room type.
+
 ![desktop view showing filtered results](https://imgur.com/KDDt38F.jpg)
 
 Oh no! There aren't any available rooms!! Don't worry though, at almost any point in the booking process (up to the very last moment!) you can go back and change your dates or filter by a different room type. 
+
 ![desktop view showing no available roms](https://imgur.com/SXGZ1jY.jpg)
 
 Once you have selected a room, you have one last chance to go back before booking. After all, this is a very nice hotel and we want to be sure you are happy with your room!
+
 ![desktop view of booking screen](https://imgur.com/IuFQCSU.jpg)
+
 
 ![gif of successful room booking in mobile view](https://media.giphy.com/media/2lVnteuXD1TAXl2AKJ/giphy.gif)
 
 
 Assuming your booking is sucessful and has been successfully POSTed to the bookings API, you will see a confirmation message for 1.5 seconds and then directed back to your profile, where your new, upcoming booking is visible! We here at the Overlook Hotel sincerely hope that Moises enjoys his stay.
+
 ![photo of profile after successful booking](https://imgur.com/3KzeQv3.jpg)
 
 
 And that's about it for functionality! Oh, one more thing, let's log out.
+
 ![gif of log out](https://media.giphy.com/media/vUSEnpx7EWoFgHqCGm/giphy.gif)
 
 
 And for the nerds in the audience, let's check out what happens in the odd event that our server has crashed and users are trying to log in.
+
 ![gif showing server down error](https://media.giphy.com/media/9tnhAUOu3s5fPRQptk/giphy.gif)
 
 
