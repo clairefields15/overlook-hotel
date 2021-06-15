@@ -1,5 +1,4 @@
 import dayjs from 'dayjs';
-import Hotel from './hotel'
 class Customer {
   constructor(customer) {
     this.id = customer.id;

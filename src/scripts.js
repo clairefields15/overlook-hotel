@@ -12,10 +12,6 @@ import Booking from './booking';
 import Hotel from './hotel';
 import Room from './room';
 
-// ***** ----- EXPORTS ----- ***** //
-export const errorTag = document.getElementById('errorTag');
-
-
 // ***** ----- DEPENDENTS ----- ***** //
 let dayjs = require('dayjs');
 const currentDate = dayjs(Date.now()).format('YYYY-MM-DD');
@@ -45,8 +41,6 @@ const desktopBookBtn = document.getElementById('navBook');
 const desktopProfileBtn = document.getElementById('navProfile');
 const desktopLogInBtn = document.getElementById('navLogIn');
 const desktopLogOutBtn = document.getElementById('navLogOut');
-const desktopNav = document.getElementById('desktopNav')
-
 // select room
 const filteredResults = document.getElementById('filteredResults');
 const selectRoomType = document.getElementById('selectRoomType');
@@ -62,13 +56,7 @@ const postErrorMsg = document.getElementById('postErrorMsg');
 const apologyMessage = document.getElementById('apologyMessage');
 
 
-
 // ***** ----- EVENT LISTENERS ----- ***** //
-
-
-// at desktop size need to remove hidden from desktop-nav
-// and need to hide mobile-nav
-// need event listeners on the currently hidden buttons, is that gonna fuck up shit?
 
 // desktop mav buttons 
 desktopGoHomeBtn.addEventListener('click', () => isCustomerLoggedIn(event));
@@ -76,7 +64,6 @@ desktopLogInBtn.addEventListener('click', domUpdates.showLogInView);
 desktopBookBtn.addEventListener('click', domUpdates.showBookingView);
 desktopProfileBtn.addEventListener('click', domUpdates.showUserProfile);
 desktopLogOutBtn.addEventListener('click', logOut);
-
 // load and log in/out
 window.addEventListener('load', apiCalls.fetchHotelData);
 logInBtn.addEventListener('click', () => logIn(event));
@@ -84,7 +71,6 @@ bookNowBtn.addEventListener('click', () => isCustomerLoggedIn(event));
 goHomeBtn.addEventListener('click', () => isCustomerLoggedIn(event));
 mobileLogInBtn.addEventListener('click', domUpdates.showLogInView);
 mobileLogOutBtn.addEventListener('click', logOut)
-
 // navigation
 hamburgerBtn.addEventListener('click', domUpdates.openMobileNav);
 modalOverlay.addEventListener('click', domUpdates.hideOverlay);
@@ -92,7 +78,6 @@ mobileViewProfileBtn.addEventListener('click', domUpdates.showUserProfile);
 searchAgainBtn.addEventListener('click', domUpdates.showBookingView);
 changeDates.addEventListener('click', domUpdates.showBookingView);
 mobileBookBtn.addEventListener('click', domUpdates.showBookingView);
-
 // search for room and filter rooms
 checkAvailBtn.addEventListener('click', checkAvailability);
 checkAvailBtn.addEventListener('click', getRoomTypes);
@@ -100,6 +85,7 @@ filteredResults.addEventListener('click', () => selectRoom(event));
 selectRoomType.addEventListener('change', filterRoomsByType);
 selectedRoom.addEventListener('click', () => viewOtherRooms(event));
 selectedRoom.addEventListener('click', () => bookRoom(event));
+
 
 // ***** ----- EVENT HANDLERS ----- ***** //
 

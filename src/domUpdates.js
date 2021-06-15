@@ -26,15 +26,11 @@ const landingMsg = document.getElementById('landingMsg');
 const errorMessage = document.getElementById('errorMessage');
 const postErrorMsg = document.getElementById('postErrorMsg');
 const apologyMessage = document.getElementById('apologyMessage');
-
-// desktop nav buttons
 const desktopGoHomeBtn = document.getElementById('goHome');
 const desktopBookBtn = document.getElementById('navBook');
 const desktopProfileBtn = document.getElementById('navProfile');
 const desktopLogInBtn = document.getElementById('navLogIn');
 const desktopLogOutBtn = document.getElementById('navLogOut');
-const desktopNav = document.getElementById('desktopNav')
-
 
 const domUpdates = {
   hide(elements) {
