@@ -1,16 +1,9 @@
 /* eslint-disable max-len */
 let dayjs = require('dayjs');
-
 const mobileLogInBtn = document.getElementById('mobileLogIn');
 const mobileBookBtn = document.getElementById('mobileBook');
-const mobileViewTripsBtn = document.getElementById('mobileViewTrips');
 const mobileViewProfileBtn = document.getElementById('mobileViewProfile');
-const navLogInBtn = document.getElementById('navLogIn');
 const mobileLogOutBtn = document.getElementById('mobileLogOut');
-const navBookBtn = document.getElementById('navBook');
-const navTripsBtn = document.getElementById('navTrips');
-const navProfileBtn = document.getElementById('navProfile');
-const desktopNavSection = document.getElementById('desktopNav');
 const landingPage = document.getElementById('landingPage');
 const selectPage = document.getElementById('selectPage');
 const searchResultsPage = document.getElementById('searchResultsPage');
@@ -201,6 +194,7 @@ const domUpdates = {
   },
 
   showLogInError(response) {
+    errorMessage.style.opacity = 1;
     if (response.status === 404) {
       errorMessage.innerText = 'Username does not exist';
     } else if (response.status === 500) {
@@ -211,18 +205,18 @@ const domUpdates = {
     }
   },
 
-  renderUserDashboard(user, expenses, currentDate, photos) {
+  renderUserDashboard(user, expenses, currentDate) {
     const welcomeMsg = document.getElementById('welcomeMsg');
     const totalSpent = document.getElementById('totalSpent');
 
     welcomeMsg.innerText = `Welcome ${user.name}`;
     totalSpent.innerText = `Thanks for staying with us! You have spent $${expenses} on bookings.`;
 
-    domUpdates.renderUpcomingBookings(user, currentDate, photos);
-    domUpdates.renderPastBookings(user, currentDate, photos);
+    domUpdates.renderUpcomingBookings(user, currentDate);
+    domUpdates.renderPastBookings(user, currentDate);
   },
 
-  renderPastBookings(user, currentDate, photos) {
+  renderPastBookings(user, currentDate) {
     const pastStays = document.getElementById('pastStays');
     pastStays.innerHTML = '';
 
@@ -262,7 +256,7 @@ const domUpdates = {
     });
   },
 
-  renderUpcomingBookings(user, currentDate, photos) {
+  renderUpcomingBookings(user, currentDate) {
     const upcomingStays = document.getElementById('upcomingStays');
     upcomingStays.innerHTML = '';
 
@@ -311,7 +305,7 @@ const domUpdates = {
         <article class="room-card" id="${room.number}">
           <div class="image-area">
             <div class="image-container">
-              <img src="${room.imageURL}" class="room-photo" alt="modern hotel room">
+              <img src="${room.imageURL}" class="room-photo" alt="Light and airy room with double bed">
               <button id="selectRoomButton" class="select-room-btn">Select this room</button>
             </div>
           </div>

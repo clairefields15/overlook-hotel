@@ -32,16 +32,21 @@
 }
 
 .landing-page-book-button {
-  margin-top: 8em;
+  margin-top: 7em;
+  
+  &:hover {
+    background: $light-blue
+  }
 }
 
 
 // LOG IN PAGE
 .log-in-page {
   height: 100vh;
-  background-color: $lighter-blue;
   @include flex-center;
+  @include background-gradient;
   text-align: center;
+  margin-top: 20vh;
 }
 
 .input-container {
@@ -56,11 +61,16 @@
 
 .input {
   padding: 0.5em;
+
+  &::placeholder {
+    color: red;
+  }
 }
 
 // BOOKING PAGE
 .select-page {
   @include flex-center;
+  @include background-gradient;
 }
 
 .selectDates {
@@ -147,8 +157,14 @@
 }
 
 .error-msg {
-  color:red;
+  color: white;
   font-size: 1em;
+  padding: 0.5em;
+  font-weight: 500;
+  color: #8a0000;
+  border: 1px solid #8a0000;
+  background-color: #e58f8f;
+  opacity: 0;
 }
 
 // DASHBOARD
