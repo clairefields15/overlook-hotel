@@ -10,9 +10,9 @@ p {
 
 
 body {
-  background: $header-color;
   min-height: 100vh;
   overflow: scroll;
+  @include background-gradient;
 }
 
 .hidden {

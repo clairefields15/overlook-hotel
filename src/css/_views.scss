@@ -44,9 +44,7 @@
 .log-in-page {
   height: 100vh;
   @include flex-center;
-  @include background-gradient;
   text-align: center;
-  margin-top: 20vh;
 }
 
 .input-container {
@@ -70,7 +68,6 @@
 // BOOKING PAGE
 .select-page {
   @include flex-center;
-  @include background-gradient;
 }
 
 .selectDates {
@@ -105,8 +102,7 @@
 .room-type-form {
   padding: 1em;
   margin: 1em;
-  display: flex;
-  flex-direction: column;
+  @include flex-center;
 }
 
 .apology {
@@ -128,20 +124,34 @@
   padding: 1em;
   border-radius: 0.5em;
   margin: 1em;
+  max-width: 20em;
 
   &:hover {
     background-color: lightgray;
   }
 }
 
-.room-photo {
-  width: 100%;
-  height: auto;
-  object-fit: cover;
+.selected-room-image-container {
+  @include flex-center
+}
+
+.selected-room-photo {
+  max-width: 80%;
+  max-height: auto;
+  border-radius: 1em;
   overflow: hidden;
+  margin-top: 2em;
 }
 
 .text-area {
+  padding: 1em;
+}
+
+.button-and-text {
+  max-width: 80%;
+}
+
+.selected-text-area {
   padding: 1em;
 }
 
@@ -149,11 +159,18 @@
 .confirmation-page {
   @include flex-center;
   text-align: center;
+}
 
-  & p {
-    font-size: 3em;
-    padding: 1em;
-  }
+.confirmation-container {
+  @include flex-center;
+  margin-top: 3em;
+}
+
+.confirm-msg {
+  font-family: 'Electrolize', sans-serif;
+  font-size: 2em;
+  padding: 1em;
+  text-align: center;
 }
 
 .error-msg {
@@ -171,6 +188,7 @@
 .profile-page {
   @include flex-center;
   text-align: center;
+
 }
 
 .search-results {
@@ -191,6 +209,13 @@
   gap: 2em;
 }
 
+.selected-room-photo {
+  max-width: 30em;
+  max-height: auto;
+  border-radius: 1em;
+  overflow: hidden;
+}
+
 //log in form is pretty small in this view!
 
 }
@@ -204,11 +229,14 @@
   gap: 2em;
 }
 
-.room-photo {
+.selected-room-photo {
   max-width: 30em;
+  max-height: auto;
+  border-radius: 1em;
+  overflow: hidden;
 }
 
-//log in form is really small in this view!
+
 }
 
 /* desktop size */
@@ -220,8 +248,16 @@
   gap: 2em;
 }
 
-.room-photo {
-  max-width: 30em;
+.selected-room-photo {
+  max-width: auto;
+  max-height: 30em;
+  margin-left: 4em;
+  border-radius: 1em;
+  overflow: hidden;
+}
+
+.button-container {
+  margin-top: 2em;
 }
 
 .book-this-room {
@@ -229,9 +265,14 @@
   align-items: center;
   flex-direction: row;
 }
-//can't see full landing page photo in this view
-//need to ditch the hamburger button
-// filter results by room type is really long in this view
-// photo is wayyy too big when you select a room
 
+.button-and-text {
+  @include flex-center;
+}
+
+.selected-text-area {
+  padding: 1em;
+  margin-top: 3em;
+  height: 12em;
+}
 }

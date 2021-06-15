@@ -167,7 +167,7 @@ const domUpdates = {
   },
 
   showConfirmationView() {
-    domUpdates.show([confirmationPage, confirmationMsg]);
+    domUpdates.show([confirmationPage]);
     domUpdates.hide([
       bookingPage,
       searchResultsPage,
@@ -218,23 +218,25 @@ const domUpdates = {
 
   renderPastBookings(user, currentDate) {
     const pastStays = document.getElementById('pastStays');
+    const noPastStays = document.getElementById('noPastStays')
     pastStays.innerHTML = '';
+    noPastStays.innerHTML = '';
 
     let pastBookings = user.getPastBookings(currentDate);
-    let sortedPastBookings = user.sortBookingsAscendingDates(pastBookings);
+    let sortedPastBookings = user.sortBookingsDescendingDates(pastBookings);
 
     if (pastBookings.length === 0) {
-      const noStays = `
+      noPastStays.innerHTML = `
       <article class="no-stays-card">
         <p>You have no past stays.</p>
       </article>
       `;
-      pastStays.insertAdjacentHTML('beforebegin', noStays); 
     }
 
     sortedPastBookings.forEach(booking => {
       const bookingDate = dayjs(booking.date);
       const formattedDate = bookingDate.format('MMM D YYYY');
+
 
       pastStays.innerHTML += `
         <article class="past-booking-card">
@@ -258,19 +260,20 @@ const domUpdates = {
 
   renderUpcomingBookings(user, currentDate) {
     const upcomingStays = document.getElementById('upcomingStays');
+    const noUpcomingStays = document.getElementById('noUpcomingStays')
     upcomingStays.innerHTML = '';
+    noUpcomingStays.innerHTML = '';
 
     let upcomingBookings = user.getUpcomingBookings(currentDate);
     let sortedUpcomingBookings =
       user.sortBookingsAscendingDates(upcomingBookings);
 
     if (upcomingBookings.length === 0) {
-      const noStays = `
+      noUpcomingStays.innerHTML = `
       <article class="no-stays-card">
         <p>You have no upcoming stays.</p>
       </article>
       `;
-      upcomingStays.insertAdjacentHTML('beforebegin', noStays) 
     }
 
     sortedUpcomingBookings.forEach(booking => {
@@ -352,25 +355,32 @@ const domUpdates = {
     selectedRoom.innerHTML = '';
 
     selectedRoom.innerHTML = `
-      <div class="room-image-container">
-        <img src="${room.imageURL}" class="room-photo" alt="Light and airy room with double bed">
+      <div class="selected-room-image-container">
+        <img src="${room.imageURL}" class="selected-room-photo" alt="Light and airy room with double bed">
       </div>
-      <div class="text-area" id="${room.number}">
-        <h3 id="roomType" class="room-type">${room.type}</h3>
-        <p id="typeOfBed">${room.numBeds} ${room.bedSize}</p>
-        <p id="datesOfStay">Date of Stay: ${formattedDate}</p>
-        <p id="costPerNight">$${room.costPerNight} per night x 1 night</p>
-        <p id="totalCost">Total: $${room.costPerNight}</p><br>
-        <p>Money is fake anyway, so let's pretend you pay here.</p>
-
+      <div class="button-and-text">
+        <div class="selected-text-area" id="${room.number}">
+          <h3 id="roomType" class="room-type">${room.type}</h3>
+          <p id="typeOfBed">${room.numBeds} ${room.bedSize}</p>
+          <p id="datesOfStay">Date of Stay: ${formattedDate}</p>
+          <p id="costPerNight">$${room.costPerNight} per night x 1 night</p>
+          <p id="totalCost">Total: $${room.costPerNight}</p><br>
+          <p>Money is fake anyway, so let's pretend you pay here.</p>
+        </div>
         <div class="button-container">
-        <button id="${room.number}" class="book-room-btn">Book Your Stay!</button>
-      <button id="goBackButton" class="go-back-btn">
-        View other rooms on this date
-      </button>
-    </div>
+          <button id="${room.number}" class="book-room-btn">Book Your Stay!</button>
+          <button id="goBackButton" class="go-back-btn">
+          View other rooms on this date
+          </button>
+        </div>
       </div>
     `;
+  },
+
+  catchError(err) {
+    errorMessage.style.opacity = 1;
+    errorMessage.innerText = 'So sorry, our servers are down, please refresh and try again later.'
+    console.error('Network Error:', err.message)
   }
 };
 
