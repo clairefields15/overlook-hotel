@@ -3,7 +3,6 @@ import {
   assignVariables,
   pageLoad,
   instantiateUser,
-  getPhotoURLs
 } from './scripts';
 
 // --- Endpoints --- //
@@ -14,7 +13,6 @@ const endpoints = {
   customers: 'http://localhost:3001/api/v1/customers',
   photos: 'https://api.unsplash.com/users/clairefields15/collections/?id=i-1paXK8zDk/photos/&client_id=4FoST7WXyYlxy0FaSNaKmVsK13r6yTqepwtz5JljGXM'
 }
-
 
 // --- Fetch Requests --- //
 

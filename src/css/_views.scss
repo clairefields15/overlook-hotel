@@ -164,7 +164,6 @@
 .confirmation-container {
   @include flex-center;
   margin-top: 3em;
-
 }
 
 .confirm-msg {
@@ -189,7 +188,6 @@
 .profile-page {
   @include flex-center;
   text-align: center;
-
 }
 
 .search-results {
@@ -201,79 +199,73 @@
 
 
 // --------- MEDIA QUERIES ----------- //
-/* tablet size */
 @media screen and (min-width: $tablet-size) {
-.search-results {
-  display: grid;
-  padding: 1.3em;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 2em;
-}
+  .search-results {
+    display: grid;
+    padding: 1.3em;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2em;
+  }
 
-.selected-room-photo {
-  max-width: 30em;
-  max-height: auto;
-  border-radius: 1em;
-  overflow: hidden;
-}
-
-//log in form is pretty small in this view!
+  .selected-room-photo {
+    max-width: 30em;
+    max-height: auto;
+    border-radius: 1em;
+    overflow: hidden;
+  }
 
 }
 
-/* large tablet size */
 @media screen and (min-width: $large-tablet-size) {
-.search-results {
-  display: grid;
-  padding: 1.3em;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2em;
+  .search-results {
+    display: grid;
+    padding: 1.3em;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2em;
+  }
+
+  .selected-room-photo {
+    max-width: 30em;
+    max-height: auto;
+    border-radius: 1em;
+    overflow: hidden;
+  }
+
 }
 
-.selected-room-photo {
-  max-width: 30em;
-  max-height: auto;
-  border-radius: 1em;
-  overflow: hidden;
-}
-
-
-}
-
-/* desktop size */
 @media screen and (min-width: $desktop-size) {
-.search-results {
-  display: grid;
-  padding: 1.3em;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 2em;
-}
+  .search-results {
+    display: grid;
+    padding: 1.3em;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2em;
+  }
 
-.selected-room-photo {
-  max-width: auto;
-  max-height: 30em;
-  margin-left: 4em;
-  border-radius: 1em;
-  overflow: hidden;
-}
+  .selected-room-photo {
+    max-width: auto;
+    max-height: 30em;
+    margin-left: 4em;
+    border-radius: 1em;
+    overflow: hidden;
+  }
 
-.button-container {
-  margin-top: 2em;
-}
+  .button-container {
+    margin-top: 2em;
+  }
 
-.book-this-room {
-  display: flex;
-  align-items: center;
-  flex-direction: row;
-}
+  .book-this-room {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+  }
 
-.button-and-text {
-  @include flex-center;
-}
+  .button-and-text {
+    @include flex-center;
+  }
 
-.selected-text-area {
-  padding: 1em;
-  margin-top: 3em;
-  height: 12em;
-}
+  .selected-text-area {
+    padding: 1em;
+    margin-top: 3em;
+    height: 12em;
+  }
 }

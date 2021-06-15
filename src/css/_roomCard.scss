@@ -41,7 +41,6 @@
   padding: 1em;
 }
 
-
 // PAST BOOKING CARDS
 
 .past-date {
@@ -77,25 +76,9 @@
   box-shadow: 0.2em 0.1em 0.5em #3d3d3d;
 }
 
-
-// --------- MEDIA QUERIES ----------- //
-/* tablet size */
-@media screen and (min-width: $tablet-size) {
-
-
-
-}
-
-/* large tablet size */
-@media screen and (min-width: $large-tablet-size) {
-
-
-}
-
 /* desktop size */
 @media screen and (min-width: $desktop-size) {
-
-.select-room-btn {
-  display: none;
-}
+  .select-room-btn {
+    display: none;
+  }
 }
