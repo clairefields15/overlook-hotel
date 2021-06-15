@@ -4,7 +4,6 @@ import './images/balcony-exterior.jpg';
 import './images/hamburger.png';
 import './images/hamburger-close.png';
 import './images/checked-checkbox.png';
-import './images/mind-map.png';
 import domUpdates from './domUpdates';
 import apiCalls from './apiCalls';
 import Customer from './customer';
