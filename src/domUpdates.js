@@ -240,7 +240,7 @@ const domUpdates = {
         <article class="past-booking-card">
           <div class="image-area">
             <div class="image-container">
-              <img src="./images/1-bed-room.jpg" class="past-room-photo" alt="Light and airy room with double bed">
+              <img src="${booking.room.imageURL}" class="past-room-photo" alt="Light and airy room with double bed">
               <div class="past-date">
                 <p id="date" class="date">${formattedDate}</p>
                 <h3 id="past-roomType" class="room-type">${booking.room.type}</h3>
@@ -281,7 +281,7 @@ const domUpdates = {
         <article class="past-booking-card">
           <div class="image-area">
             <div class="image-container">
-              <img src="./images/1-bed-room.jpg" class="past-room-photo" alt="Light and airy room with double bed">
+              <img src="${booking.room.imageURL}" class="past-room-photo" alt="Light and airy room with double bed">
               <div class="past-date">
                 <p id="date" class="date">${formattedDate}</p>
                 <h3 id="past-roomType" class="room-type">${booking.room.type}</h3>
@@ -305,7 +305,7 @@ const domUpdates = {
         <article class="room-card" id="${room.number}">
           <div class="image-area">
             <div class="image-container">
-              <img src="./images/1-bed-room.jpg" class="room-photo" alt="Light and airy room with double bed">
+              <img src="${room.imageURL}" class="room-photo" alt="Light and airy room with double bed">
               <button id="selectRoomButton" class="select-room-btn">Select this room</button>
             </div>
           </div>
@@ -353,7 +353,7 @@ const domUpdates = {
 
     selectedRoom.innerHTML = `
       <div class="room-image-container">
-        <img src="./images/1-bed-room.jpg" class="room-photo" alt="Light and airy room with double bed">
+        <img src="${room.imageURL}" class="room-photo" alt="Light and airy room with double bed">
       </div>
       <div class="text-area" id="${room.number}">
         <h3 id="roomType" class="room-type">${room.type}</h3>
