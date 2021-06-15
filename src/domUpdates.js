@@ -218,23 +218,25 @@ const domUpdates = {
 
   renderPastBookings(user, currentDate) {
     const pastStays = document.getElementById('pastStays');
+    let noPastStays = document.getElementById('noPastStays')
     pastStays.innerHTML = '';
+    noPastStays.innerHTML = '';
 
     let pastBookings = user.getPastBookings(currentDate);
     let sortedPastBookings = user.sortBookingsAscendingDates(pastBookings);
 
     if (pastBookings.length === 0) {
-      const noStays = `
+      noPastStays.innerHTML = `
       <article class="no-stays-card">
         <p>You have no past stays.</p>
       </article>
       `;
-      pastStays.insertAdjacentHTML('beforebegin', noStays); 
     }
 
     sortedPastBookings.forEach(booking => {
       const bookingDate = dayjs(booking.date);
       const formattedDate = bookingDate.format('MMM D YYYY');
+
 
       pastStays.innerHTML += `
         <article class="past-booking-card">
@@ -258,19 +260,20 @@ const domUpdates = {
 
   renderUpcomingBookings(user, currentDate) {
     const upcomingStays = document.getElementById('upcomingStays');
+    const noUpcomingStays = document.getElementById('noUpcomingStays')
     upcomingStays.innerHTML = '';
+    noUpcomingStays.innerHTML = '';
 
     let upcomingBookings = user.getUpcomingBookings(currentDate);
     let sortedUpcomingBookings =
       user.sortBookingsAscendingDates(upcomingBookings);
 
     if (upcomingBookings.length === 0) {
-      const noStays = `
+      noUpcomingStays.innerHTML = `
       <article class="no-stays-card">
         <p>You have no upcoming stays.</p>
       </article>
       `;
-      upcomingStays.insertAdjacentHTML('beforebegin', noStays) 
     }
 
     sortedUpcomingBookings.forEach(booking => {

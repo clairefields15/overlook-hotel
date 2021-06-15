@@ -17,4 +17,6 @@ $dark-grey: #434039;
 
 @mixin background-gradient {
   background-image: linear-gradient($header-color,$light-blue);
+  height: 100vh;
+  background-attachment: fixed;
 }

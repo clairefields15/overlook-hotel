@@ -46,7 +46,6 @@
   @include flex-center;
   @include background-gradient;
   text-align: center;
-  margin-top: 20vh;
 }
 
 .input-container {
@@ -96,6 +95,7 @@
 .results-page {
   @include flex-center;
   text-align: center;
+  @include background-gradient;
 }
 
 .room-type-form-label {
@@ -149,6 +149,7 @@
 .confirmation-page {
   @include flex-center;
   text-align: center;
+  @include background-gradient;
 
   & p {
     font-size: 3em;
@@ -171,6 +172,8 @@
 .profile-page {
   @include flex-center;
   text-align: center;
+  @include background-gradient;
+  background-attachment: fixed;
 }
 
 .search-results {
