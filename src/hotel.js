@@ -47,19 +47,21 @@ class Hotel {
       .map(booking => booking.roomNumber);
   }
 
-  findAvailableRooms(date) {
+  setRoomAvailability(date) {
     const bookedRooms = this.findBookedRooms(date);
+
     this.rooms.forEach(room => {
-      room.isAvailable = true
+      room.isAvailable = true;
       if (bookedRooms.includes(room.number)) {
         room.isAvailable = false;
       }
     });
+  }
 
-  
-    let availableRooms = this.rooms.filter(room => room.isAvailable);
-    this.availableRooms = availableRooms;
-    return availableRooms;
+  findAvailableRooms(date) {
+    this.setRoomAvailability(date)
+    this.availableRooms = this.rooms.filter(room => room.isAvailable);
+    return this.availableRooms;
   }
 
   getRoomTypes() {
@@ -79,8 +81,8 @@ class Hotel {
 
   returnRoomDetails(roomNumber) {
     return this.rooms.find(room => {
-      return room.number === roomNumber
-    })
+      return room.number === roomNumber;
+    });
   }
 }
 
