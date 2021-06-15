@@ -1,16 +1,9 @@
 /* eslint-disable max-len */
 let dayjs = require('dayjs');
-
 const mobileLogInBtn = document.getElementById('mobileLogIn');
 const mobileBookBtn = document.getElementById('mobileBook');
-const mobileViewTripsBtn = document.getElementById('mobileViewTrips');
 const mobileViewProfileBtn = document.getElementById('mobileViewProfile');
-const navLogInBtn = document.getElementById('navLogIn');
 const mobileLogOutBtn = document.getElementById('mobileLogOut');
-const navBookBtn = document.getElementById('navBook');
-const navTripsBtn = document.getElementById('navTrips');
-const navProfileBtn = document.getElementById('navProfile');
-const desktopNavSection = document.getElementById('desktopNav');
 const landingPage = document.getElementById('landingPage');
 const selectPage = document.getElementById('selectPage');
 const searchResultsPage = document.getElementById('searchResultsPage');
@@ -211,18 +204,18 @@ const domUpdates = {
     }
   },
 
-  renderUserDashboard(user, expenses, currentDate, photos) {
+  renderUserDashboard(user, expenses, currentDate) {
     const welcomeMsg = document.getElementById('welcomeMsg');
     const totalSpent = document.getElementById('totalSpent');
 
     welcomeMsg.innerText = `Welcome ${user.name}`;
     totalSpent.innerText = `Thanks for staying with us! You have spent $${expenses} on bookings.`;
 
-    domUpdates.renderUpcomingBookings(user, currentDate, photos);
-    domUpdates.renderPastBookings(user, currentDate, photos);
+    domUpdates.renderUpcomingBookings(user, currentDate);
+    domUpdates.renderPastBookings(user, currentDate);
   },
 
-  renderPastBookings(user, currentDate, photos) {
+  renderPastBookings(user, currentDate) {
     const pastStays = document.getElementById('pastStays');
     pastStays.innerHTML = '';
 
@@ -246,7 +239,7 @@ const domUpdates = {
         <article class="past-booking-card">
           <div class="image-area">
             <div class="image-container">
-              <img src="${booking.room.imageURL}" class="past-room-photo" alt="Light and airy room with double bed">
+              <img src="./images/1-bed-room.jpg" class="past-room-photo" alt="Light and airy room with double bed">
               <div class="past-date">
                 <p id="date" class="date">${formattedDate}</p>
                 <h3 id="past-roomType" class="room-type">${booking.room.type}</h3>
@@ -262,7 +255,7 @@ const domUpdates = {
     });
   },
 
-  renderUpcomingBookings(user, currentDate, photos) {
+  renderUpcomingBookings(user, currentDate) {
     const upcomingStays = document.getElementById('upcomingStays');
     upcomingStays.innerHTML = '';
 
@@ -287,7 +280,7 @@ const domUpdates = {
         <article class="past-booking-card">
           <div class="image-area">
             <div class="image-container">
-              <img src="${booking.room.imageURL}" class="past-room-photo" alt="Light and airy room with double bed">
+              <img src="./images/1-bed-room.jpg" class="past-room-photo" alt="Light and airy room with double bed">
               <div class="past-date">
                 <p id="date" class="date">${formattedDate}</p>
                 <h3 id="past-roomType" class="room-type">${booking.room.type}</h3>
@@ -311,7 +304,7 @@ const domUpdates = {
         <article class="room-card" id="${room.number}">
           <div class="image-area">
             <div class="image-container">
-              <img src="${room.imageURL}" class="room-photo" alt="modern hotel room">
+              <img src="./images/1-bed-room.jpg" class="room-photo" alt="Light and airy room with double bed">
               <button id="selectRoomButton" class="select-room-btn">Select this room</button>
             </div>
           </div>
@@ -359,7 +352,7 @@ const domUpdates = {
 
     selectedRoom.innerHTML = `
       <div class="room-image-container">
-        <img src="${room.imageURL}" class="room-photo" alt="Light and airy room with double bed">
+        <img src="./images/1-bed-room.jpg" class="room-photo" alt="Light and airy room with double bed">
       </div>
       <div class="text-area" id="${room.number}">
         <h3 id="roomType" class="room-type">${room.type}</h3>

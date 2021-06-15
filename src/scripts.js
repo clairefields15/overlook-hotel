@@ -27,56 +27,63 @@ let bookingsData = null;
 let images = null;
 
 // ***** ----- QUERY SELECTORS ----- ***** //
-const hamburgerBtn = document.getElementById('hamburger');
-const mobileBookBtn = document.getElementById('mobileBook');
+// buttons
 const bookNowBtn = document.getElementById('bookNowBtn');
 const checkAvailBtn = document.getElementById('checkAvailBtn');
-const navBookBtn = document.getElementById('navBook');
-const filteredResults = document.getElementById('filteredResults');
+const goHomeBtn = document.getElementById('mobileGoHome');
+const hamburgerBtn = document.getElementById('hamburger');
+const logInBtn = document.getElementById('logInBtn');
+const mobileBookBtn = document.getElementById('mobileBook');
 const mobileViewProfileBtn = document.getElementById('mobileViewProfile');
+const mobileLogInBtn = document.getElementById('mobileLogIn');
+const mobileLogOutBtn = document.getElementById('mobileLogOut');
+const navBookBtn = document.getElementById('navBook');
+const searchAgainBtn = document.getElementById('searchAgain');
+
+// select room
+const filteredResults = document.getElementById('filteredResults');
+const selectRoomType = document.getElementById('selectRoomType');
 const modalOverlay = document.getElementById('modalOverlay');
 const arrivalDate = document.getElementById('arrivalDate');
-const searchAgainBtn = document.getElementById('searchAgain');
-const selectRoomType = document.getElementById('selectRoomType');
 const roomTypeForm = document.getElementById('roomTypeForm');
 const selectedRoom = document.getElementById('selectedRoom');
 const changeDates = document.getElementById('changeDates');
-const mobileLogInBtn = document.getElementById('mobileLogIn');
-const goHomeBtn = document.getElementById('mobileGoHome');
-const logInBtn = document.getElementById('logInBtn');
 const usernameField = document.getElementById('usernameField');
 const passwordField = document.getElementById('passwordField');
 const errorMessage = document.getElementById('errorMessage');
-const mobileLogOutBtn = document.getElementById('mobileLogOut');
 const postErrorMsg = document.getElementById('postErrorMsg');
 const apologyMessage = document.getElementById('apologyMessage');
 
 
 
 // ***** ----- EVENT LISTENERS ----- ***** //
-window.addEventListener('load', apiCalls.fetchHotelData);
 
+// load and log in/out
+window.addEventListener('load', apiCalls.fetchHotelData);
+logInBtn.addEventListener('click', () => logIn(event));
+bookNowBtn.addEventListener('click', () => isCustomerLoggedIn(event));
+goHomeBtn.addEventListener('click', () => isCustomerLoggedIn(event));
 mobileLogInBtn.addEventListener('click', domUpdates.showLogInView);
 mobileLogOutBtn.addEventListener('click', logOut)
+
+// navigation
+hamburgerBtn.addEventListener('click', domUpdates.openMobileNav);
+modalOverlay.addEventListener('click', domUpdates.hideOverlay);
+mobileViewProfileBtn.addEventListener('click', domUpdates.showUserProfile);
 searchAgainBtn.addEventListener('click', domUpdates.showBookingView);
 changeDates.addEventListener('click', domUpdates.showBookingView);
-hamburgerBtn.addEventListener('click', domUpdates.openMobileNav);
 mobileBookBtn.addEventListener('click', domUpdates.showBookingView);
-modalOverlay.addEventListener('click', domUpdates.hideOverlay);
-goHomeBtn.addEventListener('click', () => isCustomerLoggedIn(event));
-bookNowBtn.addEventListener('click', () => isCustomerLoggedIn(event));
 navBookBtn.addEventListener('click', domUpdates.showBookingView);
+
+// search for room and filter rooms
 checkAvailBtn.addEventListener('click', checkAvailability);
 checkAvailBtn.addEventListener('click', getRoomTypes);
 filteredResults.addEventListener('click', () => selectRoom(event));
-mobileViewProfileBtn.addEventListener('click', domUpdates.showUserProfile);
 selectRoomType.addEventListener('change', filterRoomsByType);
 selectedRoom.addEventListener('click', () => viewOtherRooms(event));
 selectedRoom.addEventListener('click', () => bookRoom(event));
-logInBtn.addEventListener('click', () => logIn(event));
 
 // ***** ----- EVENT HANDLERS ----- ***** //
-
 
 // --- Unsplash API Photos --- //
 
@@ -261,7 +268,6 @@ function filterRoomsByType() {
     domUpdates.renderAvailableRooms(results);
   }
 }
-
 
 // --- Book a Room  --- //
 
