@@ -1,10 +1,9 @@
 // ***** ----- IMPORTS ----- ***** //
 import './css/index.scss';
 import './images/hotel-logo.png';
-import './images/hotel-image.jpg';
+import './images/balcony-exterior.jpg';
 import './images/hamburger.png';
 import './images/hamburger-close.png';
-import './images/1-bed-room.jpg';
 import domUpdates from './domUpdates';
 import apiCalls from './apiCalls';
 import Customer from './customer';
@@ -25,6 +24,7 @@ let room = null;
 let hotel = null;
 let roomsData = null;
 let bookingsData = null;
+let images = null;
 
 // ***** ----- QUERY SELECTORS ----- ***** //
 const hamburgerBtn = document.getElementById('hamburger');
@@ -55,6 +55,7 @@ const apologyMessage = document.getElementById('apologyMessage');
 
 // ***** ----- EVENT LISTENERS ----- ***** //
 window.addEventListener('load', apiCalls.fetchHotelData);
+
 mobileLogInBtn.addEventListener('click', domUpdates.showLogInView);
 mobileLogOutBtn.addEventListener('click', logOut)
 searchAgainBtn.addEventListener('click', domUpdates.showBookingView);
@@ -62,7 +63,6 @@ changeDates.addEventListener('click', domUpdates.showBookingView);
 hamburgerBtn.addEventListener('click', domUpdates.openMobileNav);
 mobileBookBtn.addEventListener('click', domUpdates.showBookingView);
 modalOverlay.addEventListener('click', domUpdates.hideOverlay);
-// should check is logged in first 
 goHomeBtn.addEventListener('click', () => isCustomerLoggedIn(event));
 bookNowBtn.addEventListener('click', () => isCustomerLoggedIn(event));
 navBookBtn.addEventListener('click', domUpdates.showBookingView);
@@ -77,11 +77,22 @@ logInBtn.addEventListener('click', () => logIn(event));
 
 // ***** ----- EVENT HANDLERS ----- ***** //
 
+
+// --- Unsplash API Photos --- //
+
+export function getPhotoURLs(data) {
+  const allPhotos = data[0].preview_photos
+  return allPhotos.map(photo => {
+    return photo.urls.regular
+  })
+}
+
 // --- Page load --- //
 
 export function assignVariables(apiData) {
   roomsData = apiData[0].rooms;
   bookingsData = apiData[1].bookings;
+  images = getPhotoURLs(apiData[2])
 }
 
 export function instantiateUser(data) {
@@ -124,6 +135,7 @@ function makeRoomInstances() {
   const allRooms = [];
   roomsData.forEach(roomObj => {
     room = new Room(roomObj);
+    room.setImage(images)
     allRooms.push(room);
   });
   return allRooms;

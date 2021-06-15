@@ -14,7 +14,7 @@
   font: inherit;
   font-size: 100%;
   vertical-align: baseline;
-  background: url(../images/hotel-image.jpg) no-repeat center center;
+  background: url(../images/balcony-exterior.jpg) no-repeat center center;
   background-size: cover;
   @include flex-center;
 }
@@ -38,8 +38,8 @@
 
 // LOG IN PAGE
 .log-in-page {
-  background-color:grey;
   height: 100vh;
+  background-color: $lighter-blue;
   @include flex-center;
   text-align: center;
 }
@@ -147,7 +147,7 @@
 }
 
 .error-msg {
-  color: rgb(147, 29, 29);
+  color:red;
   font-size: 1em;
 }
 

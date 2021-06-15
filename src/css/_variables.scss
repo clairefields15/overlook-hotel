@@ -2,6 +2,11 @@ $primary-background: #272727;
 $tablet-size: 620px;
 $large-tablet-size: 900px;
 $desktop-size: 1200px;
+$header-color: #EBF1F4;
+$light-blue: #7FC8D5;
+$medium-grey: #81827D;
+$lighter-blue: #BBD9DC;
+$dark-grey: #434039;
 
 
 @mixin flex-center {
@@ -9,5 +14,3 @@ $desktop-size: 1200px;
   flex-direction: column;
   align-items: center;  
 }
-
-

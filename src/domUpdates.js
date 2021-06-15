@@ -211,18 +211,18 @@ const domUpdates = {
     }
   },
 
-  renderUserDashboard(user, expenses, currentDate) {
+  renderUserDashboard(user, expenses, currentDate, photos) {
     const welcomeMsg = document.getElementById('welcomeMsg');
     const totalSpent = document.getElementById('totalSpent');
 
     welcomeMsg.innerText = `Welcome ${user.name}`;
     totalSpent.innerText = `Thanks for staying with us! You have spent $${expenses} on bookings.`;
 
-    domUpdates.renderUpcomingBookings(user, currentDate);
-    domUpdates.renderPastBookings(user, currentDate);
+    domUpdates.renderUpcomingBookings(user, currentDate, photos);
+    domUpdates.renderPastBookings(user, currentDate, photos);
   },
 
-  renderPastBookings(user, currentDate) {
+  renderPastBookings(user, currentDate, photos) {
     const pastStays = document.getElementById('pastStays');
     pastStays.innerHTML = '';
 
@@ -246,7 +246,7 @@ const domUpdates = {
         <article class="past-booking-card">
           <div class="image-area">
             <div class="image-container">
-              <img src="./images/1-bed-room.jpg" class="past-room-photo" alt="Light and airy room with double bed">
+              <img src="${booking.room.imageURL}" class="past-room-photo" alt="Light and airy room with double bed">
               <div class="past-date">
                 <p id="date" class="date">${formattedDate}</p>
                 <h3 id="past-roomType" class="room-type">${booking.room.type}</h3>
@@ -262,7 +262,7 @@ const domUpdates = {
     });
   },
 
-  renderUpcomingBookings(user, currentDate) {
+  renderUpcomingBookings(user, currentDate, photos) {
     const upcomingStays = document.getElementById('upcomingStays');
     upcomingStays.innerHTML = '';
 
@@ -287,7 +287,7 @@ const domUpdates = {
         <article class="past-booking-card">
           <div class="image-area">
             <div class="image-container">
-              <img src="./images/1-bed-room.jpg" class="past-room-photo" alt="Light and airy room with double bed">
+              <img src="${booking.room.imageURL}" class="past-room-photo" alt="Light and airy room with double bed">
               <div class="past-date">
                 <p id="date" class="date">${formattedDate}</p>
                 <h3 id="past-roomType" class="room-type">${booking.room.type}</h3>
@@ -311,7 +311,7 @@ const domUpdates = {
         <article class="room-card" id="${room.number}">
           <div class="image-area">
             <div class="image-container">
-              <img src="./images/1-bed-room.jpg" class="room-photo" alt="Light and airy room with double bed">
+              <img src="${room.imageURL}" class="room-photo" alt="modern hotel room">
               <button id="selectRoomButton" class="select-room-btn">Select this room</button>
             </div>
           </div>
@@ -359,7 +359,7 @@ const domUpdates = {
 
     selectedRoom.innerHTML = `
       <div class="room-image-container">
-        <img src="./images/1-bed-room.jpg" class="room-photo" alt="Light and airy room with double bed">
+        <img src="${room.imageURL}" class="room-photo" alt="Light and airy room with double bed">
       </div>
       <div class="text-area" id="${room.number}">
         <h3 id="roomType" class="room-type">${room.type}</h3>
