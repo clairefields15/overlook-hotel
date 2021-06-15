@@ -1,12 +1,10 @@
 // LANDING PAGE
 .hotel-exterior {
-  margin: 0 0 2.25rem;
   background-position: 0;
   background-repeat: no-repeat;
   background-size: cover;
-  height: 100vh;
+  height: 95vh;
   line-height: 1;
-  margin: 0 0 1rem;
   position: relative;
   text-align: center;
   padding: 0;
@@ -39,6 +37,10 @@
   }
 }
 
+.slogan {
+  display: none;
+}
+
 
 // LOG IN PAGE
 .log-in-page {
@@ -49,16 +51,23 @@
 
 .input-container {
   @include flex-center;
-  margin: 1em
+  margin: 1em;
 }
 
 .label {
   color:black;
   margin-bottom: 1em;
+  font-size: 1.5em;
+}
+
+.username {
+  margin-top: 5em;
 }
 
 .input {
   padding: 0.5em;
+  width: 18em;
+  font-size: 1em;
 
   &::placeholder {
     color: red;
@@ -234,6 +243,7 @@
 }
 
 @media screen and (min-width: $desktop-size) {
+
   .search-results {
     display: grid;
     padding: 1.3em;
@@ -268,4 +278,18 @@
     margin-top: 3em;
     height: 12em;
   }
+
+  .landing-page-book-button {
+    margin-top: auto;
+    margin-bottom: auto;
+  }
+
+  // .slogan {
+  //   color: black;
+  //   display: block;
+  //   background-color: grey;
+  //   font-family: 'Times New Roman';
+  //   font-size: 3em;
+  // }
+
 }
