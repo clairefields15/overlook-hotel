@@ -101,7 +101,6 @@ export function assignVariables(apiData) {
   roomsData = apiData[0].rooms;
   bookingsData = apiData[1].bookings;
   images = getPhotoURLs(apiData[2])
-  console.log('assign', apiData)
 }
 
 export function instantiateUser(data) {
@@ -118,7 +117,6 @@ function renderDashboard(customer) {
 }
 
 export function pageLoad() {
-  console.log('hi page load')
   const allBookings = makeBookingInstances();
   const allRooms = makeRoomInstances();
   hotel = new Hotel(allBookings, allRooms);
@@ -128,7 +126,7 @@ export function pageLoad() {
     renderDashboard(customer)
     setTimeout(function () {
       domUpdates.showUserProfile();
-    }, 2000);
+    }, 1500);
   }
 }
 

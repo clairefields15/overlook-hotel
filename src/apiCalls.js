@@ -74,8 +74,7 @@ const bookRoom = (user, dateSelected, roomNum) => {
     .then(handlePostError)
     .then(() => domUpdates.showConfirmationView())
     .then(() => fetchHotelData())
-    // .then(() => pageLoad())
-    .catch(domUpdates.catchError);
+    .catch((error) => domUpdates.catchError(error));
 }
 
 // --- Error handling --- //

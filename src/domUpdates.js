@@ -20,12 +20,10 @@ const searchAgainBtn = document.getElementById('searchAgain');
 const roomTypeForm = document.getElementById('roomTypeForm');
 const selectedRoom = document.getElementById('selectedRoom');
 const yourDates = document.getElementById('yourDates');
-const confirmationMsg = document.getElementById('confirmationMsg');
 const logInPage = document.getElementById('logInPage');
 const goHomeBtn = document.getElementById('mobileGoHome')
 const landingMsg = document.getElementById('landingMsg');
 const errorMessage = document.getElementById('errorMessage');
-const errorTag = document.getElementById('errorTag');
 const postErrorMsg = document.getElementById('postErrorMsg');
 const apologyMessage = document.getElementById('apologyMessage');
 
@@ -176,8 +174,7 @@ const domUpdates = {
       landingPage,
       logInPage,
       mobileLogInBtn,
-      mobileBookBtn,
-      errorTag
+      mobileBookBtn
     ]);
   },
 
@@ -380,7 +377,7 @@ const domUpdates = {
   catchError(err) {
     errorMessage.style.opacity = 1;
     errorMessage.innerText = 'So sorry, our servers are down, please refresh and try again later.'
-    console.error('Network Error:', err.message)
+    console.error('Network Error:', err)
   }
 };
 
