@@ -78,7 +78,7 @@ const domUpdates = {
       mobileViewProfileBtn,
       desktopProfileBtn,
       mobileBookBtn,
-      desktopBookBtn
+      desktopBookBtn,
     ]);
   },
 
@@ -89,7 +89,8 @@ const domUpdates = {
       mobileViewProfileBtn,
       mobileLogOutBtn,
       desktopProfileBtn,
-      desktopLogOutBtn
+      desktopLogOutBtn,
+      landingMsg
     ]);
     domUpdates.hide([
       selectPage,
@@ -108,7 +109,15 @@ const domUpdates = {
   },
 
   showUserProfile() {
-    domUpdates.show([profilePage, mobileBookBtn, goHomeBtn, desktopBookBtn, desktopGoHomeBtn]);
+    domUpdates.show([
+      profilePage, 
+      mobileBookBtn, 
+      goHomeBtn, 
+      desktopBookBtn, 
+      desktopGoHomeBtn, 
+      mobileLogOutBtn,
+      desktopLogOutBtn
+    ]);
     domUpdates.hide([
       landingPage,
       searchResultsPage,
@@ -124,7 +133,13 @@ const domUpdates = {
   },
 
   showBookingView() {
-    domUpdates.show([selectPage, goHomeBtn, desktopGoHomeBtn]);
+    domUpdates.show([
+      selectPage, 
+      goHomeBtn, 
+      desktopGoHomeBtn,
+      mobileLogOutBtn,
+      desktopLogOutBtn
+    ]);
     domUpdates.hide([
       landingPage,
       searchResultsPage,
@@ -150,12 +165,20 @@ const domUpdates = {
       profilePage,
       mobileLogInBtn,
       desktopLogInBtn,
-      mobileBookBtn
+      mobileBookBtn,
+      mobileLogOutBtn,
+      desktopLogOutBtn
     ]);
   },
 
   showSearchResultsPage() {
-    domUpdates.show([searchResultsPage, goHomeBtn, desktopGoHomeBtn]);
+    domUpdates.show([
+      searchResultsPage, 
+      goHomeBtn, 
+      desktopGoHomeBtn,
+      mobileLogOutBtn,
+      desktopLogOutBtn
+    ]);
     domUpdates.hide([
       selectPage,
       landingPage,
@@ -171,7 +194,12 @@ const domUpdates = {
   },
 
   showRoomDetails() {
-    domUpdates.show([bookingPage, goHomeBtn, desktopGoHomeBtn]);
+    domUpdates.show([
+      bookingPage, 
+      goHomeBtn, 
+      desktopGoHomeBtn,
+      mobileLogOutBtn,
+      desktopLogOutBtn]);
     domUpdates.hide([
       searchResultsPage,
       selectPage,

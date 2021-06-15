@@ -161,6 +161,7 @@ function setCalendarDate() {
 function isCustomerLoggedIn(event) {
   postErrorMsg.innerText = '';
   const target = event.target.id
+  setCalendarDate()
 
   if (customer && target === 'bookNowBtn') {
     domUpdates.showBookingView();
@@ -256,6 +257,7 @@ function checkAvailability() {
   const input = dayjs(arrivalDate.value).format('YYYY/MM/DD');
   const results = hotel.findAvailableRooms(input);
   domUpdates.showSearchResultsPage();
+  setCalendarDate()
 
   if (results.length === 0) {
     domUpdates.renderApology();
