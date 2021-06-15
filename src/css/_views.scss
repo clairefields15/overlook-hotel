@@ -44,7 +44,6 @@
 .log-in-page {
   height: 100vh;
   @include flex-center;
-  @include background-gradient;
   text-align: center;
 }
 
@@ -69,7 +68,6 @@
 // BOOKING PAGE
 .select-page {
   @include flex-center;
-  @include background-gradient;
 }
 
 .selectDates {
@@ -95,7 +93,6 @@
 .results-page {
   @include flex-center;
   text-align: center;
-  @include background-gradient;
 }
 
 .room-type-form-label {
@@ -149,7 +146,6 @@
 .confirmation-page {
   @include flex-center;
   text-align: center;
-  @include background-gradient;
 
   & p {
     font-size: 3em;
@@ -172,8 +168,7 @@
 .profile-page {
   @include flex-center;
   text-align: center;
-  @include background-gradient;
-  background-attachment: fixed;
+
 }
 
 .search-results {

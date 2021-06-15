@@ -21,32 +21,33 @@ const endpoints = {
 const fetchPhotos = () => {
   return fetch(endpoints.photos)
     .then(response => response.json())
-    .catch(error => console.error(`Unsplash API Error', ${error.message}`));
+    .catch(error => domUpdates.displayNetworkError(error))
+    .catch(domUpdates.catchError);
 };
 
 const fetchRooms = () => {
   return fetch(endpoints.rooms)
     .then(response => response.json())
-    .catch(error => console.error(`Room API Error: ${error.message}`));
+    .catch(domUpdates.catchError);
 };
 
 const fetchBookings = () => {
   return fetch(endpoints.bookings)
     .then(response => response.json())
-    .catch(error => console.error(`Booking API Error: ${error.message}`));
+    .catch(domUpdates.catchError);
 }
 
 const fetchCustomers = () => {
   return fetch(endpoints.customers)
     .then(response => response.json())
-    .catch(error => console.error(`Customers API Error: ${error.message}`));
+    .catch(domUpdates.catchError);
 };
 
 const fetchCustomer = (id) => {
   return fetch(`http://localhost:3001/api/v1/customers/${id}`)
     .then(handleLogInError)
     .then(data => instantiateUser(data))
-    .catch(error => console.error(`Customer API Error: ${error.message}`));
+    .catch(domUpdates.catchError);
 };
 
 const fetchHotelData = () => {
@@ -71,10 +72,10 @@ const bookRoom = (user, dateSelected, roomNum) => {
     })
   })
     .then(handlePostError)
-    .then(()=> domUpdates.showConfirmationView())
+    .then(() => domUpdates.showConfirmationView())
     .then(() => fetchHotelData())
     .then(() => pageLoad())
-    .catch(err => console.error(`POST Request Error: ${err.message}`));
+    .catch(domUpdates.catchError);
 }
 
 // --- Error handling --- //

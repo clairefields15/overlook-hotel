@@ -218,7 +218,7 @@ const domUpdates = {
 
   renderPastBookings(user, currentDate) {
     const pastStays = document.getElementById('pastStays');
-    let noPastStays = document.getElementById('noPastStays')
+    const noPastStays = document.getElementById('noPastStays')
     pastStays.innerHTML = '';
     noPastStays.innerHTML = '';
 
@@ -374,6 +374,12 @@ const domUpdates = {
     </div>
       </div>
     `;
+  },
+
+  catchError(err) {
+    errorMessage.style.opacity = 1;
+    errorMessage.innerText = 'So sorry, our servers are down, please refresh and try again later.'
+    console.error('Network Error:', err.message)
   }
 };
 
