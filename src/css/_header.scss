@@ -1,3 +1,4 @@
+
 header {
   background: $header-color;
   display: flex;
@@ -76,7 +77,44 @@ nav {
   width: 40px;
 }
 
-.hidden {
+.desktop-nav {
   display: none;
 }
 
+
+/* desktop size */
+@media screen and (min-width: $desktop-size) {
+
+.desktop-nav {
+  display: block;
+}
+
+.mobile-nav,
+.mobile-dropdown,
+.burger-button,
+.ham-img,
+.modal-overlay {
+  display: none;
+}
+
+.nav-button {
+	cursor: pointer;
+  margin: 1em;
+  border: 1px solid $medium-grey;
+  background-color: inherit;
+  color: black;
+  padding: 0.5em;
+
+  &:hover {
+    background-color: $lighter-blue;
+  }
+}
+
+
+
+}
+
+
+.hidden {
+  display: none;
+}
