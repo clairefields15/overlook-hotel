@@ -38,6 +38,12 @@ class Customer {
       return dayjs(a.date) - dayjs(b.date);
     });
   }
+
+  sortBookingsDescendingDates(bookings) {
+    return bookings.sort((a, b) => {
+      return dayjs(b.date) - dayjs(a.date);
+    });
+  }
 }
 
 export default Customer

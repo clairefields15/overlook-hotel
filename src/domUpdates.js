@@ -223,7 +223,7 @@ const domUpdates = {
     noPastStays.innerHTML = '';
 
     let pastBookings = user.getPastBookings(currentDate);
-    let sortedPastBookings = user.sortBookingsAscendingDates(pastBookings);
+    let sortedPastBookings = user.sortBookingsDescendingDates(pastBookings);
 
     if (pastBookings.length === 0) {
       noPastStays.innerHTML = `
