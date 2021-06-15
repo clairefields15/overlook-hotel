@@ -4,18 +4,17 @@ html {
   font-family: 'Montserrat', sans-serif;
 }
 
-
 p {
   font-size: 1.25em
 }
 
 
-.hidden {
-  display: none !important;
-}
-
 body {
   background: $header-color;
   min-height: 100vh;
   overflow: scroll;
+}
+
+.hidden {
+  display: none !important;
 }

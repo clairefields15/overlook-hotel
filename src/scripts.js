@@ -1,6 +1,5 @@
 // ***** ----- IMPORTS ----- ***** //
 import './css/index.scss';
-import './images/hotel-logo.png';
 import './images/balcony-exterior.jpg';
 import './images/hamburger.png';
 import './images/hamburger-close.png';
@@ -182,6 +181,8 @@ function logIn(event) {
       setUser(username, password);
     } catch (error) {
       errorMessage.innerText = error;
+      errorMessage.style.opacity = 1;
+
     }
   }
 }
@@ -233,6 +234,10 @@ function logOut() {
   customer = null;
   postErrorMsg.innerText = '';
   domUpdates.showLandingPage();
+  errorMessage.style.opacity = 0;
+  usernameField.setAttribute('placeholder', '');
+  passwordField.setAttribute('placeholder', '');
+
 }
 
 // --- Search for Room  --- //

@@ -14,3 +14,7 @@ $dark-grey: #434039;
   flex-direction: column;
   align-items: center;  
 }
+
+@mixin background-gradient {
+  background-image: linear-gradient($header-color,$light-blue);
+}

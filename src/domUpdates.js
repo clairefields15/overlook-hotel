@@ -194,6 +194,7 @@ const domUpdates = {
   },
 
   showLogInError(response) {
+    errorMessage.style.opacity = 1;
     if (response.status === 404) {
       errorMessage.innerText = 'Username does not exist';
     } else if (response.status === 500) {
