@@ -35,6 +35,7 @@ Once you have successfully logged into the site, you can view a user dashboard w
 
 
 All stays on this app are for one night only, so let's watch as Moises selects a date for his stay and browses the available rooms.
+
 ![gif of user picking a date and browsing rooms](https://media.giphy.com/media/5AlKZKJ4Gdf9T57iDd/giphy.gif)
 
 Users may filter available rooms by room type.
