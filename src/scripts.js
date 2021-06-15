@@ -38,8 +38,14 @@ const mobileBookBtn = document.getElementById('mobileBook');
 const mobileViewProfileBtn = document.getElementById('mobileViewProfile');
 const mobileLogInBtn = document.getElementById('mobileLogIn');
 const mobileLogOutBtn = document.getElementById('mobileLogOut');
-const navBookBtn = document.getElementById('navBook');
 const searchAgainBtn = document.getElementById('searchAgain');
+// desktop nav buttons
+const desktopGoHomeBtn = document.getElementById('goHome');
+const desktopBookBtn = document.getElementById('navBook');
+const desktopProfileBtn = document.getElementById('navProfile');
+const desktopLogInBtn = document.getElementById('navLogIn');
+const desktopLogOutBtn = document.getElementById('navLogOut');
+const desktopNav = document.getElementById('desktopNav')
 
 // select room
 const filteredResults = document.getElementById('filteredResults');
@@ -59,6 +65,18 @@ const apologyMessage = document.getElementById('apologyMessage');
 
 // ***** ----- EVENT LISTENERS ----- ***** //
 
+
+// at desktop size need to remove hidden from desktop-nav
+// and need to hide mobile-nav
+// need event listeners on the currently hidden buttons, is that gonna fuck up shit?
+
+// desktop mav buttons 
+desktopGoHomeBtn.addEventListener('click', () => isCustomerLoggedIn(event));
+desktopLogInBtn.addEventListener('click', domUpdates.showLogInView);
+desktopBookBtn.addEventListener('click', domUpdates.showBookingView);
+desktopProfileBtn.addEventListener('click', domUpdates.showUserProfile);
+desktopLogOutBtn.addEventListener('click', logOut);
+
 // load and log in/out
 window.addEventListener('load', apiCalls.fetchHotelData);
 logInBtn.addEventListener('click', () => logIn(event));
@@ -74,7 +92,6 @@ mobileViewProfileBtn.addEventListener('click', domUpdates.showUserProfile);
 searchAgainBtn.addEventListener('click', domUpdates.showBookingView);
 changeDates.addEventListener('click', domUpdates.showBookingView);
 mobileBookBtn.addEventListener('click', domUpdates.showBookingView);
-navBookBtn.addEventListener('click', domUpdates.showBookingView);
 
 // search for room and filter rooms
 checkAvailBtn.addEventListener('click', checkAvailability);
@@ -169,6 +186,12 @@ function isCustomerLoggedIn(event) {
   if (customer && target === 'mobileGoHome') {
     domUpdates.showLandingPageAfterLogIn(customer);
   } else if (!customer && target === 'mobileGoHome') {
+    domUpdates.showLandingPage();
+  }
+
+  if (customer && target === 'goHome') {
+    domUpdates.showLandingPageAfterLogIn(customer);
+  } else if (!customer && target === 'goHome') {
     domUpdates.showLandingPage();
   }
 }

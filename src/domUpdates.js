@@ -27,6 +27,14 @@ const errorMessage = document.getElementById('errorMessage');
 const postErrorMsg = document.getElementById('postErrorMsg');
 const apologyMessage = document.getElementById('apologyMessage');
 
+// desktop nav buttons
+const desktopGoHomeBtn = document.getElementById('goHome');
+const desktopBookBtn = document.getElementById('navBook');
+const desktopProfileBtn = document.getElementById('navProfile');
+const desktopLogInBtn = document.getElementById('navLogIn');
+const desktopLogOutBtn = document.getElementById('navLogOut');
+const desktopNav = document.getElementById('desktopNav')
+
 
 const domUpdates = {
   hide(elements) {
@@ -59,7 +67,7 @@ const domUpdates = {
 
   showLandingPage() {
     landingMsg.innerText = '';
-    domUpdates.show([landingPage, mobileLogInBtn]);
+    domUpdates.show([landingPage, mobileLogInBtn, desktopLogInBtn]);
     domUpdates.hide([
       selectPage,
       searchResultsPage,
@@ -68,9 +76,13 @@ const domUpdates = {
       profilePage,
       logInPage,
       goHomeBtn,
+      desktopGoHomeBtn,
       mobileLogOutBtn,
+      desktopLogOutBtn,
       mobileViewProfileBtn,
-      mobileBookBtn
+      desktopProfileBtn,
+      mobileBookBtn,
+      desktopBookBtn
     ]);
   },
 
@@ -78,9 +90,10 @@ const domUpdates = {
     landingMsg.innerText = `Welcome ${user.name}`;
     domUpdates.show([
       landingPage,
-      mobileBookBtn,
       mobileViewProfileBtn,
-      mobileLogOutBtn
+      mobileLogOutBtn,
+      desktopProfileBtn,
+      desktopLogOutBtn
     ]);
     domUpdates.hide([
       selectPage,
@@ -90,12 +103,16 @@ const domUpdates = {
       profilePage,
       logInPage,
       goHomeBtn,
-      mobileLogInBtn
+      desktopGoHomeBtn,
+      mobileLogInBtn,
+      desktopLogInBtn,
+      mobileBookBtn,
+      desktopBookBtn
     ]);
   },
 
   showUserProfile() {
-    domUpdates.show([profilePage, mobileBookBtn, goHomeBtn]);
+    domUpdates.show([profilePage, mobileBookBtn, goHomeBtn, desktopBookBtn, desktopGoHomeBtn]);
     domUpdates.hide([
       landingPage,
       searchResultsPage,
@@ -104,12 +121,14 @@ const domUpdates = {
       selectPage,
       logInPage,
       mobileLogInBtn,
-      mobileViewProfileBtn
+      desktopLogInBtn,
+      mobileViewProfileBtn,
+      desktopProfileBtn
     ]);
   },
 
   showBookingView() {
-    domUpdates.show([selectPage, goHomeBtn]);
+    domUpdates.show([selectPage, goHomeBtn, desktopGoHomeBtn]);
     domUpdates.hide([
       landingPage,
       searchResultsPage,
@@ -118,13 +137,15 @@ const domUpdates = {
       profilePage,
       logInPage,
       mobileLogInBtn,
-      mobileBookBtn
+      desktopLogInBtn,
+      mobileBookBtn,
+      desktopBookBtn
     ]);
     postErrorMsg.innerText = '';
   },
 
   showLogInView() {
-    domUpdates.show([logInPage, goHomeBtn]);
+    domUpdates.show([logInPage, goHomeBtn, desktopGoHomeBtn]);
     domUpdates.hide([
       landingPage,
       searchResultsPage,
@@ -132,12 +153,13 @@ const domUpdates = {
       confirmationPage,
       profilePage,
       mobileLogInBtn,
+      desktopLogInBtn,
       mobileBookBtn
     ]);
   },
 
   showSearchResultsPage() {
-    domUpdates.show([searchResultsPage, goHomeBtn]);
+    domUpdates.show([searchResultsPage, goHomeBtn, desktopGoHomeBtn]);
     domUpdates.hide([
       selectPage,
       landingPage,
@@ -146,12 +168,14 @@ const domUpdates = {
       confirmationPage,
       logInPage,
       mobileLogInBtn,
-      mobileBookBtn
+      desktopLogInBtn,
+      mobileBookBtn,
+      desktopBookBtn
     ]);
   },
 
   showRoomDetails() {
-    domUpdates.show([bookingPage, goHomeBtn]);
+    domUpdates.show([bookingPage, goHomeBtn, desktopGoHomeBtn]);
     domUpdates.hide([
       searchResultsPage,
       selectPage,
@@ -160,7 +184,9 @@ const domUpdates = {
       profilePage,
       logInPage,
       mobileLogInBtn,
-      mobileBookBtn
+      desktopLogInBtn,
+      mobileBookBtn,
+      desktopBookBtn
     ]);
   },
 
@@ -174,7 +200,15 @@ const domUpdates = {
       landingPage,
       logInPage,
       mobileLogInBtn,
-      mobileBookBtn
+      desktopLogInBtn,
+      mobileBookBtn,
+      desktopBookBtn,
+      mobileLogOutBtn,
+      desktopLogOutBtn,
+      goHomeBtn,
+      desktopGoHomeBtn,
+      mobileViewProfileBtn,
+      desktopProfileBtn
     ]);
   },
 
