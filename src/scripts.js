@@ -3,6 +3,8 @@ import './css/index.scss';
 import './images/balcony-exterior.jpg';
 import './images/hamburger.png';
 import './images/hamburger-close.png';
+import './images/checked-checkbox.png';
+import './images/mind-map.png';
 import domUpdates from './domUpdates';
 import apiCalls from './apiCalls';
 import Customer from './customer';
@@ -99,6 +101,7 @@ export function assignVariables(apiData) {
   roomsData = apiData[0].rooms;
   bookingsData = apiData[1].bookings;
   images = getPhotoURLs(apiData[2])
+  console.log('assign', apiData)
 }
 
 export function instantiateUser(data) {
@@ -115,6 +118,7 @@ function renderDashboard(customer) {
 }
 
 export function pageLoad() {
+  console.log('hi page load')
   const allBookings = makeBookingInstances();
   const allRooms = makeRoomInstances();
   hotel = new Hotel(allBookings, allRooms);
@@ -124,7 +128,7 @@ export function pageLoad() {
     renderDashboard(customer)
     setTimeout(function () {
       domUpdates.showUserProfile();
-    }, 1500);
+    }, 2000);
   }
 }
 

@@ -28,8 +28,13 @@
   height: 15em;
   object-fit: cover;
   overflow: hidden;
-  border-top-left-radius: 0.5em;
-  border-top-right-radius: 0.5em;
+  border-top-left-radius: 1em;
+  border-top-right-radius: 1em;
+
+  &:hover {
+    opacity: 0.5;
+    transition: .8s ease;
+  }
 }
 
 .text-area {
@@ -54,8 +59,8 @@
   height: 10em;
   object-fit: cover;
   overflow: hidden;
-  border-top-left-radius: 0.5em;
-  border-top-right-radius: 0.5em;
+  border-top-left-radius: 1em;
+  border-top-right-radius: 1em;
 }
 
 .past-text-area {
@@ -73,3 +78,24 @@
 }
 
 
+// --------- MEDIA QUERIES ----------- //
+/* tablet size */
+@media screen and (min-width: $tablet-size) {
+
+
+
+}
+
+/* large tablet size */
+@media screen and (min-width: $large-tablet-size) {
+
+
+}
+
+/* desktop size */
+@media screen and (min-width: $desktop-size) {
+
+.select-room-btn {
+  display: none;
+}
+}

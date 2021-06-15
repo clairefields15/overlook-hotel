@@ -79,7 +79,7 @@
       <label for="arrive">Select Arrival Date</label>
       <input type="date" id="arrivalDate" value="2021-01-01" min="2021-01-01" name="arrive" required>
     </form>
-    <button id="checkAvailBtn" class="main-button">Check Availability</button>
+    <button id="checkAvailBtn" class="go-back-btn">Check Availability</button>
   </section>
   <section id="searchResultsPage" class="results-page hidden">
     <div class="room-type-form">
@@ -103,8 +103,10 @@
     <p class="error-msg" id="postErrorMsg"></p>
   </section>
   <section id="confirmationPage" class="confirmation-page hidden">
-    <p id="errorTag" class="error-msg"></p>
-    <p id="confirmationMsg" class="hidden">Your room is booked! Enjoy your stay!</p>
+    <div class="confirmation-container">
+      <img src="./images/checked-checkbox.png" alt="checked checkbox">
+      <p id="confirmationMsg" class="confirm-msg">Your room is booked! <br> Enjoy your stay!</p>
+    </div>
   </section>
   <script src="bundle.js"></script>
 </body>

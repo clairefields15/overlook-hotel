@@ -60,7 +60,7 @@ const fetchHotelData = () => {
 // --- Post request --- //
 
 const bookRoom = (user, dateSelected, roomNum) => {
-  return fetch('http://localhost:3001/api/v1/bookings', {
+  return fetch(endpoints.bookings, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -74,7 +74,7 @@ const bookRoom = (user, dateSelected, roomNum) => {
     .then(handlePostError)
     .then(() => domUpdates.showConfirmationView())
     .then(() => fetchHotelData())
-    .then(() => pageLoad())
+    // .then(() => pageLoad())
     .catch(domUpdates.catchError);
 }
 
