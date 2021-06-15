@@ -2,18 +2,27 @@ import domUpdates from './domUpdates';
 import {
   assignVariables,
   pageLoad,
-  errorTag,
-  instantiateUser
+  instantiateUser,
+  getPhotoURLs
 } from './scripts';
 
-// Endpoints
+// --- Endpoints --- //
 
 const endpoints = {
   rooms: 'http://localhost:3001/api/v1/rooms',
   bookings: 'http://localhost:3001/api/v1/bookings',
-  customers: 'http://localhost:3001/api/v1/customers'
+  customers: 'http://localhost:3001/api/v1/customers',
+  photos: 'https://api.unsplash.com/users/clairefields15/collections/?id=i-1paXK8zDk/photos/&client_id=4FoST7WXyYlxy0FaSNaKmVsK13r6yTqepwtz5JljGXM'
 }
 
+
+// --- Fetch Requests --- //
+
+const fetchPhotos = () => {
+  return fetch(endpoints.photos)
+    .then(response => response.json())
+    .catch(error => console.error(`Unsplash API Error', ${error.message}`));
+};
 
 const fetchRooms = () => {
   return fetch(endpoints.rooms)
@@ -40,17 +49,15 @@ const fetchCustomer = (id) => {
     .catch(error => console.error(`Customer API Error: ${error.message}`));
 };
 
-// fetch rooms and bookings
 const fetchHotelData = () => {
-  Promise.all([fetchRooms(), fetchBookings()])
+  Promise.all([fetchRooms(), fetchBookings(), fetchPhotos()])
     .then(data => assignVariables(data))
     .then(() => pageLoad());
 };
 
 
-//post request booking
+// --- Post request --- //
 
-// might want to just run instantiate user after booking?
 const bookRoom = (user, dateSelected, roomNum) => {
   return fetch('http://localhost:3001/api/v1/bookings', {
     method: 'POST',
@@ -70,7 +77,7 @@ const bookRoom = (user, dateSelected, roomNum) => {
     .catch(err => console.error(`POST Request Error: ${err.message}`));
 }
 
-
+// --- Error handling --- //
 function handlePostError(response) {
   if (!response.ok) {
     domUpdates.showPostError(response)
@@ -95,5 +102,6 @@ export default {
   fetchBookings,
   fetchHotelData,
   bookRoom,
-  fetchCustomer
+  fetchCustomer,
+  fetchPhotos
 };

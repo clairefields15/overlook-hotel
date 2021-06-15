@@ -7,7 +7,21 @@ class Room {
     this.numBeds = room.numBeds;
     this.costPerNight = room.costPerNight;
     this.isAvailable = true;
+    this.imageURL;
   }
+
+  setImage(images) {
+    if (this.numBeds === 2) {
+      this.imageURL = images[1]
+    } else if (this.type === 'suite') {
+      this.imageURL = images[0]
+    } else if (this.type === 'single room') {
+      this.imageURL = images[2]
+    } else {
+      this.imageURL = images[3]
+    }
+  }
+
 }
 
 export default Room
