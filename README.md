@@ -13,16 +13,16 @@ This application was built mobile-first, is fully responsive, and in addition to
 
 
 When you first come to the site you will be greeted by a gorgeous photo of the exterior of our hotel- isn't it trendy?
-![overlook hotel splash page on mobile](https://imgur.com/3kxOxKC.jpg)
+![overlook hotel splash page on mobile](https://imgur.com/cZxEpLp.jpg)
 
 
 While this site was designed mobile-first, it is fully responsive across tablet, large tablet and desktop breakpoints. In the desktop view, you will notice that the hamburger button disappears in favor of more traditional navigation buttons.
 
-![overlook hotel splash page on desktop](https://imgur.com/tq1KBbr.jpg)
+![overlook hotel splash page on desktop](https://imgur.com/1tJY8Pt.jpg)
 
 
 So, you're impressed with the facade, would you like to book a room? Clicking the "Book Now" button, if you are not logged in, will direct you to log in. If you already have an account, just go ahead and log in.
-![gif of successful log in process on mobile](https://www.webmobilefirst.com/en/screencasts/qjDI5pN5f/)
+![gif of successful log in process on mobile](https://media.giphy.com/media/iEyZG0pqFSakXaHHNw/giphy.gif)
 
 
 One of the learning goals of this project was to practice some log in authentication. A valid username will start with `username` and end with a number between 1 and 50 (there are 50 users in the users API). All users have the same password: `overlook2021`.  While there are many different ways to approach this log in authentication process, if a user has entered `username<something>` and the correct password, I attempt to fetch that user from the database. If the response status code is 404, I know that the user does not exist in the API, and show an error on the DOM. I have added several other layers of error handling to prevent invalid user log-in. They are shown below:
