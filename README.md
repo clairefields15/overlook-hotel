@@ -22,52 +22,51 @@ While this site was designed mobile-first, it is fully responsive across tablet,
 
 
 So, you're impressed with the facade, would you like to book a room? Clicking the "Book Now" button, if you are not logged in, will direct you to log in. If you already have an account, just go ahead and log in.
+
 ![gif of successful log in process on mobile](https://media.giphy.com/media/iEyZG0pqFSakXaHHNw/giphy.gif)
 
 
 One of the learning goals of this project was to practice some log in authentication. A valid username will start with `username` and end with a number between 1 and 50 (there are 50 users in the users API). All users have the same password: `overlook2021`.  While there are many different ways to approach this log in authentication process, if a user has entered `username<something>` and the correct password, I attempt to fetch that user from the database. If the response status code is 404, I know that the user does not exist in the API, and show an error on the DOM. I have added several other layers of error handling to prevent invalid user log-in. They are shown below:
 
-![gif of unsuccessful log in process on mobile](https://www.webmobilefirst.com/en/screencasts/MdnVFeqbh/)
+![gif of unsuccessful log in process on mobile](https://media.giphy.com/media/JYv2qlS3tdNKwOm06P/giphy.gif)
 
 
-Once you have successfully logged into the site, you can view a user dashboard which will show you how much you have spent to date, as well as any current, upcoming or past trips. If you have no upcoming or past trips, that message will also be displayed. Poor Moises here has no upcoming stays, let's book him a room!
+Once you have successfully logged into the site, you can view a user dashboard which will show you how much you have spent to date, as well as any current, upcoming or past trips. If you have no upcoming or past trips, that message will also be displayed. Poor Chauncey here has no upcoming stays, let's book him a room!
 
-![gif of user dashboard with no upcoming trips](https://media.giphy.com/media/xmUEL7JoERtv4VrkLs/giphy.gif)
+![gif of user dashboard with no upcoming trips](https://media.giphy.com/media/Kwa4jnRLVh8KRsFb7s/giphy.gif)
 
 
-All stays on this app are for one night only, so let's watch as Moises selects a date for his stay and browses the available rooms.
+All stays on this app are for one night only, so let's watch as Chauncey selects a date for his stay and browses the available rooms.
 
-![gif of user picking a date and browsing rooms](https://media.giphy.com/media/5AlKZKJ4Gdf9T57iDd/giphy.gif)
+![gif of user picking a date and browsing rooms](https://media.giphy.com/media/LnM5gS7apUiCI97MnX/giphy.gif)
 
 Users may filter available rooms by room type.
 
-![desktop view showing filtered results](https://imgur.com/KDDt38F.jpg)
+![desktop view showing filtered results](https://imgur.com/ueyK24x.jpg)
 
 Oh no! There aren't any available rooms!! Don't worry though, at almost any point in the booking process (up to the very last moment!) you can go back and change your dates or filter by a different room type. 
 
-![desktop view showing no available roms](https://imgur.com/SXGZ1jY.jpg)
+![desktop view showing no available roms](https://imgur.com/OzNcLYr.jpg)
 
 Once you have selected a room, you have one last chance to go back before booking. After all, this is a very nice hotel and we want to be sure you are happy with your room!
 
-![desktop view of booking screen](https://imgur.com/IuFQCSU.jpg)
+![desktop view of booking screen](https://imgur.com/iNlafJ0.jpg)
 
 
-![gif of successful room booking in mobile view](https://media.giphy.com/media/2lVnteuXD1TAXl2AKJ/giphy.gif)
+![gif of successful room booking in mobile view](https://media.giphy.com/media/8VZEJTsaXPel5GD0xX/giphy.gif)
 
 
-Assuming your booking is sucessful and has been successfully POSTed to the bookings API, you will see a confirmation message for 1.5 seconds and then directed back to your profile, where your new, upcoming booking is visible! We here at the Overlook Hotel sincerely hope that Moises enjoys his stay.
-
-![photo of profile after successful booking](https://imgur.com/3KzeQv3.jpg)
+Assuming your booking is sucessful and has been successfully POSTed to the bookings API, you will see a confirmation message for 1.5 seconds and then directed back to your profile, where your new, upcoming booking is visible! We here at the Overlook Hotel sincerely hope that Chauncey enjoys his stay.
 
 
 And that's about it for functionality! Oh, one more thing, let's log out.
 
-![gif of log out](https://media.giphy.com/media/vUSEnpx7EWoFgHqCGm/giphy.gif)
+![gif of log out](https://media.giphy.com/media/FwrSc3ndAUjxYmobmZ/giphy.gif)
 
 
 And for the nerds in the audience, let's check out what happens in the odd event that our server has crashed and users are trying to log in.
 
-![gif showing server down error](https://media.giphy.com/media/9tnhAUOu3s5fPRQptk/giphy.gif)
+![gif showing server down error](https://media.giphy.com/media/1B8i0LowL7scEbhL8W/giphy.gif)
 
 
 
