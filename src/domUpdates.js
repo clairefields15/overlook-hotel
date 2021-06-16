@@ -418,12 +418,12 @@ const domUpdates = {
           <h3 id="roomType" class="room-type">${room.type}</h3>
           <p id="typeOfBed">${room.numBeds} ${room.bedSize}</p>
           <p id="datesOfStay">Date of Stay: ${formattedDate}</p>
-          <p id="costPerNight">$${room.costPerNight} per night x 1 night</p>
-          <p id="totalCost">Total: $${room.costPerNight}</p><br>
+          <p id="costPerNight">$${room.costPerNight} per night x 1 night</p><br>
+          <p id="totalCost">Total: <span class="cost">$${room.costPerNight}</span></p><br>
           <p>Money is fake anyway, so let's pretend you pay here.</p>
         </div>
         <div class="button-container">
-          <button id="${room.number}" class="book-room-btn">Book Your Stay!</button>
+          <button id="${room.number}" class="main-button book-room-btn">Book Your Stay!</button>
           <button id="goBackButton" class="go-back-btn">
           View other rooms on this date
           </button>
