@@ -83,7 +83,7 @@ const domUpdates = {
   },
 
   showLandingPageAfterLogIn(user) {
-    landingMsg.innerText = `Welcome ${user.name}`;
+    landingMsg.innerText = `Welcome, ${user.name}`;
     domUpdates.show([
       landingPage,
       mobileViewProfileBtn,

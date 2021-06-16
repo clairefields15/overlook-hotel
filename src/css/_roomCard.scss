@@ -3,7 +3,7 @@
 .past-booking-card {
   background-color: white;
   border-radius: 1em;
-  box-shadow: 0.2em 0.1em 0.5em #3d3d3d;
+  box-shadow: 0.2em 0.1em 0.8em #65a0aa;
 }
 
 .image-container {
@@ -46,6 +46,7 @@
 .past-date {
   position: absolute;
   background-color:white;
+  opacity: 0.8;
   left: 20px;
   top: 20px;
   padding: 0.5em;
@@ -70,8 +71,10 @@
 
 .no-stays-card {
   background-color: white;
+  opacity: 0.8;
   border-radius: 1em;
   padding: 1em;
   margin: 1em;
-  box-shadow: 0.2em 0.1em 0.5em #3d3d3d;
+  border: 1px solid $medium-grey;
+  box-shadow: 0.2em 0.1em 1em #65a0aa;
 }
