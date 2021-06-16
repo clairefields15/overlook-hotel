@@ -94,7 +94,6 @@ In future, I hope to add manager interaction to the app. The manager should be a
 - SASS (SCSS/CSS)
 - Testing with Mocha and Chai
 - Webpack
-- dayjs 
 - fetching customer, booking and room data from an API provided by Turing
 - fetching room images from the Unsplash API
 
