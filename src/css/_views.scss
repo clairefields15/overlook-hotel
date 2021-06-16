@@ -1,12 +1,10 @@
 // LANDING PAGE
 .hotel-exterior {
-  margin: 0 0 2.25rem;
   background-position: 0;
   background-repeat: no-repeat;
   background-size: cover;
-  height: 100vh;
+  height: 95vh;
   line-height: 1;
-  margin: 0 0 1rem;
   position: relative;
   text-align: center;
   padding: 0;
@@ -27,6 +25,7 @@
   border: none;
   opacity: 0.8;
   font-size: 1.5em;
+  font-weight: 300;
   border-radius: 0.5em;
   margin: 1em;
 }
@@ -39,6 +38,15 @@
   }
 }
 
+.slogan {
+  display: none;
+}
+
+.welcome-msg {
+  font-size: 2.5em;
+  color: $dark-grey;
+}
+
 
 // LOG IN PAGE
 .log-in-page {
@@ -49,16 +57,23 @@
 
 .input-container {
   @include flex-center;
-  margin: 1em
+  margin: 1em;
 }
 
 .label {
-  color:black;
   margin-bottom: 1em;
+  font-size: 1.5em;
+  font-weight: 300;
+}
+
+.username {
+  margin-top: 5em;
 }
 
 .input {
   padding: 0.5em;
+  width: 18em;
+  font-size: 1em;
 
   &::placeholder {
     color: red;
@@ -68,13 +83,14 @@
 // BOOKING PAGE
 .select-page {
   @include flex-center;
+  margin-top: 5em;
 }
 
 .selectDates {
   @include flex-center;
 
   & input {
-    margin: 1em 2em;
+    margin: 1em;
     width: auto;
     height: 2em;
     padding: 1.5em;
@@ -85,7 +101,7 @@
 
   & label {
     font-size: 1.5em;
-    margin-top: 2em;
+    font-weight: 300;
   }
 }
 
@@ -97,6 +113,7 @@
 
 .room-type-form-label {
   font-size: 1.5em;
+  font-weight: 300;
 }
 
 .room-type-form {
@@ -145,6 +162,11 @@
 
 .text-area {
   padding: 1em;
+}
+
+.cost {
+  font-size: 1.75em;
+  font-weight: 300;
 }
 
 .button-and-text {
@@ -197,6 +219,15 @@
   gap: 2em;
 }
 
+.total-expenses {
+  width: 75vw;
+  margin: 1em;
+  padding: 1em;
+  background-color: white;
+  opacity: 0.8;
+  border-radius: 1em;
+  border: 1px solid $medium-grey;
+}
 
 // --------- MEDIA QUERIES ----------- //
 @media screen and (min-width: $tablet-size) {
@@ -234,6 +265,7 @@
 }
 
 @media screen and (min-width: $desktop-size) {
+
   .search-results {
     display: grid;
     padding: 1.3em;
@@ -251,6 +283,9 @@
 
   .button-container {
     margin-top: 2em;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start
   }
 
   .book-this-room {
@@ -260,7 +295,9 @@
   }
 
   .button-and-text {
-    @include flex-center;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
   }
 
   .selected-text-area {
@@ -268,4 +305,23 @@
     margin-top: 3em;
     height: 12em;
   }
+
+  .landing-page-book-button {
+    margin-top: auto;
+    margin-bottom: auto;
+  }
+
+  .total-expenses {
+    width: auto;
+  }
+
+
+  // .slogan {
+  //   color: black;
+  //   display: block;
+  //   background-color: grey;
+  //   font-family: 'Times New Roman';
+  //   font-size: 3em;
+  // }
+
 }

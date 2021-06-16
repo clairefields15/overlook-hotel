@@ -6,6 +6,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
   <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap" rel="stylesheet">
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Electrolize&display=swap" rel="stylesheet">
@@ -44,14 +46,15 @@
 <body>
   <section id="landingPage" class="landing-page">
     <div class="hotel-exterior">
-      <h2 id="landingMsg" class="hidden"></h2>
+      <h2 id="landingMsg" class="welcome-msg hidden"></h2>
+      <p class="slogan">Luxury reimagined</p>
       <button id="bookNowBtn" class="landing-page-book-button main-button" name="Book now">Book Now</button>
     </div>
   </section>
   <section id="logInPage" class="log-in-page hidden">
     <form id="logInForm">
       <div class="input-container">
-        <label class="label" for="username">Username:</label>
+        <label class="label username" for="username">Username:</label>
         <input class="input" type="text" id="usernameField" name="username" placeholder="" autocomplete="off" required>
       </div>
       <div class="input-container">
@@ -65,7 +68,7 @@
   <section id="profilePage" class="profile-page hidden">
     <h2 id="welcomeMsg" class="welcome-msg">Welcome, User!</h2>
     <h2>Total Expenses</h2>
-    <article id="totalSpent">
+    <article id="totalSpent" class="total-expenses">
     </article>
     <h2>Your Upcoming Stays!</h2>
     <article id="noUpcomingStays"></article>
