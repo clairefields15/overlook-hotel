@@ -94,7 +94,6 @@ In future, I hope to add manager interaction to the app. The manager should be a
 - SASS (SCSS/CSS)
 - Testing with Mocha and Chai
 - Webpack
-- dayjs 
 - fetching customer, booking and room data from an API provided by Turing
 - fetching room images from the Unsplash API
 
@@ -108,12 +107,3 @@ Ashton Huxtable (Code reviewer)
 Nik Seif (Project Manager)
 
 Chandler Moisen (Mentor)
-
-
-## Deploying to GitHub Pages
-
-_If you are finished with the functionality and testing of your project_, then you can consider deploying your project to the web! This way anyone can play it without cloning down your repo.
-
-[GitHub Pages](https://pages.github.com/) is a great way to deploy your project to the web. Don't worry about this until your project is free of bugs and well tested!
-
-If you _are_ done, you can follow [this procedure](./gh-pages-procedure.md) to get your project live on GitHub Pages.
