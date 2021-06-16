@@ -14,7 +14,7 @@ Welcome to the Overlook Hotel, we're glad you're here!
 
 The application is a hotel management tool where customers can log in, book a room, and view their past, present, and upcoming stays.  This was the final solo project for Mod 2 of the Front End Engineering program at the Turing School of Software & Design. It was designed and built by Claire Fields in 6 days. 
 
-This application was built mobile-first, is fully responsive, and in addition to meeting the requirements of Iterations 1-3 on the [project spec](https://frontend.turing.edu/projects/overlook.html), has one additional feature.  The `rooms` API that was provided did not have any image urls, so I fetched a curated collection of images from the unsplash API and assigned them to rooms based on type or number of beds. Please enjoy!
+This application was built mobile-first, is fully responsive, and in addition to meeting the requirements of Iterations 1-3 on the [project spec](https://frontend.turing.edu/projects/overlook.html), has one additional feature.  The `rooms` API that was provided did not have any image urls, so I fetched a curated collection of images from the Unsplash API and assigned them to rooms based on type or number of beds. Please enjoy!
 
 
 ## Overview and Features
@@ -111,7 +111,7 @@ In future, I hope to add manager interaction to the app. The manager should be a
 - Testing with Mocha and Chai
 - Webpack
 - fetching customer, booking and room data from an API provided by Turing
-- fetching room images from the Unsplash API
+- posting bookings to the API
 
 
 ## Contributors
