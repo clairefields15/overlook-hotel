@@ -1,7 +1,6 @@
 # Overlook Hotel
 
 ### Table of Contents
-- [Introduction](#introduction)
 - [Overview and Features](#overview-and-features)
 - [Future Features](#future-features)
 - [Instructions for Running Project](#setup)
@@ -17,10 +16,8 @@ The application is a hotel management tool where customers can log in, book a ro
 
 This application was built mobile-first, is fully responsive, and in addition to meeting the requirements of Iterations 1-3 on the [project spec](https://frontend.turing.edu/projects/overlook.html), has one additional feature.  The `rooms` API that was provided did not have any image urls, so I fetched a curated collection of images from the unsplash API and assigned them to rooms based on type or number of beds. Please enjoy!
 
-**[Back to top](#table-of-contents)**
 
 ## Overview and Features
-
 
 When you first come to the site you will be greeted by a gorgeous photo of the exterior of our hotel- isn't it trendy?
 ![overlook hotel splash page on mobile](https://imgur.com/cZxEpLp.jpg)
@@ -84,6 +81,7 @@ And for the nerds in the audience, let's check out what happens in the odd event
 
 In future, I hope to add manager interaction to the app. The manager should be able to log in with different credentials, see a dashboard page showing total available rooms for today, total revenue for totday and percentage of rooms occupied for today. The manger should also be able to search for any user by name and view their name, bookings, and total amount spent. The manager should be able to add a room booking for that user and delete any upcoming bookings.
 
+**[Back to top](#table-of-contents)**
 
 ## Setup
 
