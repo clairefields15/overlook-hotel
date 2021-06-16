@@ -19,20 +19,19 @@ const endpoints = {
 const fetchPhotos = () => {
   return fetch(endpoints.photos)
     .then(response => response.json())
-    .catch(error => domUpdates.displayNetworkError(error))
-    .catch(domUpdates.catchError);
+    .catch(error => domUpdates.catchError(error));
 };
 
 const fetchRooms = () => {
   return fetch(endpoints.rooms)
     .then(response => response.json())
-    .catch(domUpdates.catchError);
+    .catch(error => domUpdates.catchError(error));
 };
 
 const fetchBookings = () => {
   return fetch(endpoints.bookings)
     .then(response => response.json())
-    .catch(domUpdates.catchError);
+    .catch(error => domUpdates.catchError(error));
 }
 
 const fetchCustomers = () => {
