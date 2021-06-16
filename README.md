@@ -41,12 +41,12 @@ One of the learning goals of this project was to practice some log in authentica
 
 Once you have successfully logged into the site, you can view a user dashboard which will show you how much you have spent to date, as well as any current, upcoming or past trips. If you have no upcoming or past trips, that message will also be displayed. Poor Chauncey here has no upcoming stays, let's book him a room!
 
-![gif of user dashboard with no upcoming trips](https://media.giphy.com/media/Kwa4jnRLVh8KRsFb7s/giphy.gif)
-
-
 All stays on this app are for one night only, so let's watch as Chauncey selects a date for his stay and browses the available rooms.
 
-![gif of user picking a date and browsing rooms](https://media.giphy.com/media/LnM5gS7apUiCI97MnX/giphy.gif)
+<div float="left" align="center">
+  <img src="https://media.giphy.com/media/Kwa4jnRLVh8KRsFb7s/giphy.gif" alt="gif of user dashboard with no upcoming trips" height="400"/>
+  <img src="https://media.giphy.com/media/LnM5gS7apUiCI97MnX/giphy.gif" alt="gif of user picking a date and browsing rooms" height="400"/>
+</div>
 
 Users may filter available rooms by room type.
 
