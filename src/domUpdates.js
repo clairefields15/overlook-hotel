@@ -236,30 +236,6 @@ const domUpdates = {
     ]);
   },
 
-  showPostError(response) {
-    if (response.status === 404) {
-      postErrorMsg.innerText =
-        'Something went wrong while booking, please try again.';
-    } else if (response.status === 500) {
-      postErrorMsg.innerText =
-        'So sorry, our servers are down, try again later.';
-    } else {
-      postErrorMsg.innerText = 'Something went wrong.';
-    }
-  },
-
-  showLogInError(response) {
-    errorMessage.style.opacity = 1;
-    if (response.status === 404) {
-      errorMessage.innerText = 'Username does not exist';
-    } else if (response.status === 500) {
-      errorMessage.innerText =
-        'So sorry, our servers are down, try again later.';
-    } else {
-      errorMessage.innerText = 'Something went wrong.';
-    }
-  },
-
   renderUserDashboard(user, expenses, currentDate) {
     const welcomeMsg = document.getElementById('welcomeMsg');
     const totalSpent = document.getElementById('totalSpent');
@@ -433,9 +409,19 @@ const domUpdates = {
   },
 
   catchError(err) {
-    errorMessage.style.opacity = 1;
-    errorMessage.innerText = 'So sorry, our servers are down, please refresh and try again later.'
-    console.error('Network Error:', err)
+    if (err.message === 'User does not exist') {
+      errorMessage.style.opacity = 1;
+      errorMessage.innerText = 'Username does not exist.'
+      console.error('Network Error:', err)
+    } else if(err.message === 'Something went wrong') {
+      postErrorMsg.style.opacity = 1;
+      postErrorMsg.innerText =
+        'Something went wrong while booking, please try again.';
+    } else {
+      errorMessage.style.opacity = 1;
+      errorMessage.innerText = 'So sorry, our servers are down, please refresh and try again later.'
+      console.error('Network Error:', err)
+    }
   }
 };
 

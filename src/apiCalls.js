@@ -45,7 +45,7 @@ const fetchCustomer = (id) => {
   return fetch(`http://localhost:3001/api/v1/customers/${id}`)
     .then(handleLogInError)
     .then(data => instantiateUser(data))
-    .catch(domUpdates.catchError);
+    .catch(error => domUpdates.catchError(error));
 };
 
 const fetchHotelData = () => {
@@ -72,13 +72,12 @@ const bookRoom = (user, dateSelected, roomNum) => {
     .then(handlePostError)
     .then(() => domUpdates.showConfirmationView())
     .then(() => fetchHotelData())
-    .catch((error) => domUpdates.catchError(error));
+    .catch(error => domUpdates.catchError(error));
 }
 
 // --- Error handling --- //
 function handlePostError(response) {
   if (!response.ok) {
-    domUpdates.showPostError(response)
     throw new Error('Something went wrong');
   } else {
     return response.json()
@@ -87,7 +86,6 @@ function handlePostError(response) {
 
 function handleLogInError(response) {
   if (!response.ok) {
-    domUpdates.showLogInError(response);
     throw new Error('User does not exist');
   } else {
     return response.json();

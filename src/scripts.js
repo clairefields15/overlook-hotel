@@ -246,6 +246,7 @@ function logOut() {
   postErrorMsg.innerText = '';
   domUpdates.showLandingPage();
   errorMessage.style.opacity = 0;
+  postErrorMsg.style.opacity = 0;
   usernameField.setAttribute('placeholder', '');
   passwordField.setAttribute('placeholder', '');
 
@@ -258,6 +259,7 @@ function checkAvailability() {
   const results = hotel.findAvailableRooms(input);
   domUpdates.showSearchResultsPage();
   setCalendarDate()
+  postErrorMsg.style.opacity = 0;
 
   if (results.length === 0) {
     domUpdates.renderApology();
