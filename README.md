@@ -1,13 +1,14 @@
 # Overlook Hotel
 
 ### Table of Contents
-- [Introduction](##introduction)
-- [Overview and Features](##overview-and-features)
-- [Future Features](##future-features)
-- [Instructions for Running Project](##setup)
-- [Technologies Used](##technologies-used)
-- [Authors and Contributors](##contributors)
-- 
+- [Introduction](#introduction)
+- [Overview and Features](#overview-and-features)
+- [Future Features](#future-features)
+- [Instructions for Running Project](#setup)
+- [Technologies Used](#technologies-used)
+- [Authors and Contributors](#contributors)
+
+
 ## Introduction
 
 Welcome to the Overlook Hotel, we're glad you're here!
@@ -16,6 +17,7 @@ The application is a hotel management tool where customers can log in, book a ro
 
 This application was built mobile-first, is fully responsive, and in addition to meeting the requirements of Iterations 1-3 on the [project spec](https://frontend.turing.edu/projects/overlook.html), has one additional feature.  The `rooms` API that was provided did not have any image urls, so I fetched a curated collection of images from the unsplash API and assigned them to rooms based on type or number of beds. Please enjoy!
 
+**[Back to top](#table-of-contents)**
 
 ## Overview and Features
 
@@ -76,7 +78,7 @@ And for the nerds in the audience, let's check out what happens in the odd event
 
 ![gif showing server down error](https://media.giphy.com/media/1B8i0LowL7scEbhL8W/giphy.gif)
 
-
+**[Back to top](#table-of-contents)**
 
 ## Future Features
 
@@ -94,6 +96,8 @@ In future, I hope to add manager interaction to the app. The manager should be a
 8. Run `npm start` in your terminal. Go to `http://localhost:8080/` and you should see the website!
 9. Enter `control + c` in your terminal to stop the server(s) at any time.
 
+
+**[Back to top](#table-of-contents)**
 
 ## Technologies Used
 
@@ -115,3 +119,5 @@ Ashton Huxtable (Code reviewer)
 Nik Seif (Project Manager)
 
 Chandler Moisen (Mentor)
+
+**[Back to top](#table-of-contents)**
