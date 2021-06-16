@@ -28,7 +28,7 @@ So, you're impressed with the facade, would you like to book a room? Clicking th
 
 One of the learning goals of this project was to practice some log in authentication. A valid username will start with `username` and end with a number between 1 and 50 (there are 50 users in the users API). All users have the same password: `overlook2021`.  While there are many different ways to approach this log in authentication process, if a user has entered `username<something>` and the correct password, I attempt to fetch that user from the database. If the response status code is 404, I know that the user does not exist in the API, and show an error on the DOM. I have added several other layers of error handling to prevent invalid user log-in. They are shown below:
 
-![gif of unsuccessful log in process on mobile](https://media.giphy.com/media/JYv2qlS3tdNKwOm06P/giphy.gif)
+![gif of unsuccessful log in process on mobile](https://media.giphy.com/media/6akIRKwhHoNDh5yt0U/giphy.gif)
 
 
 Once you have successfully logged into the site, you can view a user dashboard which will show you how much you have spent to date, as well as any current, upcoming or past trips. If you have no upcoming or past trips, that message will also be displayed. Poor Chauncey here has no upcoming stays, let's book him a room!
