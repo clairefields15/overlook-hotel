@@ -48,6 +48,7 @@ All stays on this app are for one night only, so let's watch as Chauncey selects
   <img src="https://media.giphy.com/media/LnM5gS7apUiCI97MnX/giphy.gif" alt="gif of user picking a date and browsing rooms" height="400"/>
 </div>
 
+
 Users may filter available rooms by room type.
 
 ![desktop view showing filtered results](https://imgur.com/ueyK24x.jpg)
@@ -60,12 +61,11 @@ Once you have selected a room, you have one last chance to go back before bookin
 
 ![desktop view of booking screen](https://imgur.com/iNlafJ0.jpg)
 
-
+<div align="center">
 ![gif of successful room booking in mobile view](https://media.giphy.com/media/8VZEJTsaXPel5GD0xX/giphy.gif)
+</div>
 
-
-Assuming your booking is sucessful and has been successfully POSTed to the bookings API, you will see a confirmation message for 1.5 seconds and then directed back to your profile, where your new, upcoming booking is visible! We here at the Overlook Hotel sincerely hope that Chauncey enjoys his stay.
-
+Assuming your booking is sucessful and has been successfully POSTed to the bookings API, you will see a confirmation message and then be directed back to your profile, where your new, upcoming booking is visible! We here at the Overlook Hotel sincerely hope that Chauncey enjoys his stay.
 
 And that's about it for functionality! Oh, one more thing, let's log out.
 
@@ -75,6 +75,7 @@ And that's about it for functionality! Oh, one more thing, let's log out.
 And for the nerds in the audience, let's check out what happens in the odd event that our server has crashed and users are trying to log in.
 
 ![gif showing server down error](https://media.giphy.com/media/1B8i0LowL7scEbhL8W/giphy.gif)
+
 
 **[Back to top](#table-of-contents)**
 
