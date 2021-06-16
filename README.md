@@ -62,19 +62,23 @@ Once you have selected a room, you have one last chance to go back before bookin
 ![desktop view of booking screen](https://imgur.com/iNlafJ0.jpg)
 
 <div align="center">
-![gif of successful room booking in mobile view](https://media.giphy.com/media/8VZEJTsaXPel5GD0xX/giphy.gif)
+   <img src="https://media.giphy.com/media/8VZEJTsaXPel5GD0xX/giphy.gif" alt="gif of successful room booking in mobile view" height="400"/>
 </div>
 
 Assuming your booking is sucessful and has been successfully POSTed to the bookings API, you will see a confirmation message and then be directed back to your profile, where your new, upcoming booking is visible! We here at the Overlook Hotel sincerely hope that Chauncey enjoys his stay.
 
 And that's about it for functionality! Oh, one more thing, let's log out.
 
-![gif of log out](https://media.giphy.com/media/FwrSc3ndAUjxYmobmZ/giphy.gif)
+<div align="center">
+   <img src="https://media.giphy.com/media/FwrSc3ndAUjxYmobmZ/giphy.gif" alt="gif of log out" height="400"/>
+</div>
 
 
 And for the nerds in the audience, let's check out what happens in the odd event that our server has crashed and users are trying to log in.
 
-![gif showing server down error](https://media.giphy.com/media/1B8i0LowL7scEbhL8W/giphy.gif)
+<div align="center">
+   <img src="https://media.giphy.com/media/1B8i0LowL7scEbhL8W/giphy.gif" alt="gif showing server down error" height="400"/>
+</div>
 
 
 **[Back to top](#table-of-contents)**
