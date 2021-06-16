@@ -20,7 +20,8 @@ This application was built mobile-first, is fully responsive, and in addition to
 ## Overview and Features
 
 When you first come to the site you will be greeted by a gorgeous photo of the exterior of our hotel- isn't it trendy?
-![overlook hotel splash page on mobile](https://imgur.com/cZxEpLp.jpg)
+
+<img src="https://imgur.com/cZxEpLp.jpg" alt="overlook hotel splash page on mobile" height="200"/>
 
 
 While this site was designed mobile-first, it is fully responsive across tablet, large tablet and desktop breakpoints. In the desktop view, you will notice that the hamburger button disappears in favor of more traditional navigation buttons.
