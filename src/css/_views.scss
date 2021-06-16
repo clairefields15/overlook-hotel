@@ -61,7 +61,6 @@
 }
 
 .label {
-  color:black;
   margin-bottom: 1em;
   font-size: 1.5em;
   font-weight: 300;
@@ -84,13 +83,14 @@
 // BOOKING PAGE
 .select-page {
   @include flex-center;
+  margin-top: 5em;
 }
 
 .selectDates {
   @include flex-center;
 
   & input {
-    margin: 1em 2em;
+    margin: 1em;
     width: auto;
     height: 2em;
     padding: 1.5em;
@@ -101,7 +101,7 @@
 
   & label {
     font-size: 1.5em;
-    margin-top: 2em;
+    font-weight: 300;
   }
 }
 
